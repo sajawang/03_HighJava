@@ -1,0 +1,133 @@
+package kr.or.ddit.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.util.DBUtil;
+import kr.or.ddit.vo.MemberVO;
+
+public class MemberDaoImpl implements IMemberDao{
+
+	@Override
+	public int insertMember(MemberVO memVo) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int cnt = 0;	//반환값이 저장될 변수
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			String sql="insert into mymember values(?,?,?,?,?)";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,memVo.getMem_id());
+			pstmt.setString(2, memVo.getMem_pass());
+			pstmt.setString(3, memVo.getMem_name());
+			pstmt.setString(4, memVo.getMem_tel());
+			pstmt.setString(5, memVo.getMem_addr());
+			
+			cnt = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try { if(pstmt != null) pstmt.close(); } catch (SQLException e) {}
+			try { if(conn != null) conn.close(); } catch (SQLException e) {}
+		}
+		
+		return cnt;
+	}
+
+	@Override
+	public int deleteMember(String memId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateMember(MemberVO memVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<MemberVO> getAllMember() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getMemberIdCount(String memId) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;	//반환값 변수
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			String sql = "select count(*) cnt from mymember where mem_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memId);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count=rs.getInt("cnt");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try { if(rs != null) rs.close(); } catch (SQLException e) {}
+			try { if(pstmt != null) pstmt.close(); } catch (SQLException e) {}
+			try { if(conn != null) conn.close(); } catch (SQLException e) {}
+		}
+		
+		return count;
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

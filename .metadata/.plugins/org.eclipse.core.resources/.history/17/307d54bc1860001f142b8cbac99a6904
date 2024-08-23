@@ -1,0 +1,17 @@
+package kr.or.ddit.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.vo.BoardVO;
+
+public interface IBoardDao {
+
+	public List<BoardVO> getAllBoard();
+	public int getoneBoard(Map<String,String> paramMap);
+	public int insertBoard(BoardVO boardVo);
+	public int updateBoard(BoardVO boardVo);
+	public int deleteBoard(String boardNo);
+	public List<BoardVO> searchBoard(String str);
+	
+}

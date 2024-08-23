@@ -1,0 +1,6 @@
+package kr.or.ddit.util;
+
+// JDBC드라이버를 로딩하고 Connection객체를 생성하여 반환하는 메서드로 구성된 Class 만들기
+public class DBUtil {
+	
+}
