@@ -58,6 +58,6 @@
     <fullyQualifiedTypeName name="org.apache.ibatis.io.Resources"/>
     <fullyQualifiedTypeName name="kr.or.ddit.vo.LprodVO"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactory"/>
-    <fullyQualifiedTypeName name="kr.or.ddit.util.MybatisUtil"/>
     <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.util.MybatisUtil"/>
 </qualifiedTypeNameHistroy>

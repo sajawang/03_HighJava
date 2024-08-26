@@ -164,89 +164,21 @@ public class BoardDaoImpl implements IBoardDao{
 		}
 
 		@Override
-		public List<BoardVO> searchBoard(String str) {
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			List<BoardVO> boardList = null;//반환값이 저장될 변수
-
-			try {
-				conn = DBUtil3.getConnection();
-				String sql = "select * \r\n" + 
-							 "from jdbc_board\r\n" + 
-							 "where board_title like '%"+str+"%'";
-				
-				pstmt = conn.prepareStatement(sql);
-				
-				rs = pstmt.executeQuery();
-				
-				boardList = new ArrayList<BoardVO>(); //List객체 생성
-				
-				while(rs.next()) {
-					//1개의 레코드 데이터를 VO객체에 저장한다.
-					BoardVO boardVo = new BoardVO();
-					boardVo.setBoard_no(rs.getString("board_no"));
-					boardVo.setBoard_title(rs.getString("board_title"));
-					boardVo.setBoard_writer(rs.getString("board_writer"));
-					boardVo.setBoard_date(rs.getString("board_date"));
-					boardVo.setBoard_cnt(rs.getString("board_cnt"));
-					boardVo.setBoard_content(rs.getString("board_content"));
-					
-					boardList.add(boardVo); //VO객체를 List에 추가한다.
-				}
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				try { if(rs != null) rs.close(); } catch (SQLException e) {}
-				try { if(pstmt != null) pstmt.close(); } catch (SQLException e) {}
-				try { if(conn != null) conn.close(); } catch (SQLException e) {}
-			}
-			
-			return boardList;
+		public BoardVO getBoard(int boardNO) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 
 		@Override
-		public List<BoardVO> getoneBoard(String str) {
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			List<BoardVO> boardList = null;//반환값이 저장될 변수
+		public List<BoardVO> getSearchBoard(String title) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
-			try {
-				conn = DBUtil3.getConnection();
-				String sql = "select * \r\n" + 
-							 "from jdbc_board\r\n" + 
-							 "where board_title like '%"+str+"%'";
-				
-				pstmt = conn.prepareStatement(sql);
-				
-				rs = pstmt.executeQuery();
-				
-				boardList = new ArrayList<BoardVO>(); //List객체 생성
-				
-				while(rs.next()) {
-					//1개의 레코드 데이터를 VO객체에 저장한다.
-					BoardVO boardVo = new BoardVO();
-					boardVo.setBoard_no(rs.getString("board_no"));
-					boardVo.setBoard_title(rs.getString("board_title"));
-					boardVo.setBoard_writer(rs.getString("board_writer"));
-					boardVo.setBoard_date(rs.getString("board_date"));
-					boardVo.setBoard_cnt(rs.getString("board_cnt"));
-					boardVo.setBoard_content(rs.getString("board_content"));
-					
-					boardList.add(boardVo); //VO객체를 List에 추가한다.
-				}
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				try { if(rs != null) rs.close(); } catch (SQLException e) {}
-				try { if(pstmt != null) pstmt.close(); } catch (SQLException e) {}
-				try { if(conn != null) conn.close(); } catch (SQLException e) {}
-			}
-			
-			return boardList;
+		@Override
+		public int setCountIncrement(int boardNo) {
+			// TODO Auto-generated method stub
+			return 0;
 		}
 
 		

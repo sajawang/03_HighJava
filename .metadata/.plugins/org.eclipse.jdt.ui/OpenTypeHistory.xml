@@ -2,4 +2,7 @@
 <typeInfoHistroy>
     <typeInfo handle="=javaNetworkTest/D:\/B_Util\/2.Java\/JDK1.8\/jre\/lib\/rt.jar=/javadoc_location=/https:\/\/docs.oracle.com\/javase\/8\/docs\/api\/=/&lt;java.lang(Thread.class[Thread" modifiers="33" timestamp="1625467104000"/>
     <typeInfo handle="=mvcTest/src&lt;kr.or.ddit.service{IMemberService.java[IMemberService" modifiers="513" timestamp="1724219962813"/>
+    <typeInfo handle="=mvcToMybatisTest/src&lt;kr.or.ddit.dao{IMemberDao.java[IMemberDao" modifiers="513" timestamp="1724219962807"/>
+    <typeInfo handle="=mybatisBoardTest/src&lt;kr.or.ddit.dao{IBoardDao.java[IBoardDao" modifiers="513" timestamp="1724666642352"/>
+    <typeInfo handle="=mybatisBoardTest/src&lt;kr.or.ddit.service{IBoardService.java[IBoardService" modifiers="513" timestamp="1724666591035"/>
 </typeInfoHistroy>

@@ -49,6 +49,8 @@ public class BoardServiceImpl implements IBoardService{
 	@Override
 	public List<BoardVO> searchBoard(String str) {
 		// TODO Auto-generated method stub
-		return dao.searchBoard(str);
+		return null;
 	}
+
+
 }

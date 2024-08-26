@@ -1,189 +1,206 @@
-package kr.or.ddit.controller;
+package kr.or.ddit.board.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
-import kr.or.ddit.service.BoardServiceImpl;
-import kr.or.ddit.service.IBoardService;
+import kr.or.ddit.board.service.BoardServiceImpl;
+import kr.or.ddit.board.service.IBoardService;
 import kr.or.ddit.vo.BoardVO;
 
 public class BoardController {
-	private Scanner scan = new Scanner(System.in);
-	private IBoardService service;
+	private IBoardService service;		// Service객체가 저장될 변수 선언
+	private Scanner scan;
 	
+	// 생성자
 	public BoardController() {
 		service = BoardServiceImpl.getInstance();
+		scan = new Scanner(System.in);
+	}
+
+	public static void main(String[] args) {
+		new BoardController().boardStart();
 	}
 	
-	public static void main(String[] args) {
-		new BoardController().testStart();
-	}
-
-	private void testStart() {
+	public void boardStart() {
+		String title = null;
+		int choice = -1;
 		while(true) {
-			int choice = displayMenu();
+			if(choice!=3) title = null;
+			
+			choice = displayMenu(title);
+			
 			switch(choice) {
-			case 1: //새글작성
-				insert();
-				break;
-			case 2: //게시글보기
-				list();
-				break;
-			case 3: //검색
-				break;
-			case 4: //수정
-				break;
-			case 5://삭제
-				break;
-			case 0: //작업끝
-				System.out.println("작업 끝..");
-				break;
-			default:
-				System.out.println("번호를 잘못입력했습니다");
-				System.out.println("다시선택하세요");
+				case 1: 		// 새글작성
+					insertBoard(); break;
+				case 2: 		// 게시글 보기
+					viewBoard(); break;
+				case 3: 		// 검색
+					title = searchBoard(); break;
+				case 0: 		// 작업 끝.
+					System.out.println("게시판 프로그램 종료....");
+					return;
+				default : System.out.println("작업 번호를 잘못 입력했습니다. 다시 입력하세요...");
 			}
 		}
+		
 	}
-
-	private void list() {
-		String no=null;
-		System.out.println("보기를 원하는 게시물 번호 입력>>");
-		no =scan.next();
+	
+	// 검색할 단어 입력하여 반환하는 메서드
+	private String searchBoard() {
+		scan.nextLine();  // 입력 버퍼 비우기
+		System.out.println();
+		System.out.println("검색 작업");
+		System.out.println("--------------------------------------------");
+		System.out.print("- 검색할 제목 입력 : ");
+		return scan.nextLine();
+	}
+	
+	
+	// 게시글 보기
+	private void viewBoard() {
+		System.out.println();
+		System.out.print("보기를 원하는 게시물 번호 입력 >> ");
+		int num = scan.nextInt();
 		
-		System.out.println(no+"번글 내용");
-		System.out.println("------------------------------------------------------------");
+		BoardVO boardVo = service.getBoard(num);
 		
+		// 입력한 게시글 번호에 자료가 없을 때... 
+		if(boardVo==null) {
+			System.out.println(num + "번의 게시글은 존재하지 않습니다...");
+			return;
+		}
 		
-		System.out.println("- 제  목 : 안녕하세요?      ");
-		System.out.println("- 작성자 : 변학도           ");
-		System.out.println("- 내  용 : 연습용 입니다.  ");
-		System.out.println("- 작성일 : 2018-12-12");
-		System.out.println("- 조회수 : 1");
-		System.out.println("-------------------------------------------------------------");
+		System.out.println();
+		System.out.println(num + "번 게시글");
+		System.out.println("-----------------------------------------------------");
+		System.out.println("- 제 목 : " + boardVo.getBoard_title());
+		System.out.println("- 작성자 : " + boardVo.getBoard_writer());
+		System.out.println("- 내 용 : " + boardVo.getBoard_content());
+		System.out.println("- 작성일 : " + boardVo.getBoard_date());
+		System.out.println("- 조회수 : " + boardVo.getBoard_cnt());
+		System.out.println("-----------------------------------------------------");
 		System.out.println("메뉴 : 1. 수정    2. 삭제    3. 리스트로 가기");
-		System.out.println("작업선택 >> ");
-		no =scan.next();
+		System.out.print("작업 선택 >> ");
+		int choice = scan.nextInt();
 		
-		
-	    String title=null;	
-	    String writer = null;
-	    String content = null;
-	    String date = null;
-	    String cnt = null;
-	    
-	    //수정에 필요한 정보들을 Map에 추가한다.
-	    //key값 ==> 회원 ID(MEMID), 수정할 컬럼명(FIELD), 수정할 데이터(DATA)
-	    Map<String,String> paramMap = new HashMap<String,String>();
-	    paramMap.put("MEMID",id);
-	    paramMap.put("FIELD",updateField);
-	    paramMap.put("DATA", updateData);
-	    
-	    int cnt = service.updateMember2(paramMap);
-	    
-	    if(cnt>0) {
-	    	System.out.println("개별항목 수정작업 성공!!!");
-	    } else {
-	    	System.out.println("개별 항목 수정 작업 실패~~");
-	    }
+		switch(choice) {
+			case 1:			// 수정
+				updateBoard(num); break;
+			case 2:			// 삭제
+				deleteBoard(num); break;
+			case 3:			// 리스트로 가기
+				return;
+			
+		}
 		
 	}
-
-	private void insert() {
-		String title = null;
-		String writer = null;
-		String content = null;
-		int cnt = 0;
-		System.out.println("제목>>");
-		title =scan.next();
-		System.out.println("작성자>>");
-		writer =scan.next();
-		scan.nextLine();
-		System.out.println("내용>>");
-		content =scan.nextLine();
-			
-		BoardVO boardVo = new BoardVO();
-		boardVo.setBoard_title(title);
-		boardVo.setBoard_writer(writer);
-		boardVo.setBoard_content(content);
-		
-		cnt = service.insertBoard(boardVo);
+	
+	// 삭제 작업
+	private void deleteBoard(int boardNo) {
+		int cnt = service.deleteBoard(boardNo);
 		
 		if(cnt>0) {
-			System.out.println("insert작업성공!!");
-		} else {
-			System.out.println("insert작업 실패");
+			System.out.println(boardNo + "번 글이 삭제되었습니다...");
+		}else {
+			System.out.println(boardNo + "번 글의 삭제 작업 실패!!!");
 		}
-	}
-
-	private int displayMenu() {
-		displayAll();
-		System.out.println("메뉴:1.새글작성\t2.게시글보기\t3.검색\t0.작업끝");
-		System.out.println("작업선택>> ");
 		
+	}
+	
+	// 수정 작업
+	private void updateBoard(int boardNo) {
+		System.out.println();
+		scan.nextLine(); // 입력 버퍼 비우기
+		
+		System.out.println("수정 작업하기");
+		System.out.println("-----------------------------------");
+		System.out.print("- 제 목 : ");
+		String title = scan.nextLine();
+		
+		System.out.print("- 내 용 : ");
+		String content = scan.nextLine();
+		
+		// 수정할 자료를 VO객체에 저장한다.
+		BoardVO bvo = new BoardVO();
+		bvo.setBoard_title(title);
+		bvo.setBoard_content(content);
+		bvo.setBoard_no(boardNo);
+		
+		int cnt = service.updateBoard(bvo);
+		
+		if(cnt>0) {
+			System.out.println(boardNo + "번 글이 수정되었습니다...");
+		}else {
+			System.out.println(boardNo + "번 글 수정 작업 실패!!!");
+		}
+				
+	}
+	
+	
+	
+	// 새 글 작성
+	private void insertBoard() {
+		System.out.println();
+		System.out.println("새글 작성하기"); 
+		System.out.println("-----------------------------------");
+		
+		scan.nextLine(); // 입력 버퍼 비우기
+		
+		System.out.print("- 제 목 >> ");
+		String title = scan.nextLine();
+		
+		System.out.print("- 작성자 >> ");
+		String name = scan.nextLine();
+		
+		System.out.print("- 내 용 >> ");
+		String content = scan.nextLine();
+		
+		// 입력 받은 자료를 VO객체에 저장한다.
+		BoardVO bvo = new BoardVO();
+		bvo.setBoard_title(title);
+		bvo.setBoard_writer(name);
+		bvo.setBoard_content(content);
+		
+		int cnt = service.insertBoard(bvo);
+		
+		if(cnt>0) {
+			System.out.println("새 글이 추가되었습니다.");
+		}else {
+			System.out.println("새 글 추가 실패!!!");
+		}
+		
+		
+	}
+	
+	
+	private int displayMenu(String title) {
+		System.out.println();
+		System.out.println("--------------------------------------------------");
+		System.out.println(" No	        제 목                 작성자       	     조회수 ");
+		System.out.println("--------------------------------------------------");
+		
+		List<BoardVO> boardList = null;
+		if(title==null) {
+			boardList =	service.getAllBoard();
+		}else {
+			boardList = service.getSearchBoard(title);
+		}
+		
+		if(boardList==null || boardList.size()==0) {
+			System.out.println("\t출력할 게시글이 하나도 없습니다...");
+		}else {
+			for(BoardVO bvo : boardList) {
+				System.out.println(bvo.getBoard_no() + "\t" + bvo.getBoard_title() + "\t"
+						+ bvo.getBoard_writer() + "\t" + bvo.getBoard_cnt());
+			}
+		}
+		System.out.println("--------------------------------------------------");
+		System.out.println("메뉴 : 1. 새글작성     2. 게시글보기    3. 검색    0. 작업끝");
+		System.out.print("작업 선택 >> ");
 		return scan.nextInt();
 	}
 	
-	private void displayAll() {
-		System.out.println();
-		
-		List<BoardVO> boardList = service.getAllBoard();
-		
-		System.out.println("----------------------------");
-		System.out.println(" No\t제 목\t작성자\t조회수");
-		System.out.println("----------------------------");
-		
-		if(boardList==null || boardList.size()==0) {
-			System.out.println("\t등록된 게시글이 하나도 없습니다.");
-		} else {
-			for(BoardVO bvo : boardList) {
-				String no = bvo.getBoard_cnt();
-				String title = bvo.getBoard_title();
-				String writer = bvo.getBoard_writer();
-				String cnt = bvo.getBoard_cnt();
-				
-				System.out.println(no+"\t"+title+"\t"+writer+"\t"+cnt);
-			}
-		}
-		System.out.println("----------------------------");
-	}
 	
+	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

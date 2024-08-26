@@ -13,7 +13,6 @@ public class JdbcToMybatis {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		
-		
 		SqlSession session = null;
 		try {
 			session = MybatisUtil.getSqlSession();
