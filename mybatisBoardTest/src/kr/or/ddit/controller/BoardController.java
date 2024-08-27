@@ -23,7 +23,7 @@ public class BoardController {
 	
 	public void boardStart() {
 		String title = null;
-		int choice = -1;
+		int choice = 0;
 		while(true) {
 			if(choice!=3) title = null;
 			

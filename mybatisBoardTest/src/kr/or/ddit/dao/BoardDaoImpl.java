@@ -20,25 +20,6 @@ public class BoardDaoImpl implements IBoardDao {
 			return dao;
 		}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		@Override
 		public int insertBoard(BoardVO boardVo) {
 			SqlSession session = null;
