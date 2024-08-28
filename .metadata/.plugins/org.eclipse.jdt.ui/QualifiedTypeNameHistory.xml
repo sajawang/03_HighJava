@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.io.BufferedInputStream"/>
-    <fullyQualifiedTypeName name="javax.mail.Store"/>
     <fullyQualifiedTypeName name="javax.mail.FetchProfile.Item"/>
     <fullyQualifiedTypeName name="javax.mail.Flags"/>
     <fullyQualifiedTypeName name="javax.mail.Flags.Flag"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="kr.or.ddit.util.MybatisUtil"/>
     <fullyQualifiedTypeName name="java.util.logging.Logger"/>
     <fullyQualifiedTypeName name="org.apache.log4j.Logger"/>
+    <fullyQualifiedTypeName name="javax.servlet.annotation.WebServlet"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 </qualifiedTypeNameHistroy>
