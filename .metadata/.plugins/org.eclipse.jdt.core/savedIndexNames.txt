@@ -7,8 +7,8 @@ INDEX VERSION 1.131+D:\A_TeachingMaterial\03_HighJava\workspace\.metadata\.plugi
 3234991778.index
 3381019733.index
 863149874.index
-719452024.index
 384361384.index
+719452024.index
 2417924368.index
 4009330929.index
 4109986643.index
@@ -22,8 +22,8 @@ INDEX VERSION 1.131+D:\A_TeachingMaterial\03_HighJava\workspace\.metadata\.plugi
 3503344449.index
 2896585647.index
 1802182455.index
-481563499.index
 1326036433.index
+481563499.index
 4150769725.index
 3929289921.index
 1709270352.index
@@ -33,8 +33,8 @@ INDEX VERSION 1.131+D:\A_TeachingMaterial\03_HighJava\workspace\.metadata\.plugi
 2177339633.index
 1754279728.index
 3900442749.index
-1353404506.index
 1346187164.index
+1353404506.index
 1813583271.index
 3170964660.index
 3241226188.index
@@ -45,8 +45,8 @@ INDEX VERSION 1.131+D:\A_TeachingMaterial\03_HighJava\workspace\.metadata\.plugi
 3826547407.index
 521718344.index
 1841339446.index
-3609917866.index
 2353590365.index
+3609917866.index
 3695450944.index
 1458238812.index
 3578768430.index
@@ -68,14 +68,13 @@ INDEX VERSION 1.131+D:\A_TeachingMaterial\03_HighJava\workspace\.metadata\.plugi
 4288509045.index
 2426908521.index
 2406192616.index
-4094222115.index
 2823788549.index
+4094222115.index
 2675934524.index
 1388435885.index
 105683797.index
 3939699067.index
 1093057235.index
-1195252255.index
 942852205.index
 3454202191.index
 2759542394.index

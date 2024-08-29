@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration
-		PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
-		"http://mybatis.org/dtd/mybaatis-3-confifg.dtd">
-<configuration>
-	<!-- DB연겨려에 사용할 propertied파일에 대한 정보를 알려준다. -->
-	
-</configuration>
