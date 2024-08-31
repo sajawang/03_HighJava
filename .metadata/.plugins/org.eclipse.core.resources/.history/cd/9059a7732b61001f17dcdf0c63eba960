@@ -1,8 +1,0 @@
-package kr.or.ddit.basic;
-
-//JDBC예제 중 'JdbcTest05.java'를 MyBatis로 처리하기
-public class JdbcToMybatis {
-	public static void main(String[] args) {
-		
-	}
-}
