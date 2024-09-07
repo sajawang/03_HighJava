@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.vo.MemberVO;
+
 /**
  * Servlet implementation class SessionLogin
  */
@@ -30,26 +32,31 @@ public class SessionLoginDb extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=uft-8");
+		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
 		
 		String userId=request.getParameter("userid");
 		String userPass=request.getParameter("userpass");
 		
-		session.setAttribute("ID", userId);
-		session.setAttribute("PASS", userPass);
-		//로그인 성공 여부 확인
-		if(userId !=null && userPass != null) {
-			if(userId.equals("admin") && userPass.equals("1234")) {
-				
-				response.sendRedirect(request.getContextPath()
-						+"/sessionLogout.do");
-			} else {
-				response.sendRedirect(request.getContextPath()
-						+"/basic/session/sessionLogin.jsp");
-			}
+		////////////////////////////////////////////////////
+		MemberVO memVo = new MemberVO();
+		memVo.setMem_id(userId);
+		memVo.setMem_pass(userPass);
+		
+		//service객체 생성
+		IMemberService service = MemberServiceImpl.getInstance();
+		
+		//id와 password가 일치하는 회원을 검색하여 가져온다. 
+		MemberVO loginMember = service.getLoginMember(memVo);
+		
+		if(loginMember != null) {	//로그인성공
+			session.setAttribute("loginMemVo", loginMember);
 		}
+		
+		response.sendRedirect(request.getContextPath()+"/basic/session/sessionLoginDb.jsp");
+		////////////////////////////////////////////////////
+		
 	}
 
 	/**

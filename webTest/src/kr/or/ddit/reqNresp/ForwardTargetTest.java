@@ -14,11 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/forwardTargetTest.do")
 public class ForwardTargetTest extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
@@ -44,13 +40,4 @@ public class ForwardTargetTest extends HttpServlet {
 		out.println("<tr><td>전화</td>");
 		out.println("<td>"+userName+"</td></tr>");
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

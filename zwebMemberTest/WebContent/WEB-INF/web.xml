@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>webTest</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 서블릿 등록  -->
+  <servlet>
+  	<servlet-name>servletTest01</servlet-name>
+  	
+  	<!-- 클래스의 전체 이름 쓰기, 패키지명+클래스 이름이 풀네임임 -->
+  	<servlet-class>kr.or.ddit.basic.ServletTest01</servlet-class>
+  </servlet>
+  
+  <!-- URL패턴과 서블릿을 연결하기 -->
+  <servlet-mapping>
+  	<servlet-name>servletTest01</servlet-name>
+  	<!-- 슬래시 /를 꼭써주세용. 뒷부분을 url-pattern이라고 한다. -->
+  	<url-pattern>/servletTest01.do</url-pattern>
+  </servlet-mapping>
+</web-app>
