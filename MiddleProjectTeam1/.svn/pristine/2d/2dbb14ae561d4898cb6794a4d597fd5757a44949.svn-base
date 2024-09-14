@@ -1,0 +1,16 @@
+package kr.or.ddit.dao;
+
+import kr.or.ddit.vo.BoardVO;
+
+public interface IMyMathBoardDao {
+	
+	public int InsertMyMath(BoardVO vo);
+	
+	public BoardVO SelectMyMath();
+	
+	public int UpdateMyMath(BoardVO vo);
+	
+	public int DeleteMyMath(int postNo);
+	
+	
+}

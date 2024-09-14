@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 이 문서는 MyBatis에서 처리할 SQL문을 작성하는 문서입니다. -->
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace속성 : 이 문서에 작성된 SQL문을 호출해서 사용할 때 같이 사용되는 이름 -->
+<mapper namespace="memberMypageTenMinMath">
+	<update id="selfUpdateMath" parameterType="mathSettingVo">
+		UPDATE mathsetting 
+		SET mathsetting_minute=#{mathsetting_minute}, 
+		mathsetting_grade=#{mathsetting_grade}, 
+		mathsetting_level=#{mathsetting_level},
+		mathsetting_agree=#{mathsetting_agree}
+		where cus_id=#{cus_id}
+	</update>
+	
+	<select id="getSysdateLog" parameterType="string" resultType="String">
+	    select distinct view_date
+	    from member m 
+	    inner join view_list v
+	    on m.cus_id=v.cus_id
+	    where v.view_gu='1' and v.cus_id =#{cus_id}   
+   </select>
+   
+   <select id="getViewMaterial" parameterType="string" resultType="materialVo">
+   	  select distinct b.material_title
+      from view_list a
+      inner join material b
+      on a.material_no = b.material_no
+      where a.cus_id=#{cus_id}
+   </select>
+
+	<select id="getMathSetting" parameterType="string" resultType="mathSettingVo">
+		select mathsetting_grade, mathsetting_level
+		from mathsetting
+		where cus_id=#{cus_id}
+	</select>
+</mapper>

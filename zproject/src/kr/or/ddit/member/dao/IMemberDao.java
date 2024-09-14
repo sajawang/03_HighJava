@@ -1,0 +1,80 @@
+package kr.or.ddit.member.dao;
+
+import kr.or.ddit.vo.MemberVO;
+
+public interface IMemberDao {
+	
+	/**
+	 * 학습지 내역 리스트 - 학생기능  
+	 * @param  String userId,int mateNo
+	 * @return	성공  : 학습지 정보ViewListVO / 실패 : null
+	 */
+	
+	//public ViewListVO findViewList(String userId,int mateNo);
+	
+	/**
+	 * 오답노트에 관한 테이블 오답노트VO가져옴 - 학생기능 
+	 * @param  List<Integer> myAnswer,int mateNo
+	 * @return	성공  : 오답 정보AttemptVO / 실패 : null
+	 */
+	//public AttemptVO wrongAns(List<Integer> myAnswer,int mateNo);
+	
+	/**
+	 * 회원의 개인정보 수정 - 학생,선생 기능  - 
+	 * @param 파라미터 MemberVO
+	 * @return	성공  : 1 / 실패 : 0
+	 */
+	//public int updateMember(MemberVO memVo);
+	
+	/**
+	 * 나의 포인트 조회  - 학생 기능- 파라미터  userId
+	 * @param  파라미터  userId
+	 * @return	성공  : int 포인트  / 실패 : null
+	 */
+	//public int findPoint (String userId);
+	
+	/**
+	 * 	칭호 출력용 개인 포인트 확인 - 시스템 기능  - 파라미터 memVO의 id와 point 
+	 * @param  MemberVO의 userId와 point
+	 * @return	성공  : 1( / 실패 : 0
+	 */
+	//public int pointAilas (String userId,int point);
+	
+	/**
+	 * 학포인트 획득 시스템 - 학생 기능  
+	 * @param  ViewListVO listVo
+	 * @return	성공  : 1(memVO의 포인트 증가) / 실패 : 0
+	 */
+	//public int getPoint (ViewListVO listVo);
+	
+	/**
+	 * 학습지 검색 - 전체 기능  
+	 * @param  String mateTitle 학습지 명
+	 * @return	성공  : List<MaterialVO> 값 / 실패 : 0
+	 */
+	//public List<MaterialVO> selectMaterial(String mateTitle);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//------------------------------------------------------------------------
+	//회원정보 상세보기 다오 추가
+	
+	
+	/**
+	 * 회원ID와 패스워드가 저장된 MemberVO객체를 인수값으로 받아서
+	 * 해당 조건에 맞는 회원정보를 검색해서 반환하는 메서드
+	 * 
+	 * @param memVo 검색할 회원정보가 저장된 MemberVO객체
+	 * @return 검색 결과가 저장된 MemberVO객체
+	 */
+	public MemberVO getMember(String memId);
+	
+	
+}

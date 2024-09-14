@@ -1,0 +1,15 @@
+package kr.or.ddit.dao;
+
+import kr.or.ddit.vo.CommentVO;
+
+public interface ICommentDao {
+	
+	//문의 게시판의 댓글 기능 관리자만 가능
+	public int insertComment(CommentVO comVO);
+	
+	public CommentVO selectComment();
+	
+	public int updateComment(CommentVO comVO);
+	
+	public int deleteComment(int comNo);
+}

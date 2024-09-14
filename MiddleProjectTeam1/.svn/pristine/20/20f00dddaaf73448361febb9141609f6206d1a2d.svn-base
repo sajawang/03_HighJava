@@ -1,0 +1,91 @@
+package kr.or.ddit.vo;
+
+public class InquiriesVO {
+	private int Inquiries_no;
+	private String Inquiries_type;
+	private String Inquiries_title;
+	private String Inquiries_content;
+	private String Inquiries_date;
+	private String Inquiries_yn;
+	private int board_no;
+	
+	public InquiriesVO() { }
+	
+	public InquiriesVO(int inquiries_no, String inquiries_type, String inquiries_title, String inquiries_content,
+			String inquiries_date, String inquiries_yn, int board_no) {
+		super();
+		Inquiries_no = inquiries_no;
+		Inquiries_type = inquiries_type;
+		Inquiries_title = inquiries_title;
+		Inquiries_content = inquiries_content;
+		Inquiries_date = inquiries_date;
+		Inquiries_yn = inquiries_yn;
+		this.board_no = board_no;
+	}
+
+	public int getInquiries_no() {
+		return Inquiries_no;
+	}
+
+	public void setInquiries_no(int inquiries_no) {
+		Inquiries_no = inquiries_no;
+	}
+
+	public String getInquiries_type() {
+		return Inquiries_type;
+	}
+
+	public void setInquiries_type(String inquiries_type) {
+		Inquiries_type = inquiries_type;
+	}
+
+	public String getInquiries_title() {
+		return Inquiries_title;
+	}
+
+	public void setInquiries_title(String inquiries_title) {
+		Inquiries_title = inquiries_title;
+	}
+
+	public String getInquiries_content() {
+		return Inquiries_content;
+	}
+
+	public void setInquiries_content(String inquiries_content) {
+		Inquiries_content = inquiries_content;
+	}
+
+	public String getInquiries_date() {
+		return Inquiries_date;
+	}
+
+	public void setInquiries_date(String inquiries_date) {
+		Inquiries_date = inquiries_date;
+	}
+
+	public String getInquiries_yn() {
+		return Inquiries_yn;
+	}
+
+	public void setInquiries_yn(String inquiries_yn) {
+		Inquiries_yn = inquiries_yn;
+	}
+
+	public int getBoard_no() {
+		return board_no;
+	}
+
+	public void setBoard_no(int board_no) {
+		this.board_no = board_no;
+	}
+
+	@Override
+	public String toString() {
+		return "InquiriesVO [Inquiries_no=" + Inquiries_no + ", Inquiries_type=" + Inquiries_type + ", Inquiries_title="
+				+ Inquiries_title + ", Inquiries_content=" + Inquiries_content + ", Inquiries_date=" + Inquiries_date
+				+ ", Inquiries_yn=" + Inquiries_yn + ", board_no=" + board_no + "]";
+	}
+	
+	
+	
+}

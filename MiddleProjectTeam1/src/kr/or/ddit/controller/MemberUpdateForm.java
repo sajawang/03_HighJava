@@ -1,0 +1,38 @@
+package kr.or.ddit.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.or.ddit.service.IMemberService;
+import kr.or.ddit.service.MemberServiceImpl;
+import kr.or.ddit.vo.MemberVO;
+
+
+@WebServlet("/MemberUpdateForm.do")
+public class MemberUpdateForm extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 회원ID에 맞는 회원 정보를 검색해서 회원 정보 수정폼에 보낸다.
+		request.setCharacterEncoding("utf-8");
+		
+		//session에서 받은 아이디로
+		
+		IMemberService service = MemberServiceImpl.getInstance();
+		MemberVO memVo = service.getMember("a001");
+		
+		request.setAttribute("memberVo", memVo);
+		request.getRequestDispatcher("/WEB-INF/view/memberMypage/memberUpdateForm.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

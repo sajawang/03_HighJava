@@ -1,0 +1,30 @@
+package kr.or.ddit.vo;
+
+public class FavoriteVO {
+	public int favorite_no       ;
+	public String user_id        ;
+	public int material_no       ;
+	
+	public FavoriteVO() {}
+	public int getMaterial_no() {
+		return material_no;
+	}
+
+	public void setMaterial_no(int material_no) {
+		this.material_no = material_no;
+	}
+
+	public int getFavorite_no() {
+		return favorite_no;
+	}
+	public void setFavorite_no(int favorite_no) {
+		this.favorite_no = favorite_no;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	
+}

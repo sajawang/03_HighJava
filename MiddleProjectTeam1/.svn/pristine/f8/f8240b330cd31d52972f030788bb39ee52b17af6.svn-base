@@ -1,0 +1,20 @@
+package kr.or.ddit.dao;
+
+import kr.or.ddit.vo.MemberVO;
+
+public interface IUserDao {
+	
+	//아이디와 로그인 정보 회원가입 처리
+	
+	//회원 가입시 아이디 체크 기능
+	public int idCheck(String id);
+	
+	//회원가입 이메일 인증 기능
+	public boolean emailCheck(String Email);
+
+	//아이디 찾기 기능 -회원 기준
+	public int idFind(MemberVO memVo);
+	
+	//회원가입 완료 기능
+	public int insertMember(MemberVO memVo);
+}

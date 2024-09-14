@@ -1,0 +1,21 @@
+package kr.or.ddit.dao;
+
+import kr.or.ddit.vo.QuestionVO;
+
+public interface IQuestionDao {
+	
+	//학습지 문제 풀기 - 회원 기준
+	
+	//학습지 문제 풀기
+	public int studyQuestion(int ans);
+	
+	//학습지 풀이 및 채점 , 배점 관리 이건 관리자 역할
+	public int updateQuestion(QuestionVO queVo);
+	
+	//학습지 정답 및 해설 작성 - 관리자 역할
+	public int insertQuestion(QuestionVO queVo);
+	
+	//회원이 풀이한 문제의 해설과 정답이 출력됨. 
+	public QuestionVO selectQuestion(String find);
+	
+}

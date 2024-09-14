@@ -1,0 +1,13 @@
+package kr.or.ddit.dao;
+
+public interface IMemberDao {
+	
+	
+	public int IdFind(String id);
+	
+	public int IdCheck(String id);
+	
+	public boolean EmailCheck(String Email);
+	
+	
+}

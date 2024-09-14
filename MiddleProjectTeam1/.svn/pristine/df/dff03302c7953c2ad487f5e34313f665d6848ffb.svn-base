@@ -1,0 +1,72 @@
+package kr.or.ddit.vo;
+
+public class FileVO {
+	public int file_no               ;
+	public int library_no            ;
+	public String file_name          ;
+	public String file_size          ;
+	public String file_date          ;
+	public int file_cnt              ;
+	public String admin_id           ;
+	
+	public FileVO() {}
+	@Override
+	public String toString() {
+		return "FileVO [file_no=" + file_no + ", library_no=" + library_no + ", file_name=" + file_name + ", file_size="
+				+ file_size + ", file_date=" + file_date + ", file_cnt=" + file_cnt + ", admin_id=" + admin_id + "]";
+	}
+	public FileVO(int file_no, int library_no, String file_name, String file_size, String file_date, int file_cnt,
+			String admin_id) {
+		super();
+		this.file_no = file_no;
+		this.library_no = library_no;
+		this.file_name = file_name;
+		this.file_size = file_size;
+		this.file_date = file_date;
+		this.file_cnt = file_cnt;
+		this.admin_id = admin_id;
+	}
+	public int getFile_no() {
+		return file_no;
+	}
+	public void setFile_no(int file_no) {
+		this.file_no = file_no;
+	}
+	public int getLibrary_no() {
+		return library_no;
+	}
+	public void setLibrary_no(int library_no) {
+		this.library_no = library_no;
+	}
+	public String getFile_name() {
+		return file_name;
+	}
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
+	}
+	public String getFile_size() {
+		return file_size;
+	}
+	public void setFile_size(String file_size) {
+		this.file_size = file_size;
+	}
+	public String getFile_date() {
+		return file_date;
+	}
+	public void setFile_date(String file_date) {
+		this.file_date = file_date;
+	}
+	public int getFile_cnt() {
+		return file_cnt;
+	}
+	public void setFile_cnt(int file_cnt) {
+		this.file_cnt = file_cnt;
+	}
+	public String getAdmin_id() {
+		return admin_id;
+	}
+	public void setAdmin_id(String admin_id) {
+		this.admin_id = admin_id;
+	}
+	
+}

@@ -1,0 +1,70 @@
+package kr.or.ddit.vo;
+
+public class Q_AnswerVO {
+	private int Answer_no;
+	private String admin_id;
+	private String q_answer_content;
+	private String q_answer_date;
+	private int Inquiries_no;
+	
+	public Q_AnswerVO() { }
+	
+	public Q_AnswerVO(int answer_no, String admin_id, String q_answer_content, String q_answer_date, int inquiries_no) {
+		super();
+		Answer_no = answer_no;
+		this.admin_id = admin_id;
+		this.q_answer_content = q_answer_content;
+		this.q_answer_date = q_answer_date;
+		Inquiries_no = inquiries_no;
+	}
+
+	public int getAnswer_no() {
+		return Answer_no;
+	}
+
+	public void setAnswer_no(int answer_no) {
+		Answer_no = answer_no;
+	}
+
+	public String getAdmin_id() {
+		return admin_id;
+	}
+
+	public void setAdmin_id(String admin_id) {
+		this.admin_id = admin_id;
+	}
+
+	public String getQ_answer_content() {
+		return q_answer_content;
+	}
+
+	public void setQ_answer_content(String q_answer_content) {
+		this.q_answer_content = q_answer_content;
+	}
+
+	public String getQ_answer_date() {
+		return q_answer_date;
+	}
+
+	public void setQ_answer_date(String q_answer_date) {
+		this.q_answer_date = q_answer_date;
+	}
+
+	public int getInquiries_no() {
+		return Inquiries_no;
+	}
+
+	public void setInquiries_no(int inquiries_no) {
+		Inquiries_no = inquiries_no;
+	}
+
+	@Override
+	public String toString() {
+		return "Q_AnswerVO [Answer_no=" + Answer_no + ", admin_id=" + admin_id + ", q_answer_content="
+				+ q_answer_content + ", q_answer_date=" + q_answer_date + ", Inquiries_no=" + Inquiries_no + "]";
+	}
+	
+	
+	
+	
+}

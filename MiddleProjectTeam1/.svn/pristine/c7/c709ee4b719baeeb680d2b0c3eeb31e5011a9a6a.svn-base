@@ -1,0 +1,68 @@
+package kr.or.ddit.dao;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.util.MybatisUtil;
+import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.vo.UserVO;
+
+public class UserDaoImpl implements IUserDao {
+
+	private static UserDaoImpl dao;
+	
+	private UserDaoImpl() {}
+	
+	public static UserDaoImpl getInstance() {
+		if(dao==null)dao=new UserDaoImpl();
+		return (UserDaoImpl) dao;
+	}
+	
+
+	@Override
+	public int idCheck(String id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int emailCheck(String Email) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int idFind(MemberVO memVo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int insertMember(MemberVO memVo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int login(UserVO userVo) {
+		SqlSession session = null;
+		int cnt = 0;
+		
+		try {
+			
+			session = MybatisUtil.getSqlSession();
+			
+			cnt=session.insert("member.inmember",userVo);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			session.commit();
+			session.close();
+		}
+		
+		
+		
+		return cnt;
+	}
+
+}

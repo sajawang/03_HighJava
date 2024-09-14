@@ -1,0 +1,15 @@
+package kr.or.ddit.dao;
+
+import kr.or.ddit.vo.InquiriesVO;
+
+public interface IInquiriesDao {
+	public int InsertInquiries (InquiriesVO inqVo);
+	
+	public InquiriesVO SelectInquiries ();
+	
+	public int UpdateInquiries(InquiriesVO inqVo);
+	
+	public int DeleteInquiries(int inqNo);
+	
+	
+}

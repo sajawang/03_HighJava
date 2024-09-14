@@ -1,0 +1,42 @@
+package kr.or.ddit.vo;
+
+public class MaterialVO {
+	public int material_no           ;
+	public String material_title     ;
+	public String material_des       ;
+	public String material_grade     ;
+	public String material_level     ;
+	
+	
+	public int getMaterial_no() {
+		return material_no;
+	}
+	public void setMaterial_no(int material_no) {
+		this.material_no = material_no;
+	}
+	public String getMaterial_title() {
+		return material_title;
+	}
+	public void setMaterial_title(String material_title) {
+		this.material_title = material_title;
+	}
+	public String getMaterial_des() {
+		return material_des;
+	}
+	public void setMaterial_des(String material_des) {
+		this.material_des = material_des;
+	}
+	
+	public String getMaterial_grade() {
+		return material_grade;
+	}
+	public void setMaterial_grade(String material_grade) {
+		this.material_grade = material_grade;
+	}
+	public String getMaterial_level() {
+		return material_level;
+	}
+	public void setMaterial_level(String material_level) {
+		this.material_level = material_level;
+	}
+}

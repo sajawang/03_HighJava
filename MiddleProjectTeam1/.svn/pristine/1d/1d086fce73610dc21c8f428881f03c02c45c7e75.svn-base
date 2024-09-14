@@ -1,0 +1,18 @@
+package kr.or.ddit.dao;
+
+import kr.or.ddit.vo.MaterialVO;
+
+public interface IMaterialDao {
+	
+	//학습지 관련 CRUD - 회원 기준
+	public int InsertMaterial (MaterialVO mateVo);
+	
+	public MaterialVO selectMaterial();
+	
+	public int UpdateMaterial (MaterialVO mateVo);
+	
+	public int DeleteMaterial (int mateNo);
+	
+	
+	
+}

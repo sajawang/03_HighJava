@@ -1,0 +1,65 @@
+package kr.or.ddit.dao;
+
+import java.util.List;
+
+import kr.or.ddit.vo.AttemptVO;
+import kr.or.ddit.vo.MaterialVO;
+import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.vo.CustomerVO;
+import kr.or.ddit.vo.ViewListVO;
+
+public interface IMemberDao {
+	
+	/**
+	 * 학습지 내역 리스트 - 학생기능  
+	 * @param  String userId,int mateNo
+	 * @return	성공  : 학습지 정보ViewListVO / 실패 : null
+	 */
+	
+	public ViewListVO findViewList(String userId,int mateNo);
+	
+	/**
+	 * 오답노트에 관한 테이블 오답노트VO가져옴 - 학생기능 
+	 * @param  List<Integer> myAnswer,int mateNo
+	 * @return	성공  : 오답 정보AttemptVO / 실패 : null
+	 */
+	public AttemptVO wrongAns(List<Integer> myAnswer,int mateNo);
+	
+	/**
+	 * 회원의 개인정보 수정 - 학생,선생 기능  - 
+	 * @param 파라미터 MemberVO
+	 * @return	성공  : 1 / 실패 : 0
+	 */
+	public int updateMember(MemberVO memVo);
+	
+	/**
+	 * 나의 포인트 조회  - 학생 기능- 파라미터  userId
+	 * @param  파라미터  userId
+	 * @return	성공  : int 포인트  / 실패 : null
+	 */
+	public int findPoint (String userId);
+	
+	/**
+	 * 	칭호 출력용 개인 포인트 확인 - 시스템 기능  - 파라미터 memVO의 id와 point 
+	 * @param  MemberVO의 userId와 point
+	 * @return	성공  : 1( / 실패 : 0
+	 */
+	public int pointAilas (String userId,int point);
+	
+	/**
+	 * 학포인트 획득 시스템 - 학생 기능  
+	 * @param  ViewListVO listVo
+	 * @return	성공  : 1(memVO의 포인트 증가) / 실패 : 0
+	 */
+	public int getPoint (ViewListVO listVo);
+	
+	/**
+	 * 학습지 검색 - 전체 기능  
+	 * @param  String mateTitle 학습지 명
+	 * @return	성공  : List<MaterialVO> 값 / 실패 : 0
+	 */
+	public List<MaterialVO> selectMaterial(String mateTitle);
+	
+	
+	
+}

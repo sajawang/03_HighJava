@@ -1,0 +1,13 @@
+package kr.or.ddit.dao;
+
+import kr.or.ddit.vo.CommentVO;
+
+public interface ICommentDao {
+	public int insertComment(CommentVO comVO);
+	
+	public CommentVO selectComment();
+	
+	public int updateComment(CommentVO comVO);
+	
+	public int deleteComment(int comNo);
+}

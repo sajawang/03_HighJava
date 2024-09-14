@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-    <typeInfo handle="=javaNetworkTest/D:\/B_Util\/2.Java\/JDK1.8\/jre\/lib\/rt.jar=/javadoc_location=/https:\/\/docs.oracle.com\/javase\/8\/docs\/api\/=/&lt;java.lang(Thread.class[Thread" modifiers="33" timestamp="1625467104000"/>
     <typeInfo handle="=mvcTest/src&lt;kr.or.ddit.service{IMemberService.java[IMemberService" modifiers="513" timestamp="1724219962813"/>
     <typeInfo handle="=mvcToMybatisTest/src&lt;kr.or.ddit.dao{IMemberDao.java[IMemberDao" modifiers="513" timestamp="1724219962807"/>
     <typeInfo handle="=mybatisBoardTest/src&lt;kr.or.ddit.dao{IBoardDao.java[IBoardDao" modifiers="513" timestamp="1724666642352"/>
     <typeInfo handle="=mybatisBoardTest/src&lt;kr.or.ddit.service{IBoardService.java[IBoardService" modifiers="513" timestamp="1724666591035"/>
-    <typeInfo handle="=webTest/D:\/B_Util\/5.ApacheTomcat\/apache-tomcat-8.5.37\/lib\/servlet-api.jar=/owner.project.facets=/jst.web=/=/javadoc_location=/https:\/\/docs.oracle.com\/javaee\/7\/api\/=/&lt;javax.servlet.http(HttpServlet.class[HttpServlet" modifiers="1057" timestamp="1544584070000"/>
     <typeInfo handle="=webTest/src&lt;kr.or.ddit.session{IMemberService.java[IMemberService" modifiers="513" timestamp="1725339697100"/>
     <typeInfo handle="=webTest/src&lt;kr.or.ddit.dao{ILproadDao.java[ILproadDao" modifiers="513" timestamp="1725426296496"/>
     <typeInfo handle="=webTest/src&lt;kr.or.ddit.service{ILprodService.java[ILprodService" modifiers="513" timestamp="1725353694722"/>
     <typeInfo handle="=webTest/src&lt;kr.or.ddit.fileupload.dao{IFileInfoDao.java[IFileInfoDao" modifiers="513" timestamp="1725515568055"/>
     <typeInfo handle="=webTest/src&lt;kr.or.ddit.fileupload.service{IFileInfoService.java[IFileInfoService" modifiers="513" timestamp="1725515583365"/>
-    <typeInfo handle="=webMemberTest/src&lt;kr.or.ddit.dao{IMemberdao.java[IMemberdao" modifiers="513" timestamp="1725601103256"/>
-    <typeInfo handle="=webMemberTest/src&lt;kr.or.ddit.service{IMemberService.java[IMemberService" modifiers="513" timestamp="1725601144984"/>
+    <typeInfo handle="=webMemberTest/src&lt;kr.or.ddit.dao{IMemberdao.java[IMemberdao" modifiers="513" timestamp="1725695412569"/>
+    <typeInfo handle="=webMemberTest/src&lt;kr.or.ddit.service{IMemberService.java[IMemberService" modifiers="513" timestamp="1725695461392"/>
+    <typeInfo handle="=zproject/src&lt;kr.or.ddit.member.dao{IMemberDao.java[IMemberDao" modifiers="513" timestamp="1726018868144"/>
+    <typeInfo handle="=zproject/src&lt;kr.or.ddit.member.service{IMemberService.java[IMemberService" modifiers="513" timestamp="1726019358602"/>
+    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.dao{IMemberDao.java[IMemberDao" modifiers="513" timestamp="1726045277525"/>
+    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.service{IMemberService.java[IMemberService" modifiers="513" timestamp="1726045285923"/>
+    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.dao{IMathSettingDao.java[IMathSettingDao" modifiers="513" timestamp="1726217163953"/>
+    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.service{IMathSettingService.java[IMathSettingService" modifiers="513" timestamp="1726217673783"/>
+    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.dao{IMaterialDao.java[IMaterialDao" modifiers="513" timestamp="1726279614700"/>
+    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.service{IMaterialService.java[IMaterialService" modifiers="513" timestamp="1726280108469"/>
 </typeInfoHistroy>

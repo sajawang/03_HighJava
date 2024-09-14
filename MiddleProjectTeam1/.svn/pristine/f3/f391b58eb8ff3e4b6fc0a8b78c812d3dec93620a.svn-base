@@ -1,0 +1,21 @@
+package kr.or.ddit.dao;
+
+import kr.or.ddit.vo.BoardVO;
+
+public interface IMyMathBoardDao {
+	
+	//나의 수학 해결소 게시판 - 회원 기준
+	//수학 해결소 글 쓰기
+	public int InsertMyMath(BoardVO vo);
+	
+	//상세보기
+	public BoardVO SelectMyMath();
+	
+	//수정하기
+	public int UpdateMyMath(BoardVO vo);
+	
+	//삭제
+	public int DeleteMyMath(int postNo);
+	
+	
+}

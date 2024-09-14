@@ -1,0 +1,106 @@
+<%@page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>로그인페이지</title>
+<style>
+
+* {
+  box-sizing: border-box;azimuth;
+  font font-family :'Hakgyoansim Dunggeunmiso OTF B',sans-serif;
+  }
+  
+
+ h1 {
+  text-align: center;
+}
+
+body{
+	
+	margin :0;
+	background-color: tomato;
+	padding : 500px;
+    }
+    
+.login-form{
+	width :400px;
+	border:0;
+	border-radius :5px;
+	background-color : white;
+	padding : 20px;
+	margin: 0 auto;
+	height : 450px;
+}
+.logo{
+width: 150px;
+
+}
+.text-field{
+	font-size : 14px;
+	margin :10px;
+	border :none;
+	border-radius: 5px;
+	padding :1px;
+
+}
+.submit-btn{
+color : white;
+font-size: 14px;
+background-color : tomato;
+margin-bottom :40px;
+padding: 10px;
+border : none;
+border-radius: 5px;
+}
+
+</style>
+</head>
+   
+<body>
+<%
+    String loginId = (String)session.getAttribute("loginId");
+   if(loginId==null){
+      
+%>  
+<form  class="login-form" action="<%=request.getContextPath() %>/login.do"  method="post">
+<table border-collapse: collapse;   width: 100%;>
+<div class="container">
+  <h1>LOGIN</h1>
+  <tr>
+<td><img src="../images/로고.png" class="logo" style= "text-align: center"></td>
+</tr>
+</div> 
+<tr>
+   <td>ID: </td>
+<td><input type = "text" class="text-field" placeholder="ID 입력하세요" name = "userid" ></td>
+</tr>
+<tr>
+<br>
+   <td>PASS:</td>
+<td><input type = "password" class="text-field" placeholder="PASSWORD를 입력하세요" name = "userpass" id ="userpass"></td>
+</tr>
+ <tr>    
+<td colspan="2" style="text-align: center">
+<br>
+<input type="submit" class= "submit-btn" name="Login" id="Login"  value="Login">
+<br>
+<input type="submit" class= "submit-btn" name="Login" id="Login"  value="아이디찾기">
+<input type="submit" class= "submit-btn" name="Login" id="Login"  value="비밀번호찾기">
+</td>
+</tr>
+
+</table>
+</form>
+<%
+} else{// 로그인 성공했을 때
+%>
+<%=loginId %>님 반갑습니다.<br><br>
+<a href= "<%=request.getContextPath() %>/main.do">로그아웃</a>
+<%      
+   }
+%>
+</body>
+</html>

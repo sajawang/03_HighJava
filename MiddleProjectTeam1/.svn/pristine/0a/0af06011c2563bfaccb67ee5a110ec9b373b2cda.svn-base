@@ -1,0 +1,50 @@
+package kr.or.ddit.vo;
+
+public class LibraryVO {
+	private int library_no;
+	private String library_name;
+	private String library_description;
+	
+	public LibraryVO() { }
+			
+	public LibraryVO(int library_no, String library_name, String library_description) {
+		super();
+		this.library_no = library_no;
+		this.library_name = library_name;
+		this.library_description = library_description;
+	}
+
+	public int getLibrary_no() {
+		return library_no;
+	}
+
+	public void setLibrary_no(int library_no) {
+		this.library_no = library_no;
+	}
+
+	public String getLibrary_name() {
+		return library_name;
+	}
+
+	public void setLibrary_name(String library_name) {
+		this.library_name = library_name;
+	}
+
+	public String getLibrary_description() {
+		return library_description;
+	}
+
+	public void setLibrary_description(String library_description) {
+		this.library_description = library_description;
+	}
+
+	@Override
+	public String toString() {
+		return "LibraryVO [library_no=" + library_no + ", library_name=" + library_name + ", library_description="
+				+ library_description + "]";
+	}
+
+	
+	
+	
+}

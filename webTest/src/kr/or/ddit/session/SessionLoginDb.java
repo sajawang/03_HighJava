@@ -12,24 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.vo.MemberVO;
 
-/**
- * Servlet implementation class SessionLogin
- */
+
 @WebServlet("/sessionLoginDb.do")
 public class SessionLoginDb extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SessionLoginDb() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
@@ -57,14 +44,6 @@ public class SessionLoginDb extends HttpServlet {
 		response.sendRedirect(request.getContextPath()+"/basic/session/sessionLoginDb.jsp");
 		////////////////////////////////////////////////////
 		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
