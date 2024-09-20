@@ -1,0 +1,84 @@
+<%@page import="kr.or.ddit.vo.MaterialVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="<%=request.getContextPath() %>/js/jquery-3.7.1.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/material.js"></script>
+<title>Insert title here</title>
+<style type="text/css">
+	.prev{
+		width : 20px;
+		margin: 10px 10px 16px 10px;
+	}
+</style>
+<%
+	MaterialVO vo = (MaterialVO)request.getAttribute("materVo");
+	
+	String school = (String) vo.getMaterial_grade().substring(0, 2);
+	if(school.equals("초등")){
+		school = "element";
+	} else if(school.equals("중등")){
+		school = "middle";
+	} else if(school.equals("고등")){
+		school = "high";
+	}
+	String grade  = (String) vo.getMaterial_grade().substring(3, 4);
+%>
+<script type="text/javascript">
+	function playMaterial(){
+		location.href= "<%=request.getContextPath()%>/material/playMaterial.do?mno=<%=vo.getMaterial_no() %>&vgu=1";
+	}
+	
+	function goMaterialList(){
+		location.href= "<%=request.getContextPath()%>/material/goMaterial.do?school=<%=school%>&grade=<%=grade%>";
+	}
+</script>
+</head>
+
+<body>
+	<jsp:include page="../header.jsp" />
+	<article>
+		<div>
+			<div style="margin-top: 10px;">
+				<strong style="cursor : pointer;" onclick="goMaterialList()"  ><img class="prev" alt="icon_prev.svg" src="<%=request.getContextPath()%>/images/icon_prev.svg"><span style="font-size:2.0rem">참고서 목록보기</span></strong>
+			</div>
+			<div style="display:flex;">
+				<div style="width: 50%; background-color: #F8F8F8; padding: 0px; margin: 50px;">
+					<div style="margin: 100px; text-align: center;">
+						<img alt="학습지이미지.png" src="<%=request.getContextPath()%>/images/학습지이미지.png">					
+					</div>
+				</div>
+				<div style="width:50%; margin: 115px 50px 50px 115px;">
+					<div style="height:20%;">
+						<div style="font-weight: 900; font-size: 28px; line-height: 36px; width: 100%;"><%=vo.getMaterial_title() %></div>
+						<p style="padding-top: 8px; font-size: 16px; line-height: 26px; color: #7d7d7d;" >연산 응용력을 강화하여 문장제 해결력 향상</p>
+					</div>
+					<div style="height: 27%; border-top: 1px solid #dcdcdc; border-bottom: 1px solid #dcdcdc; padding-bottom: 15px;">
+						<table style="width:100%; margin:10px; height:100%; font-size:1.6rem;">
+							<tr style="width:100%;">
+								<td style="width:20%;">학습지설명</td>
+								<td><%=vo.getMaterial_des() %></td>
+							</tr>
+							<tr style="width:100%;">
+								<td>학습대상</td>
+								<td><%=vo.getMaterial_grade() %></td>
+							</tr>
+							<tr style="width:100%;">
+								<td>난이도</td>
+								<td><%=vo.getMaterial_level() %></td>
+							</tr>
+						</table>
+					</div>
+					<div style="height: 33%; margin-top: 35px; margin-left: 20px;" >
+						<button style="color: #4d4d4d; border: 1px solid #4d4d4d; height: 46px; border-radius: 50px; background-color: #fff; padding: 0 20px; " type="button" id="btn1" onclick="playMaterial()"><span style="font-size:16px; line-height:44px; font-weight: 700;">학습지 풀기</span></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</article>
+	<jsp:include page="../footer.jsp" />
+</body>
+</html>

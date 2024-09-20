@@ -3,6 +3,7 @@ package kr.or.ddit.dao;
 import java.util.List;
 import java.util.Map;
 
+import kr.or.ddit.vo.BoardVO;
 import kr.or.ddit.vo.CommentVO;
 import kr.or.ddit.vo.PostVO;
 
@@ -91,4 +92,9 @@ public interface IAdminInquiriesDAO {
 	 * @return	성공  : 1 / 실패 : 0
 	 */
 		public int deleteComment(int comNo);
+	
+		
+		
+	
+		
 }

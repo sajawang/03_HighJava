@@ -24,12 +24,14 @@
 	    where v.view_gu='1' and v.cus_id =#{cus_id}   
    </select>
    
-   <select id="getViewMaterial" parameterType="string" resultType="materialVo">
-   	  select distinct b.material_title
-      from view_list a
-      inner join material b
-      on a.material_no = b.material_no
-      where a.cus_id=#{cus_id}
+   <select id="getViewMaterial" parameterType="string" resultType="viewListVo">
+   	  select *
+ 	  from view_list a
+ 	  inner join material b on a.material_no = b.material_no
+	  where (b.material_title, a.VIEW_DATE) in (select d.material_title, max(c.view_date) as view_date
+                                            from view_list c
+                                            inner join material d on d.material_no = c.material_no
+                                            group by d.material_title) and a.cus_id=#{cus_id} and a.view_gu='2'
    </select>
 
 	<select id="getMathSetting" parameterType="string" resultType="mathSettingVo">
@@ -37,4 +39,9 @@
 		from mathsetting
 		where cus_id=#{cus_id}
 	</select>
+	
+	<insert id="insertTenMin" parameterType="mathSettingVo">
+		insert into mathsetting
+		values( MATHSETTING_SEQ.NEXTVAL, #{cus_id}, #{mathsetting_minute}, sysdate, #{mathsetting_grade} , #{mathsetting_level}, 'Y')
+	</insert>
 </mapper>

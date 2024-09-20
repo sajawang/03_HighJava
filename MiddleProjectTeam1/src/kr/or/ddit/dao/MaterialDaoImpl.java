@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import kr.or.ddit.util.MybatisUtil;
 import kr.or.ddit.vo.MaterialVO;
 import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.vo.ViewListVO;
 
 public class MaterialDaoImpl implements IMaterialDao {
 	private static MaterialDaoImpl dao;
@@ -47,9 +48,9 @@ public class MaterialDaoImpl implements IMaterialDao {
 
 	//0914추가
 	@Override
-	public List<MaterialVO> getViewMaterial(String cusid) {
+	public List<ViewListVO> getViewMaterial(String cusid) {
 	  SqlSession sql = null;
-	  List<MaterialVO> mlist = null;
+	  List<ViewListVO> mlist = null;
 	  try {
 	     sql=MybatisUtil.getSqlSession();
 	     
@@ -64,5 +65,25 @@ public class MaterialDaoImpl implements IMaterialDao {
 	      
 	      return mlist;
 	}
+	
+	
+	@Override
+	public List<ViewListVO> getMyMaterial(String cusid) {
+		  SqlSession sql = null;
+		  List<ViewListVO> mlist = null;
+		  try {
+		     sql=MybatisUtil.getSqlSession();
+		     
+		     mlist=sql.selectList("memberMypageMaterial.getMyMaterial",cusid);
+		 
+		      } catch (Exception e) {
+		         e.printStackTrace();
+		      } finally {
+		         sql.commit();
+		         sql.close();
+		      }
+		      
+		      return mlist;
+		}
 
 }

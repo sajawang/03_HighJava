@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="question">
+	<select id="getAnswerList" parameterType="int" resultType="questionVo">
+		select * from question where material_no = #{material_no}
+	</select>
+	
+	<insert id="adminInsertQuestion" parameterType="questionVo">
+		insert into question (question_no,material_no,question_content,question_answer,question_solve,files_no)
+		values ((select nvl(max(question_no),0)+1 from question),
+					#{material_no},#{question_content},#{question_answer},#{question_solve},#{files_no})
+	</insert>
+	
+</mapper>

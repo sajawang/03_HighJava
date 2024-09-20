@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.or.ddit.vo.MaterialVO;
 import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.vo.ViewListVO;
 
 public interface IMaterialDao {
 	
@@ -50,6 +51,15 @@ public interface IMaterialDao {
 	 * @param cusid 회원아이디
 	 * @return 회원이 푼 문제의 제목 출력
 	 */
-	public List<MaterialVO> getViewMaterial(String cusid);
+	public List<ViewListVO> getViewMaterial(String cusid);
+	
+	
+	//0920 추가
+	/**
+	 * 풀었던 학습지 제목 출력 
+	 * @param cusid 회원아이디
+	 * @return 회원이 푼 문제의 제목 출력
+	 */
+	public List<ViewListVO> getMyMaterial(String cusid);
 	
 }

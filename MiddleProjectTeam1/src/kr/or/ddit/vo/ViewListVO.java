@@ -9,6 +9,20 @@ public class ViewListVO {
 	private int view_rank;
 	private int view_point;
 	
+	//0919추가함
+	private String material_title;
+	
+	//material_title에 대한 게터, 세터 추가함
+	public String getMaterial_title() {
+		return material_title;
+	}
+	public void setMaterial_title(String material_title) {
+		this.material_title = material_title;
+	}
+	//////////////////////////////////////////////////////
+	
+	
+	
 	public int getView_no() {
 		return view_no;
 	}

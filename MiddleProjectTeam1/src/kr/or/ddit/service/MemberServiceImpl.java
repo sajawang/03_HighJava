@@ -67,6 +67,18 @@ public class MemberServiceImpl implements IMemberService {
 		// TODO Auto-generated method stub
 		return dao.getMember(memId);
 	}
+
+	@Override
+	public MemberVO selectPoint(String cusId) {
+		// TODO Auto-generated method stub
+		return dao.selectPoint(cusId);
+	}
+
+	@Override
+	public List<MemberVO> selectAllMember() {
+		// TODO Auto-generated method stub
+		return dao.selectAllMember();
+	}
 	
 	
 	

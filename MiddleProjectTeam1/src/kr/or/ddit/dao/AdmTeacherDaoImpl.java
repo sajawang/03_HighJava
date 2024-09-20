@@ -1,0 +1,145 @@
+package kr.or.ddit.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.util.MybatisUtil;
+import kr.or.ddit.vo.CustomerVO;
+import kr.or.ddit.vo.MemberVO;
+
+public class AdmTeacherDaoImpl implements IAdmTeacherDao {
+		
+		private static  AdmTeacherDaoImpl dao;
+		
+		private  AdmTeacherDaoImpl(){}
+		
+		public static  AdmTeacherDaoImpl getInstance() {
+			if(dao==null) dao = new  AdmTeacherDaoImpl();
+			return (AdmTeacherDaoImpl) dao;
+		}
+
+
+		@Override
+		public int insertCusTeacher(CustomerVO cusvo) {
+			SqlSession session = MybatisUtil.getSqlSession();
+			int cnt = 0;
+			
+			try {
+				cnt = session.insert("teacher.insertCusTeacher", cusvo);
+				if(cnt > 0) session.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(session!=null) session.commit();
+				if(session!=null) session.close();
+			}
+			return cnt;
+		}
+
+		@Override
+		public int insertMemTeacher(MemberVO mvo) {
+			SqlSession session = MybatisUtil.getSqlSession();
+			int cnt = 0;
+			
+			try {
+				cnt = session.insert("teacher.insertMemTeacher", mvo);
+				if(cnt > 0) session.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(session!=null) session.commit();
+				if(session!=null) session.close();
+			}
+			return cnt;
+		}
+
+
+		@Override
+		public  List<MemberVO> getAllTeacher(String cusId){
+			SqlSession session = MybatisUtil.getSqlSession(); 
+			List<MemberVO> TeacherList = null;
+			
+			try {
+				TeacherList = session.selectList("teacher.getAllteacher", cusId);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(session!=null) session.commit();
+				if(session!=null) session.close();
+			}
+			return TeacherList;
+		}
+
+		
+
+		@Override
+		public int updateMemTeacher(MemberVO mvo) {
+			SqlSession session = MybatisUtil.getSqlSession();  // MyBatis 처리용 객체 생성
+		    int cnt = 0;
+		    
+		    try {
+		      
+		        cnt = session.update("teacher.updateMemTeacher", mvo);
+		        if(cnt > 0) session.commit();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		    	if(session!=null) session.commit();
+		        if(session != null) session.close();
+		    }
+		    return cnt;	
+		}
+
+		@Override
+		public int updateCusTeacher(CustomerVO cusvo) {
+			SqlSession session = MybatisUtil.getSqlSession();  // MyBatis 처리용 객체 생성
+		    int cnt = 0;
+		    
+		    try {
+		      
+		        cnt = session.update("teacher.updateCusTeacher", cusvo);
+		        if(cnt > 0) session.commit();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		    	if(session!=null) session.commit();
+		        if(session != null) session.close();
+		    }
+		    return cnt;	
+		}
+
+		@Override
+		public MemberVO getAllMemVo(String cusId) {
+			SqlSession session = MybatisUtil.getSqlSession(); 
+			MemberVO memvo = null;
+			
+			try {
+				memvo = session.selectOne("teacher.getAllMemVo", cusId);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(session!=null) session.commit();
+				if(session!=null) session.close();
+			}
+			return memvo;
+		}
+
+		@Override
+		public CustomerVO getAllCusVo(String cusId) {
+			SqlSession session = MybatisUtil.getSqlSession(); 
+			CustomerVO cusvo = null;
+			
+			try {
+				cusvo = session.selectOne("teacher.getAllCusVo", cusId);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(session!=null) session.commit();
+				if(session!=null) session.close();
+			}
+			return cusvo;
+		}
+
+}

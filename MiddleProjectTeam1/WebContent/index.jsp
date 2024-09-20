@@ -1,3 +1,5 @@
+<%@page import="kr.or.ddit.vo.MemberVO"%>
+<%@page import="javax.xml.bind.ParseConversionEvent"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,89 +15,34 @@
  
 //login 서블릿 통해서 login.jsp로 가고 로그인정보 있는지 체크해서 없으면 리다이렉트
 //있으면 서블릿경로로 보내기.
+
  
  </script>
+ <style type="text/css">
+
+ </style>
  <title>스스로 수학</title>
 </head>
 <body>
-<%-- 
-<%
- 	String loginId = (String)session.getAttribute("loginId");
 
+<% 
+// String sw = (String)session.getAttribute("id");
+String da= (String)session.getAttribute("userGu"); // 회원의 종류 - 학생 - 선생님 값 가져오기
 
-	if(loginId == null){
-		response.sendRedirect(request.getContextPath()+"/main.do");
-		return;
-	}
-	
+String sw = null;
+int eq = 0;
+
+MemberVO memVo=(MemberVO)session.getAttribute("memVo");
+if(memVo!=null){
+	sw = memVo.getCus_id();
+	eq = memVo.getMem_point();
+}
 %>
---%>
 
-<header id="header">
-        <div class="top-bar">
-            <nav class="top-links">
-                <a href="#">수학 특별활동</a>
-                <a href="<%=request.getContextPath() %>/customerService.do">고객센터</a>
-                <a href="#">선생님공간</a>
-                <a href="#">매일 10분 수학</a>
-                <a href="#">공지사항</a>
-            </nav>
-        <div class="user-options">
-        <!-- 서블릿으로 view폴더 안의 jsp파일에 접근할 수 있도록 하이퍼링크에 서블릿 주소를 작성하고 서블릿에서 원하는 jsp파일로 바로 리다이렉트로 전송 -->
-                <a href="<%=request.getContextPath() %>/goMypage.do">마이페이지</a>
-                <a href="<%=request.getContextPath() %>/goInsertMember.do">회원가입</a>
-            </div>
-        </div>
-  </header>      
-  
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#"></a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><img src="images/로고.png" alt="로고" id="logo"></li>
-        <li id="active"><a href="#">Home</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">초등수학 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">초등학교 1학년</a></li>
-            <li><a href="#">초등학교 2학년</a></li>
-            <li><a href="#">초등학교 3학년</a></li>
-            <!-- Add more items as needed -->
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">중등수학 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">중학교 1학년</a></li>
-            <li><a href="#">중학교 2학년</a></li>
-            <li><a href="#">중학교 3학년</a></li>
-            <!-- Add more items as needed -->
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">고등수학 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">고등학교 수학</a></li>
-            <li><a href="#">수학 I</a></li>
-            <li><a href="#">수학 II</a></li>
-            <!-- Add more items as needed -->
-          </ul>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="<%=request.getContextPath()%>/main.do"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+
+<jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>
+
+
 <div>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -139,8 +86,12 @@
   <h3>최신 컨텐츠</h3><br>
   <div class="row">
     <div class="col-sm-4">
-      <img src="images/초등.jpg" class="img-responsive" style="width:100%" alt="Image">
+      
+     
+<%--     <jsp:include page="dummy.jsp"></jsp:include> --%>
       <p>초3 덧셈과 뺄셈</p>
+      
+      
     </div>
     
     <div class="col-sm-4"> 
@@ -153,9 +104,7 @@
       <img src="images/대입.png" class="img-responsive" style="width:100%" alt="Image">
        <p>성적이 흔들렸던 중상위권 경민이도...</p>
       </div>
-      
     </div>
-    
   </div>
 </div><br>
 </div>
@@ -163,10 +112,34 @@
 <footer class="container-fluid text-center">
   	<div class="bottom-bar">
     	<nav class="bottom-links">
+    	  <% if(sw==null){
+          %>
+      	<a href="<%=request.getContextPath()%>/goLogin.do">[학습지 보기]</a>
+      	<a href="<%=request.getContextPath()%>/goLogin.do">[이용 문의]</a>
+      	<a href="<%=request.getContextPath()%>/goLogin.do">[FAQ]</a>
+      	<a href="<%=request.getContextPath()%>/goLogin.do">[마이페이지]</a>
+           
+            <%	
+            }else if(sw!=null&&"student".equals(da)){
+            	%>
       	<a href="#">[학습지 보기]</a>
       	<a href="#">[이용 문의]</a>
       	<a href="#">[FAQ]</a>
       	<a href="#">[마이페이지]</a>
+
+            	<%
+            } else if(sw!=null&&"teacher".equals(da)){
+            %>
+            
+      	<a href="#">[학습지 보기]</a>
+      	<a href="#">[이용 문의]</a>
+      	<a href="#">[FAQ]</a>
+      	<a href="#">[마이페이지]</a>
+            
+         	<%
+    }
+    %>   
+            
     	</nav>
   	</div>
   	

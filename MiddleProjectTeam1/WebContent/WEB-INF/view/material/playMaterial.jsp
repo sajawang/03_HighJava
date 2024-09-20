@@ -1,0 +1,344 @@
+
+<%@page import="kr.or.ddit.vo.MemberVO"%>
+<%@page import="kr.or.ddit.vo.MaterialVO"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="<%=request.getContextPath() %>/js/jquery-3.7.1.js"></script>
+<%-- <script type="text/javascript" src="<%=request.getContextPath()%>/WEB-INF/view/material/material.js"></script> --%>
+<title>Insert title here</title>
+<style type="text/css">
+	/* div {
+		border : 1px solid black;
+		
+	} */
+	.bl{
+		border-bottom : 1px solid #e1e1e1;
+		padding-bottom : 15px;
+		margin: 40px 0px 40px 60px;
+	}
+	.mark{
+		width: 50px;
+	    height: auto;
+	    padding-bottom: 4px;
+	   	background-color : #F8FAFF !important;
+	}
+	.tagH{
+		margin: 25px 90px;
+	    border-bottom: 2px solid tomato;
+	    padding-bottom: 10px;
+	}
+	/* div {
+		border : 1px solid tomato;
+	} */
+	
+	button{
+		border: 0px;
+		display: inline-block;
+	    height: 20px;
+	    padding-left: 26px;
+	    margin-left: 18px;
+	    text-align: left;
+	    color: #808080;
+	    font-size: 13px !important;
+	    vertical-align: middle;
+	    font-weight: bold;
+	    background: url(<%=request.getContextPath()%>/images/btn_tools.png) no-repeat 0 0;
+	}
+	
+	button.score {
+		background-position: 0 -200px;
+	}
+	
+	.answer {
+		display: none;
+		border-top: 1px solid #dce0e6;
+	}
+	.answer1 {
+		overflow: hidden;
+	    padding: 10px 20px;
+	    font-size: 15px;
+	    line-height: 22px;
+	    font-weight: bold;
+	    color: #f58e30;
+	    background-color: #f4f7f9;
+	    display: flex;
+	    align-items: center;
+	    margin-bottom : 15px;
+	}
+	.answer2 span {
+		color: #708494;
+	    font-size: 1.8rem;
+	}
+	.answer3 span {
+		font-size : 1.5rem;
+	}
+	.mglr20{
+		margin-left:20px;
+		margin-right:20px;
+	}
+	.mgb15{
+		margin-bottom:15px;
+	}
+	.mgb30{
+		margin-bottom:30px;
+	}
+	.qz_num{
+	    position: absolute;
+	    top: -5px;
+	    left: -50px;
+	    width: 40px;
+	    height: 35px;
+	    margin-top: 0;
+	    padding-top: 2px;
+	    text-align: center;
+	    font-size: 22px;
+	    font-weight: bold;
+	}
+	.num {
+	    position: relative;
+	}
+	.o{
+		background: url(<%=request.getContextPath()%>/images/img_ox.png) no-repeat 0 -65px;
+	}
+	
+	.x{
+		background: url(<%=request.getContextPath()%>/images/img_ox.png) no-repeat 0 0;
+	}
+	strong>.fs2rem{
+		font-size : 2.0rem;
+	}
+	strong>img{
+	    margin-left: 5px;
+	    width: 8px;
+	    padding-bottom: 5px;
+        margin-right: 6px;
+	}
+	
+	.dot{
+		width: 12px;
+    	margin-bottom: 2px;
+	}
+	
+	.bl .text{
+		border-radius: 8px;
+		height: 30px;
+		width : 100px;
+	}
+</style>
+<script type="text/javascript">
+
+	function scoreCheck(){
+		$(document).off('click').on('click','.score', function(){
+			test1 = $('#test1').val();
+			test2 = $('#test2').val();
+			test3 = $('#test3').val();
+			test4 = $('#test4').val();
+			test5 = $('#test5').val();
+			mno = $('#mno').val();
+			vgu = $('#vgu').val();
+			if(test1 == null || test1 == "" || test2 == null || test2 == "" || test3 == null || test3 == "" || test4 == null || test4 == "" || test5 == null || test5 == "") {
+				alertTxt = "";
+				if(test1 == null || test1 == ""){
+					alertTxt += "1번 ";
+				}
+				if(test2 == null || test2 == ""){
+					alertTxt += "2번 ";
+				}
+				if(test3 == null || test3 == ""){
+					alertTxt += "3번 ";
+				}
+				if(test4 == null || test4 == ""){
+					alertTxt += "4번 ";
+				}
+				if(test5 == null || test5 == ""){
+					alertTxt += "5번 ";
+				}
+				alertTxt += "을 안적으셨습니다.";
+				alert(alertTxt);
+				return;
+			}				
+			
+			$.ajax({
+				url : '<%=request.getContextPath() %>/material/scoreCheck.do',
+				type : "post",
+				data : {'test1' : test1, 'test2' : test2, 'test3' : test3, 'test4' : test4, 'test5' : test5, 'mno' : mno, 'vgu' : vgu},
+				success : res => {
+					if(res.test0 == "true"){
+						$('.marks0').html("20");
+						$('.test0').addClass('o');
+					} else {
+						$('.marks0').html("0");
+						$('.test0').addClass('x');
+					}
+					if(res.test1 == "true"){
+						$('.marks1').html("20");
+						$('.test1').addClass('o');
+					} else {
+						$('.marks1').html("0");
+						$('.test1').addClass('x');
+					}
+					if(res.test2 == "true"){
+						$('.marks2').html("20");
+						$('.test2').addClass('o');
+					} else {
+						$('.marks2').html("0");
+						$('.test2').addClass('x');
+					}
+					if(res.test3 == "true"){
+						$('.marks3').html("20");
+						$('.test3').addClass('o');
+					} else {
+						$('.marks3').html("0");
+						$('.test3').addClass('x');
+					}
+					if(res.test4 == "true"){
+						$('.marks4').html("20");
+						$('.test4').addClass('o');
+					} else {
+						$('.marks4').html("0");
+						$('.test4').addClass('x');
+					}
+					$('.answer').css('display', 'block');
+					$('.score').attr("disabled", true);
+				},
+				error : xhr =>{
+					alert("오류 : " + xhr.status);
+				},
+				dataType : 'json'
+			})
+		})
+	}
+</script>
+<%
+	List<MaterialVO> materList = (List<MaterialVO>)request.getAttribute("materList");
+	int cnt = 0;
+	int mno = (int)request.getAttribute("mno");
+	int vgu = (int)request.getAttribute("vgu");
+	MaterialVO mvo = materList.get(0);
+	
+	
+	// sw(회원아이디값을 통해서 mathsetting_minute를 가지고오고 그걸 timer에 넣어주고)
+	
+%>
+</head>
+<body>
+	<jsp:include page="../header.jsp" />
+	<article style="background-color: #F8FAFF; padding-top: 1px;">
+		<h3 class="tagH">
+			<img class="mark" alt="문제title.png" src="<%=request.getContextPath()%>/images/문제title.png"> 
+			<strong><%=mvo.getMaterial_title() %>(<%=mvo.getMaterial_grade() %>) 문제지</strong> [<%=mvo.getMaterial_level() %>]
+		</h3>
+	<div style="width: 60%; margin: 0 auto; font-size: 2.0rem; background-color: #FFFFFF; padding: 20px 35px;">
+		<div  class=".bl" style="text-align: right; background-color: #F8FAFF; margin: 0px auto 15px; border-bottom: 1px solid #a0aeba; padding-bottom: 8px;">
+			<%
+				if(vgu==2){
+			%>
+			<label for="Timer">남은 시간:</label>
+ 			<input style="width: 10%; text-align: center;" id="Timer" name="Timer" type="text" value="0" readonly/>
+ 			<%
+				}
+ 			%>		
+			<input type="hidden" id="mno" value="<%=mno %>">
+			<input type="hidden" id="vgu" value="<%=vgu %>">
+			<button type="button" class="score" onclick="scoreCheck()">채점</button>
+		</div>
+		<%
+			if(materList == null || materList.size() == 0 ) {
+		%>
+				<div><span>왜없어?</span></div>
+		<%
+			} else {
+				for(MaterialVO vo : materList) {
+					cnt++;
+		%>
+		<div class="bl">
+			<div>
+				<div class="num mgb30">
+					<span class="qz_num test<%=cnt-1 %>"><%=cnt %>.</span>
+					<span><%=vo.getQuestion_content() %></span>
+				</div>
+				<div class="mgb30">
+					<img alt="<%=vo.getFiles_name() %>" src="<%=request.getContextPath()%>/images/<%=vo.getFiles_name() %>">
+				</div>
+				<div class="mgb30">
+					<input type="text" class="text" id="test<%=cnt %>" name="test<%=cnt %>" >
+				</div>
+				
+				<div class="answer">
+					<div class="answer1">
+					<strong style="color:tomato;">
+						<span class="fs2rem"> 정답 </span>
+						<img alt="icon_gt2.png" src="<%=request.getContextPath() %>/images/icon_gt2.png"> 
+						<span class="fs2rem"><%=vo.getQuestion_answer() %></span>
+					</strong>
+					</div>
+					<div class="answer2 mgb15 mglr20">
+						<img style="width: 45px;" alt="explain_title.png" src="<%=request.getContextPath() %>/images/explain_title.png">
+						<span><img class="dot" src="<%=request.getContextPath() %>/images/dot.png"> 배점 : 20</span>
+						<span><img class="dot" src="<%=request.getContextPath() %>/images/dot.png"> 점수 : </span>
+						<span class="marks<%=cnt-1 %>"></span>
+						
+					</div>
+					<div class="answer3 mgb15 mglr20">
+						<span><%=vo.getQuestion_solve() %></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<%
+				}
+			}
+		%>
+		<div  class=".bl" style="text-align: right; background-color: #F8FAFF; margin: 0px auto 15px; border-bottom: 1px solid #a0aeba; padding-bottom: 8px;">
+			<input type="hidden" id="mno" value="<%=mno %>">
+			<button type="button" class="score" onclick="scoreCheck()">채점</button>
+		</div>
+	</div>
+	</article>
+	<jsp:include page="../footer.jsp" />
+	<script type="text/javascript">
+		vgu = $('#vgu').val();
+		
+		console.log("vgu : " + vgu);
+		if(vgu==2){
+			const Timer=document.getElementById('Timer'); //스코어 기록창-분
+			let time = 600000;
+			let min = time/60000;
+			let sec=60;
+		
+			Timer.value=min+":"+'00'; 
+		
+			function TIMER(){
+			    PlAYTIME=setInterval(function(){
+			        time=time-1000; //1초씩 줄어듦
+			        min=time/(60*1000); //초를 분으로 나눠준다.
+		
+			       if(sec>0){ //sec=60 에서 1씩 빼서 출력해준다.
+			            sec=sec-1;
+			            Timer.value=Math.floor(min)+':'+sec; //실수로 계산되기 때문에 소숫점 아래를 버리고 출력해준다.
+			           
+			        }
+			        if(sec===0){
+			         	// 0에서 -1을 하면 -59가 출력된다.
+			            // 그래서 0이 되면 바로 sec을 60으로 돌려주고 value에는 0을 출력하도록 해준다.
+			            sec=60;
+			            Timer.value=Math.floor(min)+':'+'00'
+			        }     
+			   
+			    },1000); //1초마다 
+			}
+			
+			
+			TIMER();
+			setTimeout(function(){
+			    clearInterval(PlAYTIME);
+			},600000);//10분이 되면 타이머를 삭제한다.			
+		}
+	</script>
+</body>
+</html>

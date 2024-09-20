@@ -1,7 +1,13 @@
 package kr.or.ddit.dao;
 
 import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.vo.PostVO;
+import kr.or.ddit.vo.ViewListVO;
+import kr.or.ddit.vo.AttemptVO;
+import kr.or.ddit.vo.CommentVO;
 import kr.or.ddit.vo.CustomerVO;
+import kr.or.ddit.vo.FavoriteVO;
+import kr.or.ddit.vo.MathSettingVO;
 
 public interface ICustomerDao {
 	
@@ -56,4 +62,39 @@ public interface ICustomerDao {
 	 */
 	public int deleteCustomer(String cusid);
 	
+	
+	public int insertCustomer(CustomerVO cusVo);
+	
+	public CustomerVO getLoginUser(CustomerVO cusVo);
+
+	public MemberVO getLoginMemberPoint(MemberVO memVo);
+	/**
+	 * 비밀번호 발급용 아이디 이메일 체크 메소드
+	 * @param memVo
+	 * @return 성공 - count(cus_pw) [1] / 실패 0 
+	 */
+	public int newPassIdCheck(MemberVO memVo);
+	
+	/**
+	 * 회원비밀번호를 임시번호로 업데이트 하는 메소드
+	 * @param cusVo
+	 * @return 성공 비밀번호 업데이트 [1] / 실패 0 
+	 */	
+	public int newPassUpdate(CustomerVO cusVo);
+	
+	public FavoriteVO getFavoriteVO (String id);
+	public ViewListVO getViewListVO (String id);
+	public PostVO getPostVO (String id);
+	public MathSettingVO getMathSettingVO (String id);
+	public CommentVO getCommentVO (String id);
+	public AttemptVO getAttemptVO (String id);
+	
+	public String getSysdateLog(String id);
+
+	public int getCountMate ();
+	public int getCountViewList(String id);
+	
+	
+	
+
 }

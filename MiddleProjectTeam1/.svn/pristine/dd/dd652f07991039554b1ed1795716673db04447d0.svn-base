@@ -1,0 +1,105 @@
+// 게시글 리스트 요청 - 응답 -  출력
+$.listPageServer = function(){
+	
+	school = $('#school').val().trim();
+	grade  = $('#grade').val().trim();
+	cate   = $('#cate').val().trim();
+	level  = $('#level').val().trim();
+	
+	$('#school').val(school);
+	$('#grade').val(grade);
+	$('#cate').val(cate);
+	$('#level').val(level);
+	
+	if(school=='element'){
+		school = '초등';
+	} else if (school=='middle'){
+		school = '중등';
+	} else if (school=='high'){
+		school = '고등';
+	}
+	
+	if(level=='basic'){
+		level = '기본';
+	} else if (level=='deep'){
+		level = '심화';
+	}
+	
+	
+	console.log(school);
+	console.log(grade);
+	console.log(cate);
+	console.log(level);
+	
+	datas = {page : currentPage, school : school, grade : grade, cate : cate, level : level};
+	
+	$.ajax({
+		url : `${mypath}/material/materialList.do`,
+		type : 'post',
+		data : JSON.stringify(datas),
+		contentType : 'application/json',
+		success : res => {
+			console.log(res.datas);
+			code =  '';
+			$.each(res.datas, function(i, v){
+				code += `<li style="list-style: none; margin: 10px;" onclick="location.href='${mypath}/material/detailMaterial.do?mno=${v.material_no}'">`;
+				code += '<div>'
+				code += '<div class="thumnail">'
+				code += `<img alt="" src="${mypath}/images/${v.files_name}">`
+				code += '</div>'
+				code += '<div>'
+				code += `<p><strong>${v.material_grade}</strong><span> | ${v.material_level}</span></p>`
+				code += `<p><strong>${v.material_title}</strong></p>`
+				code += '</div>'
+				code += '</div>'
+				code += '</li>'
+			});
+			
+			// 리스트 출력
+			$('#result').html(code);
+			
+			// page정보를 출력 - 함수 호출
+			vpage = $.pageList(res.sp, res.ep, res.tp);
+			
+			$('#pagelist').html(vpage);
+		},
+		error : xhr => {
+			alert("오류 : " + xhr.status);
+		},
+		dataType : 'json'
+		
+	});
+} // $.listPageServer
+
+$.pageList = function(sp, ep, tp){
+		// 이전
+		console.log(1);
+		pager = "";
+		pager += `<ul class="pagination">`;
+		if(sp > 1){
+			pager +=`<li class="page-item"><a id="prev" class="page-link" href="#">Previous</a></li>`;
+		}   
+		
+		//currentPage = 7(마지막 페이지) 마지막 페이지의 모든 데이터 삭제할 경우
+		//currentPage의 값이 새로 구한 totalPage로 변경되어야 한다.
+		if(currentPage > tp) currentPage = tp;
+		
+		// 페이지 번호
+		for(i=sp; i<=ep; i++){
+			// board.jsp currenPage : 전역변수
+			if(currentPage == i){
+				  pager += '<li class="page-item active"><a class="page-link pageno" href="#">'+i+'</a></li>';
+			} else {
+				  pager += '<li class="page-item"><a class="page-link pageno" href="#">'+i+'</a></li>';
+			}
+		}
+		
+		// 다음
+		if(ep < tp){
+			  pager += `<li class="page-item"><a id="next" class="page-link" href="#">Next</a></li>`
+		}
+		pager +="</ul>";
+		
+		// 반환
+		return pager;
+}

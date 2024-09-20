@@ -36,6 +36,8 @@
 		<typeAlias type="kr.or.ddit.vo.QuestionVO" alias = "questionVo"/>
 		<typeAlias type="kr.or.ddit.vo.CustomerVO" alias = "cusVo"/>
 		<typeAlias type="kr.or.ddit.vo.ViewListVO" alias = "viewListVo"/>
+		<typeAlias type="kr.or.ddit.vo.PageVO" alias = "pageVo"/>
+        <typeAlias type="kr.or.ddit.vo.PListVO" alias = "plistVo"/>
 	</typeAliases>
 	
 	<!-- DB에 접속 설정 -->
@@ -59,9 +61,25 @@
 	</mappers> 
 	 -->
 	<mappers>
-<!-- 		<mapper resource="kr/or/ddit/project/mappers/member-mapper.xml"/> -->
+		<mapper resource="kr/or/ddit/project/mappers/member-mapper.xml"/>
 		<mapper resource="kr/or/ddit/project/mappers/memberMypage-mapper.xml"/>
 		<mapper resource="kr/or/ddit/project/mappers/memberMypageTenMinMath-mapper.xml"/>
+		
+		
+		<!--조심!!!!!!!!!-->
+		<mapper resource="kr/or/ddit/project/mappers/managerTenMinMath-mapper.xml"/>
+		<!--조심!!!!!!!!!-->
+		
+		
+		<mapper resource="kr/or/ddit/project/mappers/memberMypageBoard-mapper.xml"/>
+		<mapper resource="kr/or/ddit/project/mappers/memberMypageMaterial-mapper.xml"/>
+	    <mapper resource="kr/or/ddit/project/mappers/teacherLibrary-mapper.xml"/>
+		<mapper resource="kr/or/ddit/project/mappers/material-mapper.xml"/>
+		<mapper resource="kr/or/ddit/project/mappers/question-mapper.xml"/>
+		<mapper resource="kr/or/ddit/project/mappers/adminstudent-mapper.xml"/>
+	    <mapper resource="kr/or/ddit/project/mappers/adminteacher-mapper.xml"/>
+	    <mapper resource="kr/or/ddit/project/mappers/adminnotice-mapper.xml"/>
+	    <mapper resource="kr/or/ddit/project/mappers/adminInquiries-mapper.xml"/>
 	</mappers> 
 	
 	

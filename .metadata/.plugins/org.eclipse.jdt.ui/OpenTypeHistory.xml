@@ -13,10 +13,14 @@
     <typeInfo handle="=webMemberTest/src&lt;kr.or.ddit.service{IMemberService.java[IMemberService" modifiers="513" timestamp="1725695461392"/>
     <typeInfo handle="=zproject/src&lt;kr.or.ddit.member.dao{IMemberDao.java[IMemberDao" modifiers="513" timestamp="1726018868144"/>
     <typeInfo handle="=zproject/src&lt;kr.or.ddit.member.service{IMemberService.java[IMemberService" modifiers="513" timestamp="1726019358602"/>
-    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.dao{IMemberDao.java[IMemberDao" modifiers="513" timestamp="1726045277525"/>
-    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.service{IMemberService.java[IMemberService" modifiers="513" timestamp="1726045285923"/>
-    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.dao{IMathSettingDao.java[IMathSettingDao" modifiers="513" timestamp="1726217163953"/>
-    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.service{IMathSettingService.java[IMathSettingService" modifiers="513" timestamp="1726217673783"/>
-    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.dao{IMaterialDao.java[IMaterialDao" modifiers="513" timestamp="1726279614700"/>
-    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.service{IMaterialService.java[IMaterialService" modifiers="513" timestamp="1726280108469"/>
+    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.service{IMemberService.java[IMemberService" modifiers="513" timestamp="1726734615658"/>
+    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.dao{IMathSettingDao.java[IMathSettingDao" modifiers="513" timestamp="1726723317283"/>
+    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.service{IMathSettingService.java[IMathSettingService" modifiers="513" timestamp="1726723478088"/>
+    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.dao{IMaterialDao.java[IMaterialDao" modifiers="513" timestamp="1726814578107"/>
+    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.service{IMaterialService.java[IMaterialService" modifiers="513" timestamp="1726814735440"/>
+    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.dao{IAdminInquiriesDAO.java[IAdminInquiriesDAO" modifiers="513" timestamp="1726808376838"/>
+    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.service{IAdminInquiriesService.java[IAdminInquiriesService" modifiers="513" timestamp="1726827903136"/>
+    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.dao{IMemberDao.java[IMemberDao" modifiers="513" timestamp="1726734417754"/>
+    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.service{IMyPagePostService.java[IMyPagePostService" modifiers="513" timestamp="1726812290094"/>
+    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.dao{IMyPagePostDao.java[IMyPagePostDao" modifiers="513" timestamp="1726812228440"/>
 </typeInfoHistroy>

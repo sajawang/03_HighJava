@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.logging.Logger"/>
-    <fullyQualifiedTypeName name="org.apache.log4j.Logger"/>
-    <fullyQualifiedTypeName name="javax.servlet.annotation.WebServlet"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.Cookie"/>
-    <fullyQualifiedTypeName name="java.util.Enumeration"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
-    <fullyQualifiedTypeName name="kr.or.ddit.session.IMemberService"/>
-    <fullyQualifiedTypeName name="kr.or.ddit.session.MemberServiceImpl"/>
     <fullyQualifiedTypeName name="com.itextpdf.text.List"/>
     <fullyQualifiedTypeName name="kr.or.ddit.json.SampleVO"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
@@ -39,25 +31,33 @@
     <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="com.google.gson.Gson"/>
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
-    <fullyQualifiedTypeName name="kr.or.ddit.vo.BoardVO"/>
-    <fullyQualifiedTypeName name="kr.or.ddit.vo.PostVO"/>
     <fullyQualifiedTypeName name="kr.or.ddit.vo.MyMemberVO"/>
-    <fullyQualifiedTypeName name="kr.or.ddit.vo.MemberVO"/>
     <fullyQualifiedTypeName name="kr.or.ddit.member.dao.MemberDaoImpl"/>
     <fullyQualifiedTypeName name="kr.or.ddit.vo.CustomerVO"/>
-    <fullyQualifiedTypeName name="kr.or.ddit.service.IMemberService"/>
-    <fullyQualifiedTypeName name="kr.or.ddit.service.MemberServiceImpl"/>
     <fullyQualifiedTypeName name="kr.or.ddit.dao.IMathSettingDao"/>
     <fullyQualifiedTypeName name="kr.or.ddit.dao.MathSettingDaoImpl"/>
     <fullyQualifiedTypeName name="kr.or.ddit.dao.IMaterialDao"/>
     <fullyQualifiedTypeName name="kr.or.ddit.dao.MaterialDaoImpl"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="kr.or.ddit.service.IMaterialService"/>
-    <fullyQualifiedTypeName name="kr.or.ddit.service.MaterialServiceImpl"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="kr.or.ddit.service.ICustomerService"/>
     <fullyQualifiedTypeName name="kr.or.ddit.service.CustomerServiceImpl"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.vo.ViewListVO"/>
     <fullyQualifiedTypeName name="kr.or.ddit.service.IMathSettingService"/>
     <fullyQualifiedTypeName name="kr.or.ddit.service.MathSettingServiceImpl"/>
     <fullyQualifiedTypeName name="kr.or.ddit.vo.MathSettingVO"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.service.IMemberService"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.service.MemberServiceImpl"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.vo.MemberVO"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.dao.AdminInquiriesDAOImpl"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.service.AdminInquiriesServiceImpl"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.vo.BoardVO"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.vo.PostVO"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.dao.IMyPagePostDao"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.dao.MyPagePostDaoImpl"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.controller.MyPageBoardThree"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.service.MyPagePostServiceImpl"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.service.MaterialServiceImpl"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.vo.MaterialVO"/>
 </qualifiedTypeNameHistroy>

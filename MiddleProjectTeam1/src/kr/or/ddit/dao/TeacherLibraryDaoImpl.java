@@ -1,0 +1,94 @@
+package kr.or.ddit.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.util.MybatisUtil;
+import kr.or.ddit.vo.PostVO;
+
+public class TeacherLibraryDaoImpl implements ITeacherLibraryDao {
+	private static TeacherLibraryDaoImpl dao = new TeacherLibraryDaoImpl();
+	
+	private TeacherLibraryDaoImpl() { }
+	
+	public static TeacherLibraryDaoImpl getInstance() { return dao; }
+	
+	@Override
+	public PostVO detailTeacherLib(int postNo) {
+		SqlSession session = null;
+		PostVO vo = null;
+		
+		try {
+			session = MybatisUtil.getSqlSession();
+			
+			vo = session.selectOne("teacherLib.detailTeacherLib", postNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(session != null) session.close();
+		}
+		return vo;
+	}
+
+	@Override
+	public int insertTeacherLib(PostVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateTeacherLib(PostVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteTeacherLib(int postNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateHitTeacherLib(int postNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<PostVO> getAllTeacherLib(Map<String, Object> map) {
+		SqlSession session = null;
+		List<PostVO> list = null;
+		
+		try {
+			session = MybatisUtil.getSqlSession();
+			
+			list = session.selectList("teacherLib.getAllTeacherLib", map);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(session != null) session.close();
+		}
+		
+		return list;
+	}
+
+	@Override
+	public int countTeacherLib(Map<String, Object> map) {
+		SqlSession session = null;
+		int cnt = 0;
+		
+		try {
+			session = MybatisUtil.getSqlSession();
+			
+			cnt = session.selectOne("teacherLib.countTeacherLib", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(session != null) session.close();
+		}
+		return cnt;
+	}
+}

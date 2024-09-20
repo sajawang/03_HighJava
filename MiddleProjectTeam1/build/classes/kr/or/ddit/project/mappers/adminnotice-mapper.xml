@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace속성 : 이 문서에 작성된 SQL문을 호출해서 사용할 때 같이 사용되는 이름 -->
+<mapper namespace="notice">
+
+<!-- 동적쿼리  -->
+	<sql id="dynamicCondition">
+   		<where>
+      		<if test="!(stype == '' or sword == '')">
+           	${stype} like  '%'||#{sword}||'%'
+       		</if>
+  		 </where>
+	</sql>	
+
+
+<!-- 전체 글 갯수 - 조건여부에 따라 -->
+	<select id ="countNotice" parameterType="map" resultType="int">
+		select count(*) from post where board_no = #{board_no}
+		<include refid="dynamicCondition"/> 
+	</select>
+	
+	<!-- 글 리스트 가져오기 - 조건여부에 따라서 -->
+	<select id="selectNoticeList" parameterType="int" resultType="postVo">
+		
+     select * from post where board_no = #{board_no}
+          </select>		           
+
+<!-- BoardNo=1인 공지사항을 조회할때 쓰는 것 -->
+	
+<select id="selectDetailNotice" parameterType="map" resultType="postVo">
+		select * from post where board_no = ${board_no} and post_no= ${post_no}
+	</select>
+	
+	
+	
+	
+	<!-- 게시글 삭제지만 y를 n으로 바꾸는것임-->
+   <update id="deleteNotice" parameterType="postVo">
+    update post set post_delyn = 'y' where post_no =#{post_no}
+   </update>
+   
+   <!-- 게시글 수정 -->
+	<update id="updateNotice" parameterType="postVo" >
+		update post set 
+			post_title = #{post_title},
+			post_content = #{post_content},
+			post_delyn = 'n'
+		where post_no = #{post_no}	
+	
+	</update>
+	<!-- 글  쓰기 저장 -->
+	<insert id="insertNotice" parameterType="postVo">
+		insert into post
+	values(
+		post_no_seq.nextval,
+		#{cus_id},
+		1,
+		#{post_title},
+		#{post_content},
+		sysdate,
+		0,
+		'n',
+		#{files_no},
+		'공지사항'
+	)
+	</insert>
+
+	<!-- 파일모든거 가지고와 -->
+	<select id="selectFile"  resultType="fileVo">
+		 select * from files
+	</select>
+	
+
+	 
+	<insert id = "insertFile" parameterType="fileVo" >
+	<selectKey keyProperty="files_no" resultType="int" order="BEFORE">
+		select files_no_seq.nextval from dual
+	</selectKey>
+	insert into files (files_no, files_name, files_size, files_date, files_cnt)
+	values (#{files_no} , #{files_name}, #{files_size}, sysdate , 0)
+	</insert>
+	
+</mapper>

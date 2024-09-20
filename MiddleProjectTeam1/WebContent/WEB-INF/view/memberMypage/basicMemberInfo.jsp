@@ -14,7 +14,7 @@ $(function(){
 	$("#btnUpdate").on("click", function(){
 		var form = document.getElementById("memberForm");
 		form.method = "GET";
-		form.action = "<%=request.getContextPath()%>/MemberUpdateForm.do";
+		form.action = "<%=request.getContextPath()%>/myPageMemberUpdateForm.do";
 		form.submit();
 	});
 	

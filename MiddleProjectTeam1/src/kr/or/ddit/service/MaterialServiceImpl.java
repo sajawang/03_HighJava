@@ -6,6 +6,7 @@ import kr.or.ddit.dao.IMaterialDao;
 import kr.or.ddit.dao.MaterialDaoImpl;
 import kr.or.ddit.vo.MaterialVO;
 import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.vo.ViewListVO;
 
 public class MaterialServiceImpl implements IMaterialService {
 	private IMaterialDao dao;	
@@ -48,9 +49,14 @@ public class MaterialServiceImpl implements IMaterialService {
 	}
 
 	@Override
-	public List<MaterialVO> getViewMaterial(String cusid) {
+	public List<ViewListVO> getViewMaterial(String cusid) {
 		// TODO Auto-generated method stub
 		return dao.getViewMaterial(cusid);
+	}
+	@Override
+	public List<ViewListVO> getMyMaterial(String cusid) {
+		// TODO Auto-generated method stub
+		return dao.getMyMaterial(cusid);
 	}
 
 }
