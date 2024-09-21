@@ -41,7 +41,11 @@ public class MyPageBoardThree extends HttpServlet {
 		//세션에서 받아온 아이디로 내 이용문의 목록 가져오기
 		MyPagePostServiceImpl service = MyPagePostServiceImpl.getInstance();
 		List<PostVO> list = service.getAllBoardThree(sw);
-		
+		/*
+		 * for (PostVO postVO : list) { int post_no =postVO.getPost_no(); CommentVO cvo
+		 * = service.selectComment(post_no); if(cvo!=null) {
+		 * request.setAttribute("commentYN", "Y"); //배열에 담아서 가져간다... } }
+		 */
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/WEB-INF/view/memberMypage/mypageBoardThree.jsp").forward(request, response);
 	}

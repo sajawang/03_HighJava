@@ -16,7 +16,15 @@ public class MaterialVO {
 	private int files_no;
 	private String files_name;
 	
-	
+	//0921 추가한 cus_id 게터 세터
+	private String cus_id    ;
+	public String getCus_id() {
+		return cus_id;
+	}
+	public void setCus_id(String cus_id) {
+		this.cus_id = cus_id;
+	}
+	//-----------------------------------------------
 	public int getMaterial_no() {
 		return material_no;
 	}

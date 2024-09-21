@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 이 문서는 MyBatis에서 처리할 SQL문을 작성하는 문서입니다. -->
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace속성 : 이 문서에 작성된 SQL문을 호출해서 사용할 때 같이 사용되는 이름 -->
+<mapper namespace="memberMypage">
+		
+	<select id="getMember" parameterType="String" resultType="memberVo">
+		select * from member where cus_id=#{cus_id} 
+	</select>
+	
+	<select id="getCustomer" parameterType="cusVo" resultType="cusVo">
+		select * from customer where cus_id=#{cus_id} and cus_pw=#{cus_pw}
+	</select>
+	
+	
+	<update id="updateCustomer" parameterType="cusVo">
+		UPDATE customer 
+		SET cus_pw=#{cus_pw}, cus_date=sysdate
+		where cus_id=#{cus_id}
+	</update>
+	
+	<update id="updateMember" parameterType="memberVo">
+		UPDATE member 
+		SET mem_tel=#{mem_tel}, mem_zip=#{mem_zip}, mem_add1=#{mem_add1}, mem_add2=#{mem_add2},mem_mail=#{mem_mail}, mem_auth=#{mem_auth}
+		where cus_id=#{cus_id}
+	</update>
+	
+	<update id="deleteCustomer" parameterType="String">
+		UPDATE customer 
+		SET cus_del='Y'
+		where cus_id=#{cus_id}
+	</update>
+	
+	<select id="selectPoint" parameterType="String" resultType="memberVo">
+		select mem_name,mem_point from member where cus_id=#{cus_id}
+	</select>
+
+</mapper>

@@ -1,0 +1,32 @@
+package kr.or.ddit.vo;
+
+public class ViewListVO {
+	public int view_no         ;
+	public String user_id      ;
+	public String view_date    ;
+	public int material_no     ;
+	public int getView_no() {
+		return view_no;
+	}
+	public void setView_no(int view_no) {
+		this.view_no = view_no;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	public String getView_date() {
+		return view_date;
+	}
+	public void setView_date(String view_date) {
+		this.view_date = view_date;
+	}
+	public int getMaterial_no() {
+		return material_no;
+	}
+	public void setMaterial_no(int material_no) {
+		this.material_no = material_no;
+	}
+}

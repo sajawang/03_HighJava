@@ -39,6 +39,7 @@ public class CsDetailPost extends HttpServlet {
 			service.updateHitAdminInquiries(pvo);
 		}
 		request.setAttribute("pvo", pvo);
+		System.out.println(pvo);
 		
 		request.getRequestDispatcher("/WEB-INF/view/customerService/CsPostDetail.jsp").forward(request, response);
 	}

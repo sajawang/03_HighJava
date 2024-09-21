@@ -1,0 +1,38 @@
+package kr.or.ddit.service;
+
+import kr.or.ddit.vo.MathSettingVO;
+import kr.or.ddit.vo.QuestionVO;
+
+public interface IMathSettingService {
+	/**
+	 * 10분수학 생성 - 학생 기능  - 파라미터 MathVO
+	 * @param  MathVO mathVo 
+	 * @return	성공  : 1 / 실패 : 0
+	 */
+	public int insertMathSet(MathSettingVO mathVo);
+	
+	/**
+	 * 10분수학 문제 관리 - 관리자 기능  - 
+	 * @param  MathVO / QuestionVO
+	 * @return	성공  : 1 / 실패 : 0
+	 */
+	public int updateQueSet(MathSettingVO mathVo,QuestionVO queVo);
+	   
+	/**
+	 * 1학생이 직접 수정하는 10분수학  - 학생기능 -
+	 * @param  MathVO mathVo 
+	 * @return	성공  : 1 / 실패 : 0
+	 */
+	public int selfUpdateMath(MathSettingVO mathVo);
+	
+	/**
+	 * 10분수학 삭제 - 학생 관리자 기능
+	 * @param  int mathNo (10분수학 설정번호)
+	 * @return	성공  : 1 / 실패 : 0
+	 */	
+	public int deleteMathSet(int mathNo);
+	
+	
+	public String getSysdateLog(String id);
+	
+}

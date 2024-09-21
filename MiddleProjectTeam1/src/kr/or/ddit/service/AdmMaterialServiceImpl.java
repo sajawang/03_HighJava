@@ -86,6 +86,11 @@ public class AdmMaterialServiceImpl implements IAdmMaterialService {
 		// TODO Auto-generated method stub
 		return dao.getMateQuestionList(mateNo);
 	}
+	@Override
+	public String adminSelectMateFileName(int fileNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

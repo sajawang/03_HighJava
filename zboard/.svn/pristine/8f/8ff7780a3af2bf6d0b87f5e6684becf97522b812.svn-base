@@ -1,0 +1,28 @@
+package kr.or.ddit.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.vo.CustomerVO;
+import kr.or.ddit.vo.MemberVO;
+
+public interface IAdmTeacherDao {
+	
+	
+	public MemberVO getAllMemVo(String cusId);
+	
+	public CustomerVO getAllCusVo(String cusId);
+	
+	
+	public int insertCusTeacher(CustomerVO cusvo);
+	public int insertMemTeacher(MemberVO mvo);
+	
+	public int updateMemTeacher(MemberVO mvo) ;
+	public int updateCusTeacher(CustomerVO cusvo);
+	
+
+	
+	public  List<MemberVO> getAllTeacher(String cusId);
+	
+
+}

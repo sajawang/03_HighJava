@@ -1,0 +1,33 @@
+package kr.or.ddit.dao;
+
+import java.util.List;
+
+import kr.or.ddit.vo.AttemptVO;
+import kr.or.ddit.vo.MaterialVO;
+import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.vo.ViewListVO;
+
+public interface IMemberDao {
+	//학습지 내역 리스트 테이블과의 결합 필요
+									//학습지 번호로 찾기?
+	public ViewListVO findViewList(int mateNO);
+	
+	//오답노트에 관한 테이블 오답노트VO가져옴
+	public AttemptVO wrongAns(List<Integer> me,int mateNo);
+	
+	//회원의 개인정보 수정
+	public int updateMember(MemberVO memVo);
+	
+	//나의 포인트 조회
+	public int findPoint (String memId);
+	
+	//칭호 출력용 포인트 확인
+	public int pointAilas (int point);
+	
+	//10분수학용 포인트 획득 시스템
+	public int getPoint (ViewListVO listVo);
+	
+	//학습지 검색
+	public int selectMaterial(String mateTitle);
+	
+}

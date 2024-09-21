@@ -1,0 +1,9 @@
+package kr.or.ddit.dao;
+
+import kr.or.ddit.vo.QuestionVO;
+
+public class IQuestionDao {
+	
+	
+	
+}

@@ -36,7 +36,7 @@
 %>
 		<tr>
 			<td><%=i++%></td>
-			<td><%=vo.getPost_title()%></td>
+			<td><a href="<%=request.getContextPath()%>/csDetailPost.do?post_no=<%=vo.getPost_no()%>&board_no=3"><%=vo.getPost_title()%></a></td>
 			<td><%=vo.getPost_date()%></td>
 			<td><%=vo.getPost_cnt()%></td>
 		</tr>

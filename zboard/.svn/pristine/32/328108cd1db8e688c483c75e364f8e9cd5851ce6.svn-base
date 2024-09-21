@@ -1,0 +1,19 @@
+package kr.or.ddit.dao;
+
+import kr.or.ddit.vo.MathSettingVO;
+
+public interface IMathSettingDao {
+	
+	//10분수학 생성
+	public int insertMathSet(MathSettingVO mathVo);
+	
+	//문제는 문제 테이블에서 가져오는데 할 수 있나?
+	//10분수학 문제 관리
+	public int updateQueSet(MathSettingVO mathVo);
+	
+	//학생이 직접 수정하는 10분수학 
+	public int selfUpdateMath(MathSettingVO mathVo);
+	
+	//10분수학 삭제
+	public int deleteMathSet(int mathNo);
+}

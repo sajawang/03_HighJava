@@ -3,7 +3,6 @@ package kr.or.ddit.service;
 import java.util.List;
 import java.util.Map;
 
-import kr.or.ddit.vo.BoardVO;
 import kr.or.ddit.vo.CommentVO;
 import kr.or.ddit.vo.FileVO;
 import kr.or.ddit.vo.PageVO;
@@ -97,7 +96,6 @@ public interface IAdminInquiriesService {
 	 * @param int comNo
 	 * @return	성공  : 1 / 실패 : 0
 	 */
-<<<<<<< .mine
 	public int deleteComment(int comNo);
 	
 	
@@ -110,11 +108,6 @@ public interface IAdminInquiriesService {
 	 * @return 회원이 작성한 글들
 	 */
 	public List<PostVO> getAllBoardThree(String cusid);	
-||||||| .r438770
-		public int deleteComment(int comNo);
-=======
-	public int deleteComment(int comNo);
-	
 	/**
 	 * 고객센터 게시글 파일 업로드
 	 * @param fvo 파일VO객체
@@ -135,5 +128,4 @@ public interface IAdminInquiriesService {
 	 */
 	public FileVO fileinfo(String saveFileName);
 		
->>>>>>> .r443686
 }

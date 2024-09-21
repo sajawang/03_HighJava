@@ -21,10 +21,10 @@ public class MyPageBoardTwo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		response.sendRedirect(request.getContextPath()+"/view/memberMypage/mypageBoardTwo.jsp");
+		//response.sendRedirect(request.getContextPath()+"/view/memberMypage/mypageBoardTwo.jsp");
 		
 		
-		/*
+		
 		//세션에서 아이디 받아오기
 		//session에서 아이디 받기
 		// String sw = (String)session.getAttribute("id");
@@ -48,7 +48,7 @@ public class MyPageBoardTwo extends HttpServlet {
 		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/WEB-INF/view/memberMypage/mypageBoardTwo.jsp").forward(request, response);
-	*/
+	
 	}
 	
 

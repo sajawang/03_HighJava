@@ -25,13 +25,34 @@
    </select>
    
    <select id="getViewMaterial" parameterType="string" resultType="viewListVo">
-   	  select *
- 	  from view_list a
- 	  inner join material b on a.material_no = b.material_no
-	  where (b.material_title, a.VIEW_DATE) in (select d.material_title, max(c.view_date) as view_date
-                                            from view_list c
-                                            inner join material d on d.material_no = c.material_no
-                                            group by d.material_title) and a.cus_id=#{cus_id} and a.view_gu='2'
+   	  SELECT 
+    vl.VIEW_NO,
+    vl.CUS_ID,
+    vl.VIEW_DATE,
+    vl.MATERIAL_NO,
+    vl.VIEW_GU,
+    vl.VIEW_RANK,
+    vl.VIEW_POINT,
+    m.MATERIAL_TITLE material_title
+FROM 
+    view_list vl
+JOIN 
+    material m ON vl.MATERIAL_NO = m.MATERIAL_NO
+JOIN (
+    SELECT 
+        MATERIAL_NO, 
+        MAX(VIEW_NO) AS MAX_VIEW_NO
+    FROM 
+        view_list
+    WHERE 
+        CUS_ID = #{cus_id} AND
+        VIEW_GU = '2'
+    GROUP BY 
+        MATERIAL_NO
+) sub ON vl.MATERIAL_NO = sub.MATERIAL_NO AND vl.VIEW_NO = sub.MAX_VIEW_NO
+WHERE 
+    vl.CUS_ID = #{cus_id} AND
+    vl.VIEW_GU = '2'   
    </select>
 
 	<select id="getMathSetting" parameterType="string" resultType="mathSettingVo">
@@ -44,4 +65,18 @@
 		insert into mathsetting
 		values( MATHSETTING_SEQ.NEXTVAL, #{cus_id}, #{mathsetting_minute}, sysdate, #{mathsetting_grade} , #{mathsetting_level}, 'Y')
 	</insert>
+	
+	<select id="todayTenMinMaterial" parameterType="map" resultType="materialVo">
+		SELECT m.*
+FROM material m
+WHERE m.MATERIAL_GRADE = #{material_grade}
+  AND m.MATERIAL_LEVEL = #{materiala_level}
+  AND m.MATERIAL_NO NOT IN (
+    SELECT v.MATERIAL_NO
+    FROM view_list v
+    WHERE v.CUS_ID = #{cus_id}
+)
+AND ROWNUM = 1
+ORDER BY m.MATERIAL_NO ASC
+	</select>
 </mapper>

@@ -1,0 +1,54 @@
+<%@page import="java.util.List"%>
+<%@page import="kr.or.ddit.vo.MaterialVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<%
+	List<MaterialVO> materList = (List<MaterialVO>)request.getAttribute("materList");
+	int cnt = 0;
+%>
+<body>
+	<h3>Material List</h3>
+	<table border=1>
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>내용</th>
+			<th>학년</th>
+			<th>난이도</th>
+		</tr>
+		<% 
+			if(materList == null || materList.size() == 0){
+		%>
+		
+		<tr>
+			<td colspan="5"> 내용이 없습니다.</td>
+		</tr>
+		
+		<%
+			} else {
+				for(MaterialVO vo : materList) {
+					cnt++;
+		%>
+		
+		<tr>
+			
+			<td><input type="hidden" value="<%=vo.getMaterial_no() %>"><%=cnt %></td>
+			<td><a href="<%=request.getContextPath()%>/material/detailMaterial.do?mno=<%=vo.getMaterial_no() %>"><%=vo.getMaterial_title() %></a></td>
+			<td><%=vo.getMaterial_des() %></td>
+			<td><%=vo.getMaterial_grade() %></td>
+			<td><%=vo.getMaterial_level() %></td>
+		</tr>
+		
+		<%	
+				}
+			}
+		%>
+	</table>
+</body>
+</html>

@@ -281,6 +281,60 @@ public class AdminInquiriesDaoImpl implements IAdminInquiriesDAO {
 		
 		return fvo;
 	}
+
+	@Override
+	public PostVO detailInquiries(int postNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PostVO> selectInquiries(PostVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int insertAdminInquiries(PostVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateAdminInquiries(PostVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteAdminInquiries(int postNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateHitAdminInquiries(int postNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<PostVO> getAllAdminInquiries(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int countAdminInquiries(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<CommentVO> selectComment() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 

@@ -14,7 +14,16 @@
 	list = (List<ViewListVO>)request.getAttribute("list");
 %>
 <script type="text/javascript">
-
+$(function(){
+	$('#dasiBtn').on('click',function(){
+		mno = $(this).parent().parent().find('#mno').val();
+		location.href= "<%=request.getContextPath()%>/material/playMaterial.do?mno="+mno+"&vgu=1&resOn=N";
+	})
+	$('#gyulBtn').on('click',function(){
+		mno = $(this).parent().parent().find('#mno').val();
+		location.href= "<%=request.getContextPath()%>/material/playMaterial.do?mno="+mno+"&vgu=1&resOn=Y";
+	})
+})	
 </script>
 <body>
 
@@ -36,11 +45,11 @@
 	for(ViewListVO vo : list){
 %>
 		<tr>
-			<td><%=i++%></td>
+			<td><input type="hidden" id="mno" value="<%=vo.getMaterial_no() %>"><%=i++%></td>
 			<td><%=vo.getMaterial_title()%></td>
 			<td><%=vo.getView_rank() %></td>
-			<td><input type="button" id="addBtn" value="다시풀기"></td>
-			<td><input type="button" id="addBtn" value="결과보기"></td>
+			<td><input type="button" id="dasiBtn" value="다시풀기"></td>
+			<td><input type="button" id="gyulBtn" value="결과보기"></td>
 			
 		</tr>
 <%

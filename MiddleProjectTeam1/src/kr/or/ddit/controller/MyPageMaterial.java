@@ -10,14 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.or.ddit.service.IMaterialService;
-import kr.or.ddit.service.IMathSettingService;
 import kr.or.ddit.service.MaterialServiceImpl;
-import kr.or.ddit.service.MathSettingServiceImpl;
-import kr.or.ddit.vo.MaterialVO;
-import kr.or.ddit.vo.MathSettingVO;
 import kr.or.ddit.vo.MemberVO;
 import kr.or.ddit.vo.ViewListVO;
+
+
 
 @WebServlet("/myPageMaterial.do")
 public class MyPageMaterial extends HttpServlet {
@@ -46,7 +43,6 @@ public class MyPageMaterial extends HttpServlet {
 		
 		//저장하기
 		request.setAttribute("list", list);
-		
 		request.getRequestDispatcher("/WEB-INF/view/memberMypage/mypageMyMaterial.jsp").forward(request, response);
 		}
 		

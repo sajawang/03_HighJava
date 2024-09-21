@@ -1,0 +1,73 @@
+package kr.or.ddit.controller;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+
+import kr.or.ddit.service.IMaterialService;
+import kr.or.ddit.service.MaterialServiceImpl;
+import kr.or.ddit.vo.MaterialVO;
+import kr.or.ddit.vo.PListVO;
+import kr.or.ddit.vo.PageVO;
+
+@WebServlet("/material/materialList.do")
+public class MaterialList extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		
+		//service객체 얻기
+		IMaterialService service = MaterialServiceImpl.getInstance();
+		
+		// 전송데이터 가져오기 - 페이지번호(page), stype, sword
+		String reqData = StreamData.dataChange(request);
+		
+		// 역직렬화 - PListVO - json형식을 자바객체형식으로 변환
+		Gson gson = new Gson();
+		PListVO vo = gson.fromJson(reqData, PListVO.class);
+		System.out.println(vo.getPage());
+		System.out.println(vo.getSchool());
+		System.out.println(vo.getGrade());
+		System.out.println(vo.getCate());
+		System.out.println(vo.getLevel());
+		// vo.setPage(1), vo.setStype(""), vo.setSword("");
+		
+		//service객체 얻기
+		
+		// list를 가져오기 위한 Page정보 가져오기 
+		PageVO pvo = service.pageInfo(vo.getPage(), vo.getSchool(), vo.getGrade(), vo.getCate(), vo.getLevel() );
+		// start, end, startPage, endPage, totalPage
+		
+		// list 가져오기
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", pvo.getStart());
+		map.put("end", pvo.getEnd());
+		map.put("school", vo.getSchool());
+		map.put("grade", vo.getGrade());
+		map.put("cate", vo.getCate());
+		map.put("level", vo.getLevel());
+		
+		// list 가져오기 - 메소드 호출
+		List<MaterialVO> list = service.selectMaterial(map);
+		
+		// 결과값을 request에 저장
+		request.setAttribute("list", list);
+		request.setAttribute("startPage", pvo.getStartPage());
+		request.setAttribute("endPage", pvo.getEndPage());
+		request.setAttribute("totalPage", pvo.getTotalPage());
+		
+		// view페이지로 이동
+		request.getRequestDispatcher("/WEB-INF/view/material/materialPage.jsp").forward(request, response);
+	}
+}

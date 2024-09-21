@@ -137,6 +137,11 @@ public class AdminInquiriesServiceImpl implements IAdminInquiriesService {
 		// TODO Auto-generated method stub
 		return dao.fileinfo(saveFileName);
 	}
+	@Override
+	public List<PostVO> getAllBoardThree(String cusid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

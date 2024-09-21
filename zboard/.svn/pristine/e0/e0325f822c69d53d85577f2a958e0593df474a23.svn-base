@@ -1,0 +1,104 @@
+package kr.or.ddit.vo;
+
+public class PostVO {
+	private int post_no;
+	private String user_id;
+	private int board_no;
+	private String post_title;
+	private String post_content;
+	private String post_date;
+	private int post_cnt;
+	private String post_delyn;
+	public int file_no;
+	public String post_gu;
+	
+	
+	public PostVO() {}
+	
+	public PostVO(int post_no, String user_id, int board_no, String post_title, String post_content, String post_date,
+			int post_cnt, String post_delyn) {
+		super();
+		this.post_no = post_no;
+		this.user_id = user_id;
+		this.board_no = board_no;
+		this.post_title = post_title;
+		this.post_content = post_content;
+		this.post_date = post_date;
+		this.post_cnt = post_cnt;
+		this.post_delyn = post_delyn;
+	}
+
+	public int getPost_no() {
+		return post_no;
+	}
+
+	public void setPost_no(int post_no) {
+		this.post_no = post_no;
+	}
+
+	public String getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+
+	public int getBoard_no() {
+		return board_no;
+	}
+
+	public void setBoard_no(int board_no) {
+		this.board_no = board_no;
+	}
+
+	public String getPost_title() {
+		return post_title;
+	}
+
+	public void setPost_title(String post_title) {
+		this.post_title = post_title;
+	}
+
+	public String getPost_content() {
+		return post_content;
+	}
+
+	public void setPost_content(String post_content) {
+		this.post_content = post_content;
+	}
+
+	public String getPost_date() {
+		return post_date;
+	}
+
+	public void setPost_date(String post_date) {
+		this.post_date = post_date;
+	}
+
+	public int getPost_cnt() {
+		return post_cnt;
+	}
+
+	public void setPost_cnt(int post_cnt) {
+		this.post_cnt = post_cnt;
+	}
+
+	public String getPost_delyn() {
+		return post_delyn;
+	}
+
+	public void setPost_delyn(String post_delyn) {
+		this.post_delyn = post_delyn;
+	}
+
+	@Override
+	public String toString() {
+		return "PostVO [post_no=" + post_no + ", user_id=" + user_id + ", board_no=" + board_no + ", post_title="
+				+ post_title + ", post_content=" + post_content + ", post_date=" + post_date + ", post_cnt=" + post_cnt
+				+ ", post_delyn=" + post_delyn + "]";
+	}
+	
+	
+	
+}

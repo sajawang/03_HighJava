@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 이 문서는 MyBatis에서 처리할 SQL문을 작성하는 문서입니다. -->
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace속성 : 이 문서에 작성된 SQL문을 호출해서 사용할 때 같이 사용되는 이름 -->
+<mapper namespace="member">
+	<select id="getLoginUser" parameterType="cusVo" resultType="cusVo">
+		select * from customer where cus_id=#{cus_id} and cus_pw=#{cus_pw}
+	</select>
+	
+	<select id="getLoginMember" parameterType="memberVo" resultType="memberVo">
+		select * from member where cus_id=#{cus_id}
+	</select>
+	
+	<select id="idCheck" resultType="String" parameterType="String">
+			select cus_id from customer where cus_id=#{cus_id}
+		</select>
+	
+	<select id="idFind" parameterType="memberVo" resultType="String">
+		select cus_id from member where mem_name =#{mem_name} and mem_mail=#{mem_mail}
+	</select>
+	
+	<insert id="insertCustomer" parameterType="cusVo">
+		 insert into customer (cus_id,cus_pw,cus_gu,cus_del,cus_date) 
+   			 values (#{cus_id},#{cus_pw},'student','N',sysdate)
+	</insert>
+	
+	<insert id="insertMember" parameterType="memberVo">
+	 insert into member (cus_id,mem_name,mem_tel,mem_bir,mem_zip,mem_add1,mem_add2
+                        ,mem_mail,mem_point)
+			values (#{cus_id},#{mem_name},#{mem_tel},#{mem_bir},#{mem_zip},#{mem_add1},
+                    #{mem_add2},#{mem_mail},0)
+	</insert>
+	<select id="newPassIdCheck" parameterType="memberVo" resultType="int">
+		select count(q.cus_pw) 
+   		  from CUSTOMER q
+    	  inner join MEMBER w
+    	     on q.cus_id=w.cus_id
+   		  where w.cus_id=#{cus_id} and w.mem_mail=#{mem_mail}
+	</select>
+
+	<update id="newPassUpdate" parameterType="cusVo">
+		update customer set cus_pw=#{cus_pw} where cus_id=#{cus_id}
+	</update>
+	
+	<select id="getFavoriteVO" parameterType="string" resultType="favoriteVo">
+	select * from favorite a inner join customer b on a.cus_id=b.cus_id where a.cus_id=#{cus_id}
+	
+	</select>
+	<select id="getViewListVO" parameterType="string" resultType="viewListVo">
+	select * from view_list a inner join customer b on a.cus_id=b.cus_id where a.cus_id=#{cus_id}
+	
+	</select>
+	<select id="getPostVO" parameterType="string" resultType="postVo">
+	select * from post a inner join customer b on a.cus_id=b.cus_id where a.cus_id=#{cus_id}
+	
+	</select>
+	<select id="getMathSettingVO" parameterType="string" resultType="mathSettingVo">
+	select * from mathSetting a inner join customer b on a.cus_id=b.cus_id where a.cus_id=#{cus_id}
+	
+	</select>
+	<select id="getCommentVO" parameterType="string" resultType="commentVo">
+	select * from COMMENTS a inner join customer b on a.cus_id=b.cus_id where a.cus_id=#{cus_id}
+	
+	</select>
+	<select id="getAttemptVO" parameterType="string" resultType="attemptVo">
+	select * from attempt a inner join customer b on a.cus_id=b.cus_id where a.cus_id=#{cus_id}
+	
+	</select>
+	
+	<select id="getSysdateLog" parameterType="string" resultType="String">
+	select distinct view_date
+    from member m 
+    inner join view_list v
+    on m.cus_id=v.cus_id
+    where v.view_gu='1' and v.cus_id =#{cus_id} and rownum=1
+
+	</select>
+	
+	<select id="getCountMate" resultType="int">
+		select count(*) from material
+	</select>
+	
+	<select id="getCountViewList" resultType="int" parameterType="String" >
+		select count(distinct b.material_title)
+		  from view_list a
+		  inner join material b
+		  on a.material_no = b.material_no
+		  where a.cus_id=#{cus_id}
+	</select>
+	
+</mapper>

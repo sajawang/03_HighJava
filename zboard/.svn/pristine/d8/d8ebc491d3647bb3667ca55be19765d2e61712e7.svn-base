@@ -1,0 +1,52 @@
+<%@page import="kr.or.ddit.vo.MaterialVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<%
+	MaterialVO vo = (MaterialVO)request.getAttribute("materVo");
+%>
+<body>
+	<h3>Detail Material</h3>
+	<table border=1>
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>내용</th>
+			<th>학년</th>
+			<th>난이도</th>
+		</tr>
+		<% 
+			if(vo == null){
+		%>
+		
+		<tr>
+			<td colspan="5"> 내용이 없습니다.</td>
+		</tr>
+		
+		<%
+			} else {
+		%>
+		
+		<tr>
+			<td><input type="hidden" value="<%=vo.getMaterial_no() %>"><%=vo.getMaterial_no() %></td>
+			<td><%=vo.getMaterial_title() %></td>
+			<td><%=vo.getMaterial_des() %></td>
+			<td><%=vo.getMaterial_grade() %></td>
+			<td><%=vo.getMaterial_level() %></td>
+		</tr>
+		
+		<%	
+			
+			}
+		%>
+		<tr>
+			<td colspan="5"><a href="<%=request.getContextPath()%>/material/playMaterial.do?mno=<%=vo.getMaterial_no() %>">PlayMaterial</a></td>
+		</tr>
+	</table>
+</body>
+</html>

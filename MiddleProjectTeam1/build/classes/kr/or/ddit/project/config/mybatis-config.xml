@@ -1,88 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration
-		 PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
-		 "http://mybatis.org/dtd/mybatis-3-config.dtd">
+       PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
+       "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<!-- DB연결에 사용할 properties파일에 대한 정보를 알려준다. -->
-	<properties resource="kr/or/ddit/project/config/dbinfo.properties"/>
-	
-	<!-- 기본 세팅 값들 -->
-	<settings>
-		<!-- 데이터가 null이 전달되면  빈 칸으로 인식하지 말고 null로 인식하라. -->
-		<setting name="jdbcTypeForNull" value="NULL"/>
-		
-		<!-- MyBatis에 log4j 적용하기 -->
-		<setting name="logImpl" value="LOG4J"/>
-	</settings>
-	
-	<!-- 사용할 VO객체의 별칭 설정하기  -->
-	<!-- 원래 VO객체를 사용할 때는 해당 객체의 전체 이름 (패키지명까지 포함된 이름)을
-		사용해야하는데 이렇게되면 이름이 너무 길어 질 수 있기에, 긴 이름 대신 사용할 별칭을 설정한다 -->
-	<!-- 
-	<typeAliases>
-		<typeAlais type="패키지명이 포함된 전체이름" alias "별칭이름"/>
-	</typeAliases>
-	 -->
-	<typeAliases>
-		<typeAlias type="kr.or.ddit.vo.AttemptVO" alias = "attemptVo"/>
-		<typeAlias type="kr.or.ddit.vo.BoardVO" alias = "boardVo"/>
-		<typeAlias type="kr.or.ddit.vo.CommentVO" alias = "commentVo"/>
-		<typeAlias type="kr.or.ddit.vo.FavoriteVO" alias = "favoriteVo"/>
-		<typeAlias type="kr.or.ddit.vo.FileVO" alias = "fileVo"/>
-		<typeAlias type="kr.or.ddit.vo.MaterialVO" alias = "materialVo"/>
-		<typeAlias type="kr.or.ddit.vo.MathSettingVO" alias = "mathSettingVo"/>
-		<typeAlias type="kr.or.ddit.vo.MemberVO" alias = "memberVo"/>
-		<typeAlias type="kr.or.ddit.vo.PostVO" alias = "postVo"/>
-		<typeAlias type="kr.or.ddit.vo.QuestionVO" alias = "questionVo"/>
-		<typeAlias type="kr.or.ddit.vo.CustomerVO" alias = "cusVo"/>
-		<typeAlias type="kr.or.ddit.vo.ViewListVO" alias = "viewListVo"/>
-		<typeAlias type="kr.or.ddit.vo.PageVO" alias = "pageVo"/>
-        <typeAlias type="kr.or.ddit.vo.PListVO" alias = "plistVo"/>
-	</typeAliases>
-	
-	<!-- DB에 접속 설정 -->
-	<environments default="oracleDev">
-		<environment id="oracleDev">
-			<transactionManager type="JDBC"/>
-			<dataSource type="POOLED">
-				<property name="driver" value="${driver}"/>
-				<property name="url" value="${url}"/>
-				<property name="username" value="${user}"/>
-				<property name="password" value="${pass}"/>
-			</dataSource>
-		</environment>
-	</environments>
-	
-	<!-- 
-		SQL문이 저장된 xml 문서를 따로 작성하는데 이 문서를 등록한다.
-		 
-	<mappers>
-		<mapper resource="경로명/파일명.xml">
-	</mappers> 
-	 -->
-	<mappers>
-		<mapper resource="kr/or/ddit/project/mappers/member-mapper.xml"/>
-		<mapper resource="kr/or/ddit/project/mappers/memberMypage-mapper.xml"/>
-		<mapper resource="kr/or/ddit/project/mappers/memberMypageTenMinMath-mapper.xml"/>
-		
-		
-		<!--조심!!!!!!!!!-->
-		<mapper resource="kr/or/ddit/project/mappers/managerTenMinMath-mapper.xml"/>
-		<!--조심!!!!!!!!!-->
-		
-		
-		<mapper resource="kr/or/ddit/project/mappers/memberMypageBoard-mapper.xml"/>
-		<mapper resource="kr/or/ddit/project/mappers/memberMypageMaterial-mapper.xml"/>
-	    <mapper resource="kr/or/ddit/project/mappers/teacherLibrary-mapper.xml"/>
-		<mapper resource="kr/or/ddit/project/mappers/material-mapper.xml"/>
-		<mapper resource="kr/or/ddit/project/mappers/question-mapper.xml"/>
-		<mapper resource="kr/or/ddit/project/mappers/adminstudent-mapper.xml"/>
-	    <mapper resource="kr/or/ddit/project/mappers/adminteacher-mapper.xml"/>
-	    <mapper resource="kr/or/ddit/project/mappers/adminnotice-mapper.xml"/>
-	    <mapper resource="kr/or/ddit/project/mappers/adminInquiries-mapper.xml"/>
-	</mappers> 
-	
-	
+
+   <!-- DB연결에 사용할 properties파일에 대한 정보를 알려준다. -->
+   <properties resource="kr/or/ddit/project/config/dbinfo.properties"/>
+   
+   <!-- 기본 세팅 값들 -->
+   <settings>
+      <!-- 데이터가 null이 전달되면  빈 칸으로 인식하지 말고 null로 인식하라. -->
+      <setting name="jdbcTypeForNull" value="NULL"/>
+      
+      <!-- MyBatis에 log4j 적용하기 -->
+      <setting name="logImpl" value="LOG4J"/>
+   </settings>
+   
+   <!-- 사용할 VO객체의 별칭 설정하기  -->
+   <!-- 원래 VO객체를 사용할 때는 해당 객체의 전체 이름 (패키지명까지 포함된 이름)을
+      사용해야하는데 이렇게되면 이름이 너무 길어 질 수 있기에, 긴 이름 대신 사용할 별칭을 설정한다 -->
+   <!-- 
+   <typeAliases>
+      <typeAlais type="패키지명이 포함된 전체이름" alias "별칭이름"/>
+   </typeAliases>
+    -->
+   <typeAliases>
+      <typeAlias type="kr.or.ddit.vo.AttemptVO" alias = "attemptVo"/>
+      <typeAlias type="kr.or.ddit.vo.BoardVO" alias = "boardVo"/>
+      <typeAlias type="kr.or.ddit.vo.CommentVO" alias = "commentVo"/>
+      <typeAlias type="kr.or.ddit.vo.FavoriteVO" alias = "favoriteVo"/>
+      <typeAlias type="kr.or.ddit.vo.FileVO" alias = "fileVo"/>
+      <typeAlias type="kr.or.ddit.vo.MaterialVO" alias = "materialVo"/>
+      <typeAlias type="kr.or.ddit.vo.MathSettingVO" alias = "mathSettingVo"/>
+      <typeAlias type="kr.or.ddit.vo.MemberVO" alias = "memberVo"/>
+      <typeAlias type="kr.or.ddit.vo.PostVO" alias = "postVo"/>
+      <typeAlias type="kr.or.ddit.vo.PageVO" alias = "pageVo"/>
+      <typeAlias type="kr.or.ddit.vo.PListVO" alias = "plistVo"/>
+      <typeAlias type="kr.or.ddit.vo.QuestionVO" alias = "questionVo"/>
+      <typeAlias type="kr.or.ddit.vo.CustomerVO" alias = "cusVo"/>
+      <typeAlias type="kr.or.ddit.vo.ViewListVO" alias = "viewListVo"/>
+   </typeAliases>
+   
+   <!-- DB에 접속 설정 -->
+   <environments default="oracleDev">
+      <environment id="oracleDev">
+         <transactionManager type="JDBC"/>
+         <dataSource type="POOLED">
+            <property name="driver" value="${driver}"/>
+            <property name="url" value="${url}"/>
+            <property name="username" value="${user}"/>
+            <property name="password" value="${pass}"/>
+         </dataSource>
+      </environment>
+   </environments>
+   
+   <!-- 
+      SQL문이 저장된 xml 문서를 따로 작성하는데 이 문서를 등록한다.
+       
+   <mappers>
+      <mapper resource="경로명/파일명.xml">
+   </mappers> 
+    -->
+   <mappers>
+	 <mapper resource="kr/or/ddit/project/mappers/member-mapper.xml"/>
+	 <mapper resource="kr/or/ddit/project/mappers/memberMypage-mapper.xml"/>
+	 <mapper resource="kr/or/ddit/project/mappers/memberMypageBoard-mapper.xml"/>
+	   <mapper resource="kr/or/ddit/project/mappers/memberMypageTenMinMath-mapper.xml"/>
+	   <mapper resource="kr/or/ddit/project/mappers/memberMypageMaterial-mapper.xml"/>
+	 <mapper resource="kr/or/ddit/project/mappers/cs-mapper.xml"/>
+	 <mapper resource="kr/or/ddit/project/mappers/teacherLibrary-mapper.xml"/>
+	 <mapper resource="kr/or/ddit/project/mappers/material-mapper.xml"/>
+	 <mapper resource="kr/or/ddit/project/mappers/question-mapper.xml"/>
+	 <mapper resource="kr/or/ddit/project/mappers/adminstudent-mapper.xml"/>
+	   <mapper resource="kr/or/ddit/project/mappers/adminteacher-mapper.xml"/>
+	   <mapper resource="kr/or/ddit/project/mappers/adminnotice-mapper.xml"/>
+	   <mapper resource="kr/or/ddit/project/mappers/adminInquiries-mapper.xml"/>
+   </mappers> 
+   
 </configuration>
 
 

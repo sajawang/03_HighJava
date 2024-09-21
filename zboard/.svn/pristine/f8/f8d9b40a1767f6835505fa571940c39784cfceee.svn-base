@@ -1,0 +1,33 @@
+package kr.or.ddit.dao;
+
+import kr.or.ddit.vo.CommentVO;
+import kr.or.ddit.vo.PostVO;
+
+public interface IAdminInquiriesVO {
+	
+	//상세조회
+	public PostVO detailInquiries(PostVO vo);
+	
+	public int insertAdminInquiries(PostVO vo);
+	
+	public int updateAdminInquiries(PostVO vo);
+	
+	public int deleteAdminInquiries(int postNo);
+	
+	//조회수
+	public int updateHitAdminInquiries(int postNo);
+	
+	//페이징처리 필요
+	public List<PostVO> getAllAdminInquiries(Map<String, Object> map);//검색,페이징처리도
+	public int countAdminInquiries(Map<String, Object> map);
+
+	//댓글 CRUD
+	public int insertComment(CommentVO comVO);
+	
+	//게시글 번호, 게시판번호 넣으면 댓글 조회
+	public CommentVO getComment(CommentVO comVO);
+	
+	public int updateComment(CommentVO comVO);
+	
+	public int deleteComment(int comNo);
+}

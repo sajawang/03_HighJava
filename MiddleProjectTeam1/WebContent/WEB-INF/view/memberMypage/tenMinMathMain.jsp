@@ -13,6 +13,8 @@
 <%
 	List<ViewListVO> mlist = null;
 	mlist = (List<ViewListVO>)request.getAttribute("mlist");
+	
+	MaterialVO mtvo = (MaterialVO)request.getAttribute("mtvo");
 %>
 <script type="text/javascript">
 $(function(){
@@ -22,6 +24,16 @@ $(function(){
 	
 	$('#todayMaterial').on('click',function(){
 		location.href="<%=request.getContextPath()%>/tenMinuteTodayMaterial.do";		
+	})
+	
+	
+	$('#dasiBtn').on('click',function(){
+		mno = $(this).parent().parent().find('#mno').val();
+		location.href= "<%=request.getContextPath()%>/material/playMaterial.do?mno="+mno+"&vgu=2&resOn=N";
+	})
+	$('#gyulBtn').on('click',function(){
+		mno = $(this).parent().parent().find('#mno').val();
+		location.href= "<%=request.getContextPath()%>/material/playMaterial.do?mno="+mno+"&vgu=2&resOn=Y";
 	})
 })
 
@@ -39,7 +51,10 @@ $(function(){
 </div>
 
 <div>
-	오늘의 10분수학(오늘날짜)<input type="button" value="오늘의 문제" id="todayMaterial">
+	오늘의 10분수학<br>
+	내 수강과정 : <%=mtvo.getMaterial_grade() %> <%=mtvo.getMaterial_level() %><br>
+	오늘의 문제 : <%=mtvo.getMaterial_title() %>
+	<input type="button" value="오늘의 문제 풀기" id="todayMaterial">
 </div>
 
 
@@ -60,11 +75,11 @@ $(function(){
 	for(ViewListVO mvo : mlist){
 %>
 		<tr>
-			<td><%=i++%></td>
+			<td><input type="hidden" id="mno" value="<%=mvo.getMaterial_no() %>"><%=i++%></td>
 			<td><%=mvo.getMaterial_title()%></td>
 			<td><%=mvo.getView_rank() %></td>
-			<td><input type="button" id="addBtn" value="다시풀기"></td>
-			<td><input type="button" id="addBtn" value="결과보기"></td>
+			<td><input type="button" id="dasiBtn" value="다시풀기"></td>
+			<td><input type="button" id="gyulBtn" value="결과보기"></td>
 			
 		</tr>
 <%

@@ -1,0 +1,45 @@
+package kr.or.ddit.vo;
+
+public class AttemptVO {
+	private int attempt_no;
+	private int view_no;
+	private String user_id;
+	private String attempt_myanser;
+	private String attempt_result;
+	public int getAttempt_no() {
+		return attempt_no;
+	}
+	public void setAttempt_no(int attempt_no) {
+		this.attempt_no = attempt_no;
+	}
+	public int getView_no() {
+		return view_no;
+	}
+	public void setView_no(int view_no) {
+		this.view_no = view_no;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	public String getAttempt_myanser() {
+		return attempt_myanser;
+	}
+	public void setAttempt_myanser(String attempt_myanser) {
+		this.attempt_myanser = attempt_myanser;
+	}
+	public String getAttempt_result() {
+		return attempt_result;
+	}
+	public void setAttempt_result(String attempt_result) {
+		this.attempt_result = attempt_result;
+	}
+	@Override
+	public String toString() {
+		return "AttemptVO [attempt_no=" + attempt_no + ", view_no=" + view_no + ", user_id=" + user_id
+				+ ", attempt_myanser=" + attempt_myanser + ", attempt_result=" + attempt_result + "]";
+	}
+	
+}

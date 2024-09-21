@@ -38,14 +38,9 @@
     <fullyQualifiedTypeName name="kr.or.ddit.dao.MathSettingDaoImpl"/>
     <fullyQualifiedTypeName name="kr.or.ddit.dao.IMaterialDao"/>
     <fullyQualifiedTypeName name="kr.or.ddit.dao.MaterialDaoImpl"/>
-    <fullyQualifiedTypeName name="kr.or.ddit.service.IMaterialService"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="kr.or.ddit.service.ICustomerService"/>
     <fullyQualifiedTypeName name="kr.or.ddit.service.CustomerServiceImpl"/>
-    <fullyQualifiedTypeName name="kr.or.ddit.vo.ViewListVO"/>
     <fullyQualifiedTypeName name="kr.or.ddit.service.IMathSettingService"/>
-    <fullyQualifiedTypeName name="kr.or.ddit.service.MathSettingServiceImpl"/>
-    <fullyQualifiedTypeName name="kr.or.ddit.vo.MathSettingVO"/>
     <fullyQualifiedTypeName name="kr.or.ddit.service.IMemberService"/>
     <fullyQualifiedTypeName name="kr.or.ddit.service.MemberServiceImpl"/>
     <fullyQualifiedTypeName name="kr.or.ddit.vo.MemberVO"/>
@@ -57,7 +52,12 @@
     <fullyQualifiedTypeName name="kr.or.ddit.dao.MyPagePostDaoImpl"/>
     <fullyQualifiedTypeName name="kr.or.ddit.controller.MyPageBoardThree"/>
     <fullyQualifiedTypeName name="kr.or.ddit.service.MyPagePostServiceImpl"/>
-    <fullyQualifiedTypeName name="kr.or.ddit.service.MaterialServiceImpl"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.service.MathSettingServiceImpl"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.vo.MathSettingVO"/>
     <fullyQualifiedTypeName name="kr.or.ddit.vo.MaterialVO"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.service.IMaterialService"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.service.MaterialServiceImpl"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.vo.ViewListVO"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>

@@ -1,5 +1,3 @@
-<%@page import="com.google.gson.Gson"%>
-<%@page import="kr.or.ddit.vo.MemberVO"%>
 <%@page import="kr.or.ddit.vo.PostVO"%>
 <%@page import="kr.or.ddit.vo.BoardVO"%>
 <%@page import="java.util.List"%>
@@ -8,148 +6,47 @@
 <!DOCTYPE html>
 <html>
 <head>
- <%@ include file="../mainScript.jsp" %>
- 
-   
-
-<style>
-/*
-검색 창 style
-*/
-/* 검색창 컨테이너 스타일 */
-.search-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* 셀렉트 박스 스타일 */
-.for-select {
-    padding: 8px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-/* 검색어 입력 창 스타일 */
-#sword {
-    padding: 8px;
-    width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    margin-right: 10px;
-}
-
-/* 검색 버튼 스타일 */
-#searchbtn {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
-
-#searchbtn:hover {
-    background-color: #0056b3;
-}
-
-</style>
-<title>고객센터_공지사항</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-3.7.1.js"></script>
 </head>
-
-<body>
-<jsp:include page="../header.jsp" />
-
-<section>
-<!-- 리스트 3개씩을 출력 -->
-   <div id="result"></div>
-   
-   <br>
-   <br>
-   
-   <!-- 페이지정보를 출력  -->
-   <div align="center" id="pagelist"></div>
-
-
-<jsp:include page="../footer.jsp" />
 <%
- int board_no=2;
-
-String sw = null;
-int eq = 0;
-
-MemberVO memVo=(MemberVO)session.getAttribute("memVo");
-Gson gson = new Gson();
-
-if(memVo!=null){
-	sw = gson.toJson(memVo);
-}
-
-
+	List<PostVO> list = null;
+	list = (List<PostVO>)request.getAttribute("list");
 %>
-<script>
-currentPage = 1;
-mypath =  '<%= request.getContextPath()%>';
-board_no=1;
-uvo = <%=sw %>;
-
-$(function(){
-	
-	// js 파일의 List 출력
-	$.mypageListPageServer(board_no);
-	//다음버튼 이벤트
-	$(document).on('click', '#next', function(){
-		//나열되어 있는 페이지번호들(pageno)의 마지막 값을 가져온다
-		currentPage = parseInt($('.pageno').last().text())+1;
-		$.listPageServer();
-		
-	});
-	//이전버튼 이벤트
-	$(document).on('click','#prev',function(){
-		
-		currentPage = parseInt($('.pageno').first().text())-1;
-		$.listPageServer(board_no);
-	});
-	//페이지번호클릭이벤트
-	$(document).on('click','.pageno',function(){
-		currentPage = parseInt($(this).text());
-		$.listPageServer(board_no);
-	});
-	
-	//검색어 입력 후 검색버튼클릭이벤트
-	$(document).on('click','#searchbtn',function(){
-		currentPage = 1;
-		$.listPageServer(board_no);
-	});
-	
-	//글쓰기버튼이벤트
-	$('#write').on('click',function(){
-		
-		if(uvo == null){
-			alert("로그인 하세요");
-			return ;
-		}
-
-		location.href= "<%=request.getContextPath()%>/mainToJsp.do?board_no=<%=board_no%>&target=/WEB-INF/view/customerService/cs_insertPost.jsp&back=/WEB-INF/view/customerService/customerService.jsp";
-		
-		
-	});//write
-	
-	
-	
-});
+<script type="text/javascript">
 
 </script>
+<body>
+
+<h2>이용문의 </h2>	
+<table border="1">
+	<thead>
+		<tr>
+			<th>NO</th>
+			<th>제목</th>
+			<th>작성일</th>
+			<th>조회수</th>
+		</tr>
+	</thead>
+	<tbody>
+<%
+	int i=1;
+	for(PostVO vo : list){
+%>
+		<tr>
+			<td><%=i++%></td>
+			<td><a href="<%=request.getContextPath()%>/csDetailPost.do?post_no=<%=vo.getPost_no()%>&board_no=2"><%=vo.getPost_title()%></a></td>
+			<td><%=vo.getPost_date()%></td>
+			<td><%=vo.getPost_cnt()%></td>
+		</tr>
+<%
+	}
+%>
+	</tbody>	
+
+</table>
+
 
 </body>
 </html>

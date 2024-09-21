@@ -1,0 +1,149 @@
+package kr.or.ddit.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.or.ddit.service.CSPostServiceImpl;
+import kr.or.ddit.vo.PostVO;
+
+/**
+ * 게시글 업데이트
+ */
+@WebServlet("/csUpdatePost.do")
+public class CsUpdatePost extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		
+		//서비스객체
+		CSPostServiceImpl service = CSPostServiceImpl.getInstance();
+		String board = request.getParameter("board_no");
+		
+		PostVO pvo = new PostVO();
+		pvo.setBoard_no(Integer.parseInt(board));
+		pvo.setCus_id(request.getParameter("cus_id"));
+		pvo.setPost_cnt(Integer.parseInt(request.getParameter("post_cnt")));
+		pvo.setPost_content(request.getParameter("post_content"));
+		pvo.setPost_date(request.getParameter("post_date"));
+		pvo.setPost_no(Integer.parseInt(request.getParameter("post_no")));
+		pvo.setPost_title(request.getParameter("post_title"));
+		
+		int res = service.updateCsPost(pvo);
+		String target = "/index.jsp";
+		if(res>0) {
+				int board_no = Integer.parseInt(board);
+				switch (board_no) {
+				case 1:
+					target = "/WEB-INF/view/customerService/customerService.jsp";
+					break;
+				case 2:
+					target =  "/WEB-INF/view/customerService/mathSolution.jsp";
+					break;
+				case 3:
+					target =  "/WEB-INF/view/customerService/inquiry.jsp";
+					break;
+				case 4:
+					
+					break;
+				case 5:
+					
+					break;
+				case 6:
+					
+					break;
+				case 7:
+					
+					break;
+				case 8:
+					
+					break;
+				case 9:
+					target =  "/WEB-INF/view/customerService/FAQ.jsp";
+					break;
+		
+				default:
+					break;
+				}
+				
+			}
+		else{
+				System.out.println("업데이트실패");
+	            target = "/index.jsp"; // 기본 페이지 설정
+	        }
+
+		request.getRequestDispatcher(target).forward(request, response);
+	}
+
+	/**
+	 * post방식으로 오면 delete하기
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("utf-8");
+
+		//서비스객체
+		CSPostServiceImpl service = CSPostServiceImpl.getInstance();
+		String board = request.getParameter("board_no");
+		
+		PostVO pvo = new PostVO();
+		pvo.setBoard_no(Integer.parseInt(board));
+		pvo.setPost_no(Integer.parseInt(request.getParameter("post_no")));
+		
+		int res = service.deleteCsPost(pvo);
+		String target = "/index.jsp";
+		
+		if(res>0) {
+			
+				int board_no = Integer.parseInt(board);
+				switch (board_no) {
+				case 1:
+					target = "/WEB-INF/view/customerService/customerService.jsp";
+					break;
+				case 2:
+					target =  "/WEB-INF/view/customerService/mathSolution.jsp";
+					break;
+				case 3:
+					target =  "/WEB-INF/view/customerService/inquiry.jsp";
+					break;
+				case 4:
+					
+					break;
+				case 5:
+					
+					break;
+				case 6:
+					
+					break;
+				case 7:
+					
+					break;
+				case 8:
+					
+					break;
+				case 9:
+					target =  "/WEB-INF/view/customerService/FAQ.jsp";
+					break;
+		
+				default:
+					break;
+				}
+				
+			}
+		else{
+				System.out.println("삭제실패");
+	            target = "/index.jsp"; // 기본 페이지 설정
+	        }
+
+		request.getRequestDispatcher(target).forward(request, response);
+		
+		
+		
+	}
+
+}

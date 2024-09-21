@@ -1,0 +1,309 @@
+<%@page import="com.google.gson.Gson"%>
+<%@page import="kr.or.ddit.vo.MemberVO"%>
+<%@page import="kr.or.ddit.vo.PostVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<%@ include file="../mainScript.jsp" %>
+
+
+<title>게시글상세보기</title>
+
+<style>
+    .detail-view {
+        width: 70%;
+        margin: 40px auto;
+        font-family: 'Noto Sans KR', sans-serif;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+    }
+
+    .detail-view h3 {
+        text-align: center;
+        font-size: 2.5em;
+        color: white;
+        background-color: #007bff;
+        padding: 20px;
+        margin: -30px -30px 20px -30px; /* 타이틀 부분을 테두리 밖으로 확장 */
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .detail-view table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        table-layout: fixed;
+        text-align: center; /* 가운데 정렬 */
+    }
+
+    .detail-view td.label {
+        background-color: #f9f9f9;
+        font-weight: bold;
+        border-bottom: 1px solid #ddd;
+        color: #333;
+    }
+
+    .detail-view td.value {
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+        color: #333;
+        background-color: #fff;
+    }
+
+    .detail-view td.content {
+        padding: 20px;
+        background-color: #f9f9f9;
+        color: #444;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        line-height: 1.6;
+        text-align: center;
+    }
+
+    .button-container {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .button-container form {
+        display: inline-block;
+        margin: 0 10px; /* 버튼 간격 조절 */
+    }
+
+    .button-container button {
+        background-color: #28a745;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .button-container button:hover {
+        background-color: #218838;
+    }
+
+    .detail-view {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+    }
+</style>
+
+<% 
+	PostVO pvo = (PostVO)request.getAttribute("pvo");
+	int board_no = pvo.getBoard_no();
+	String sw = null;
+	int eq = 0;
+
+	MemberVO memVo=(MemberVO)session.getAttribute("memVo");
+	Gson gson = new Gson();
+
+	if(memVo!=null){
+		sw = gson.toJson(memVo);
+	}
+	
+%>
+<script>
+comment={};
+
+uvo = <%=sw %>;
+board_no = <%=pvo.getBoard_no()%>;
+post_no = <%=pvo.getPost_no()%>;
+mypath =  '<%= request.getContextPath()%>';
+
+$(function(){
+	//js파일의 List출력
+$.commentListServer(board_no, post_no);
+	
+	//수정, 삭제, 댓글쓰기, 댓글수정, 댓글삭제
+	
+	$(document).on('click','.action',function(){
+		
+		todo= $(this);
+		
+		action = $(this).attr('name');
+		comment_no = $(this).attr('idx');
+		
+		if(action == "comment"){
+			//댓글 작성
+			
+			//로그인체크
+			if(uvo == null){
+				alert("로그인하세요")
+				return;
+			}
+			
+			vcont = $(this).parent().find('textarea').val().trim();
+			if(vcont == ""){
+				alert("댓글 내용을 입력해주세요.");
+				return;
+			}
+			comment.cus_id = uvo.cus_id;
+			comment.comment_content = vcont;
+			comment.board_no = board_no;
+			comment.post_no = post_no;
+			
+			$.commentWriteServer(comment, board_no, post_no);
+			
+		}
+		else if (action == "comment_update") {
+	        // 댓글 수정
+	        const commentBody = todo.closest('.comment-body');
+	        const contentElement = commentBody.find('.rp3');
+	        const currentContent = contentElement.html().replace(/<br>/g, '\n');
+	        
+	        // 기존 내용을 textarea로 변환
+	        contentElement.html(`
+	                <textarea rows="4" cols="60">${currentContent}</textarea>
+	                <input idx="\${comment_no}" type="button" value="저장" name="comment_save" class="action">
+	            `);
+
+	    } else if (action == "comment_save") {
+	        // 댓글 저장
+	        const commentBody = todo.closest('.comment-body');
+	        const textarea = commentBody.find('textarea');
+	        const updatedContent = textarea.val().trim();
+
+	        if (updatedContent === "") {
+	            alert("댓글 내용을 입력해주세요.");
+	            return;
+	        }
+	            comment.comment_no= comment_no;
+	            console.log("comment_no:",comment_no);
+	            comment.comment_content= updatedContent;
+
+	        $.commentUpdateServer(comment,board_no, post_no);
+
+	    } else if (action == 'comment_delete') {
+	        // 댓글 삭제
+	        if (confirm("정말 삭제하시겠습니까?")) {
+	            $.commentDeleteServer(comment_no, board_no, post_no);
+	        }
+	    }
+		
+		
+		
+		
+		
+	});
+	
+	
+	
+	
+	
+	
+});
+
+
+</script>
+
+</head>
+<body>
+<jsp:include page="../header.jsp" />
+
+<div class="detail-view">
+    <h3>게시글 상세보기</h3>
+    <table>
+        <tr>
+            <td>제목</td>
+            <td colspan="3" class="value"><%=pvo.getPost_title() %></td>
+        </tr>
+        <tr>
+            <td>게시글번호</td>
+            <td colspan="3" class="value"><%=pvo.getPost_no() %></td>
+        </tr>
+        <tr>
+            <td>작성자</td>
+            <td colspan="3" class="value"><%=pvo.getCus_id() %></td>
+        </tr>
+        <tr>
+            <td>작성일</td>
+            <td colspan="3" class="value"><%=pvo.getPost_date() %></td>
+        </tr>
+        <tr>
+            <td>조회수</td>
+            <td colspan="3" class="value"><%=pvo.getPost_cnt() %></td>
+        </tr>
+        <tr>
+            <td>첨부파일</td>
+            <td colspan="3" class="value">
+                <% 
+                String fileName = pvo.getFiles_name(); 
+                if(fileName != null && !fileName.isEmpty()) { 
+                %>
+                    <a href="<%=request.getContextPath()%>/csdownloadFile.do?fileName=<%=fileName %>"><%=fileName %></a>
+                <% } else { %>
+                    <span>첨부파일 없음</span>
+                <% } %>
+            </td>
+        </tr>
+        
+        <tr>
+            <td colspan="4" class="content">
+                <%=pvo.getPost_content() %>
+            </td>
+        </tr>
+    </table>
+<!-- 댓글 섹션 -->
+	<div id="comments">
+	    
+	</div>
+
+</div>
+
+
+
+ 
+<!-- 로그인 아이디값과 게시글의 작성자(cus_id)값이 같으면 수정 삭제 버튼 나오게 -->
+
+<%--각주제거
+
+<%
+    String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+    if (loggedInUserId != null && loggedInUserId.equals(pvo.getCus_id())) {
+%>
+각주제거--%>
+
+<div class="button-container">
+    <form action="<%=request.getContextPath() %>/csDetailPost.do"  method="post">
+    	<input type="hidden" name="board_no" value="<%=pvo.getBoard_no()%>">
+    	<input type="hidden" name="post_no" value="<%=pvo.getPost_no() %>">
+        <button type="submit">수정하기</button>
+    </form>
+    <form action="<%=request.getContextPath() %>/csUpdatePost.do" method="post">
+        <input type="hidden" name="board_no" value="<%=pvo.getBoard_no()%>">
+    	<input type="hidden" name="post_no" value="<%=pvo.getPost_no() %>">
+        <button type="submit">삭제</button>
+    </form>
+
+
+<%--각주제거
+<%
+    }
+%>
+각주제거--%>
+ 
+ 
+ 
+<!-- 목록보기 버튼 -->
+
+    <form action="<%=request.getContextPath() %>/mainToJsp.do">
+       <input type="hidden" name="board_no" value="<%=pvo.getBoard_no()%>">
+        <button type="submit">목록보기</button>
+    </form>
+</div>
+
+<jsp:include page="../footer.jsp" />
+
+
+
+</body>
+</html>
