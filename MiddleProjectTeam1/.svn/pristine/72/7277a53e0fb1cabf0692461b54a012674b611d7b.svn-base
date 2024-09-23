@@ -1,0 +1,64 @@
+<%@page import="kr.or.ddit.vo.ViewListVO"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-3.7.1.js"></script>
+</head>
+<%
+	List<ViewListVO> list = null;
+	list = (List<ViewListVO>)request.getAttribute("list");
+%>
+<script type="text/javascript">
+$(function(){
+	$('.dasiBtn').on('click',function(){
+		mno = $(this).parent().parent().find('#mno').val();
+		location.href= "<%=request.getContextPath()%>/material/playMaterial.do?mno="+mno+"&vgu=1&resOn=N";
+	})
+	$('.gyulBtn').on('click',function(){
+		mno = $(this).parent().parent().find('#mno').val();
+		location.href= "<%=request.getContextPath()%>/material/playMaterial.do?mno="+mno+"&vgu=1&resOn=Y";
+	})
+})	
+</script>
+<body>
+
+
+<h2>풀었던 문제 목록 </h2>	
+<table border="1">
+	<thead>
+		<tr>
+			<th>NO</th>
+			<th>학습지 제목</th>
+			<th>점수</th>
+			<th>다시풀기</th>
+			<th>결과보기</th>
+		</tr>
+	</thead>
+	<tbody>
+<%
+	int i=1;
+	for(ViewListVO vo : list){
+%>
+		<tr>
+			<td><input type="hidden" id="mno" value="<%=vo.getMaterial_no() %>"><%=i++%></td>
+			<td><%=vo.getMaterial_title()%></td>
+			<td><%=vo.getView_rank() %></td>
+			<td><input type="button" class="dasiBtn" value="다시풀기"></td>
+			<td><input type="button" class="gyulBtn" value="결과보기"></td>
+			
+		</tr>
+<%
+	}
+%>
+	</tbody>	
+
+</table>
+
+
+</body>
+</html>

@@ -18,6 +18,22 @@
 
  
  </script>
+ <script>
+ 
+//login 서블릿 통해서 login.jsp로 가고 로그인정보 있는지 체크해서 없으면 리다이렉트
+//있으면 서블릿경로로 보내기.
+ 
+ 
+ </script>
+ <script type="text/javascript">
+
+function alretStudent(){
+	alert("학생전용 서비스입니다.");
+}
+function alretTeacher(){
+	alert("선생님전용 서비스입니다.");
+}
+</script>
  <style type="text/css">
 
  </style>
@@ -131,7 +147,7 @@ if(memVo!=null){
             } else if(sw!=null&&"teacher".equals(da)){
             %>
             
-      	<a href="#">[학습지 보기]</a>
+      	<a href="javascript:alretStudent();">[학습지 보기]</a>
       	<a href="#">[이용 문의]</a>
       	<a href="#">[FAQ]</a>
       	<a href="#">[마이페이지]</a>

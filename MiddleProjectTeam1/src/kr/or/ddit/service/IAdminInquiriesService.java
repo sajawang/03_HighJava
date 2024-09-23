@@ -61,7 +61,7 @@ public interface IAdminInquiriesService {
 	 *  고객센터 내 파라미터값 게시판 보기
 	 * @return	성공 : PostVO객체 / 실패 : 0
 	 */
-	public List<PostVO> selectPostList();
+	public List<PostVO> selectPostList(Map<String, Object> map);
 	
 	/**
 	 * 고객센터 게시글의 댓글 등록 - 파라미터 CommentVO 
@@ -127,5 +127,19 @@ public interface IAdminInquiriesService {
 	 * @return
 	 */
 	public FileVO fileinfo(String saveFileName);
+	
+	/**
+	 * 게시글 상세조회
+	 * @param board_no
+	 * @return
+	 */
+	public PostVO postView(int post_no);
+	
+	/**
+	 * 댓글 상세조회
+	 * @param board_no
+	 * @return
+	 */
+	public List<CommentVO> commentView(int post_no);
 		
 }

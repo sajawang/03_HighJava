@@ -28,6 +28,7 @@
    			 values (#{cus_id},#{cus_pw},'student','N',sysdate)
 	</insert>
 	
+	
 	<insert id="insertMember" parameterType="memberVo">
 	 insert into member (cus_id,mem_name,mem_tel,mem_bir,mem_zip,mem_add1,mem_add2
                         ,mem_mail,mem_point)

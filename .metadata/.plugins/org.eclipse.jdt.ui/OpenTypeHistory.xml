@@ -18,8 +18,8 @@
     <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.service{IMathSettingService.java[IMathSettingService" modifiers="513" timestamp="1726723478088"/>
     <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.dao{IMaterialDao.java[IMaterialDao" modifiers="513" timestamp="1726905159016"/>
     <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.service{IMaterialService.java[IMaterialService" modifiers="513" timestamp="1726905201452"/>
-    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.dao{IAdminInquiriesDAO.java[IAdminInquiriesDAO" modifiers="513" timestamp="1726808376838"/>
-    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.service{IAdminInquiriesService.java[IAdminInquiriesService" modifiers="513" timestamp="1726904413157"/>
+    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.dao{IAdminInquiriesDAO.java[IAdminInquiriesDAO" modifiers="513" timestamp="1727049899893"/>
+    <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.service{IAdminInquiriesService.java[IAdminInquiriesService" modifiers="513" timestamp="1727049904385"/>
     <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.dao{IMemberDao.java[IMemberDao" modifiers="513" timestamp="1726734417754"/>
     <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.service{IMyPagePostService.java[IMyPagePostService" modifiers="513" timestamp="1726812290094"/>
     <typeInfo handle="=MiddleProjectTeam1/src&lt;kr.or.ddit.dao{IMyPagePostDao.java[IMyPagePostDao" modifiers="513" timestamp="1726812228440"/>

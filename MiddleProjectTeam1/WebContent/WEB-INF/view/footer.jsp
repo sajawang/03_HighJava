@@ -22,7 +22,7 @@
       	<a href="#">[학습지 보기]</a>
       	<a href="#">[이용 문의]</a>
       	<a href="#">[FAQ]</a>
-      	<a href="#">[마이페이지]</a>
+      	<a href="<%=request.getContextPath()%>/goTenMinMath.do">[마이페이지]</a>
     	</nav>
   	</div>
   	

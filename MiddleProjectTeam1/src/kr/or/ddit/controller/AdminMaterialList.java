@@ -1,0 +1,45 @@
+package kr.or.ddit.controller;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+
+import kr.or.ddit.service.AdmMaterialServiceImpl;
+import kr.or.ddit.service.IAdmMaterialService;
+import kr.or.ddit.service.IMaterialService;
+import kr.or.ddit.service.MaterialServiceImpl;
+import kr.or.ddit.vo.MaterialVO;
+import kr.or.ddit.vo.PListVO;
+import kr.or.ddit.vo.PageVO;
+
+@WebServlet("/adminmaterialList.do")
+public class AdminMaterialList extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		
+		IAdmMaterialService service = AdmMaterialServiceImpl.getInstance();
+		
+		List<MaterialVO> list = service.selectAllMaterial();
+		
+		request.setAttribute("materList", list);
+		
+		request.getRequestDispatcher("/WEB-INF/view/adminMaterial/adminmaterialList.jsp").forward(request, response);
+
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+
+	}
+}

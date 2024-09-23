@@ -15,4 +15,21 @@
 					#{material_no},#{question_content},#{question_answer},#{question_solve},#{files_no})
 	</insert>
 	
+	<select id="adminSelectAllQuestion" resultType="questionVo">
+		select * from question
+	</select>
+	
+	  <update id="adminUpdateQue" parameterType="questionVo">
+  	 update question
+  	 	set material_no =  #{material_no}  ,
+  	 		question_content =    #{question_content},
+  	 		question_answer =  #{question_answer},
+  	 		question_solve =  #{question_solve}
+  	  where question_no=#{question_no}
+   </update>
+	
+	<delete id="deleteQuestion" parameterType="int">
+   			delete from question where material_no=#{material_no}
+   </delete>
+	
 </mapper>

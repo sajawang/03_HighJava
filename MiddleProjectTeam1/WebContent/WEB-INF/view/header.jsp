@@ -26,6 +26,18 @@ if(memVo!=null){
 }
 %>
 <title></title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+function alretStudent(){
+	alert("학생전용 서비스입니다.");
+}
+function alretTeacher(){
+	alert("선생님전용 서비스입니다.");
+}
+</script>
+
 </head>
 <body>
 <header id="header">
@@ -33,24 +45,21 @@ if(memVo!=null){
             <nav class="top-links">
             <% if(sw==null){
             %>
-                <a href="<%=request.getContextPath()%>/goLogin.do">수학 특별활동</a>
                 <a href="<%=request.getContextPath()%>/goLogin.do">고객센터</a>
                 <a href="<%=request.getContextPath()%>/goLogin.do">선생님공간</a>
                 <a href="<%=request.getContextPath()%>/goLogin.do">매일 10분 수학</a>
                 <a href="<%=request.getContextPath()%>/goLogin.do">공지사항</a>            
             <%	
             }else if(sw!=null&&"student".equals(da)){          	%>
-                <a href="#">수학 특별활동</a>
                 <a href="<%=request.getContextPath() %>/mainToJsp.do?target=/WEB-INF/view/customerService/customerService.jsp" >고객센터</a>
-                <a href="#">선생님공간</a>
-                <a href="#">매일 10분 수학</a>
+                <a href="javascript:alretTeacher();">선생님공간</a>
+                <a href="<%=request.getContextPath()%>/goTenMinMath.do">매일 10분 수학</a>
                 <a href="#">공지사항</a>
             	<%
             }else if(sw!=null&&"teacher".equals(da)){%>
-                <a href="#">수학 특별활동</a>
                 <a href="<%=request.getContextPath() %>/mainToJsp.do?target=/WEB-INF/view/customerService/customerService.jsp" >고객센터</a>
                 <a href="<%=request.getContextPath()%>/teacher/goTeacherLibraryList.do">선생님공간</a>
-                <a href="#">매일 10분 수학</a>
+                <a href="javascript:alretStudent();">매일 10분 수학</a>
                 <a href="#">공지사항</a>
             	<%
             }
@@ -64,7 +73,7 @@ if(memVo!=null){
             <%	
             }else{
             	%>
-                <a href="goMypage.do">마이페이지</a>
+                <a href="goTenMinMath.do">마이페이지</a>
                 <a href="<%=request.getContextPath() %>/goInsertMember.do">회원가입</a>                
             	<%
             } 
@@ -109,10 +118,10 @@ if(memVo!=null){
             	<%
             } else if(sw!=null&&"teacher".equals(da)){
             %>
-            <li><a href="#">초등학교 3학년</a></li>
-            <li><a href="#">초등학교 4학년</a></li>
-            <li><a href="#">초등학교 5학년</a></li>
-            <li><a href="#">초등학교 6학년</a></li>
+            <li><a href="javascript:alretStudent();">초등학교 3학년</a></li>
+            <li><a href="javascript:alretStudent();">초등학교 4학년</a></li>
+            <li><a href="javascript:alretStudent();">초등학교 5학년</a></li>
+            <li><a href="javascript:alretStudent();">초등학교 6학년</a></li>
             <%
 		    }
     		%>
@@ -138,9 +147,9 @@ if(memVo!=null){
             	<%
             } else if(sw!=null&&"teacher".equals(da)){
             %>
-            <li><a href="#">중학교 1학년</a></li>
-            <li><a href="#">중학교 2학년</a></li>
-            <li><a href="#">중학교 3학년</a></li>
+            <li><a href="javascript:alretStudent();">중학교 1학년</a></li>
+            <li><a href="javascript:alretStudent();">중학교 2학년</a></li>
+            <li><a href="javascript:alretStudent();">중학교 3학년</a></li>
             <%
 		    }
     		%>
@@ -166,9 +175,9 @@ if(memVo!=null){
             <%
             } else if(sw!=null&&"teacher".equals(da)){
             %>
-            <li><a href="#">고등학교 수학</a></li>
-            <li><a href="#">수학 I</a></li>
-            <li><a href="#">수학 II</a></li>
+            <li><a href="javascript:alretStudent();">고등학교 수학</a></li>
+            <li><a href="javascript:alretStudent();">수학 I</a></li>
+            <li><a href="javascript:alretStudent();">수학 II</a></li>
              <%
 		    }
     		%>

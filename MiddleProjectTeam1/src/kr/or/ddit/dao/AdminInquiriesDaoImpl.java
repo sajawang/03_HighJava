@@ -29,7 +29,7 @@ public class AdminInquiriesDaoImpl implements IAdminInquiriesDAO {
 		SqlSession sql = null;
 		try {
 			sql= MybatisUtil.getSqlSession();
-			cnt = sql.selectOne("cs.countPost",map);
+			cnt = sql.selectOne("adminInquiries.countPost",map);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -47,7 +47,7 @@ public class AdminInquiriesDaoImpl implements IAdminInquiriesDAO {
 		
 		try(SqlSession sql = MybatisUtil.getSqlSession();) {
 			
-			pvo = sql.selectOne("cs.selectDetailPost",map);
+			pvo = sql.selectOne("adminInquiries.selectDetailPost",map);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,7 +63,7 @@ public class AdminInquiriesDaoImpl implements IAdminInquiriesDAO {
 		
 		try {
 			sql= MybatisUtil.getSqlSession();
-			cnt =sql.insert("cs.insertCsPost",pvo);
+			cnt =sql.insert("adminInquiries.insertPost",pvo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -84,7 +84,7 @@ public class AdminInquiriesDaoImpl implements IAdminInquiriesDAO {
 		
 		try {
 			sql= MybatisUtil.getSqlSession();
-			cnt =sql.insert("cs.updateCsPost",vo);
+			cnt =sql.insert("adminInquiries.updatePost",vo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -105,7 +105,7 @@ public class AdminInquiriesDaoImpl implements IAdminInquiriesDAO {
 		
 		try {
 			sql= MybatisUtil.getSqlSession();
-			cnt =sql.insert("cs.deleteCsPost",vo);
+			cnt =sql.insert("adminInquiries.deletePost",vo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -120,14 +120,14 @@ public class AdminInquiriesDaoImpl implements IAdminInquiriesDAO {
 	}
 
 	@Override
-	public List<PostVO> selectPostList() {
+	public List<PostVO> selectPostList(Map<String, Object> map) {
 		
 		List<PostVO> list = null;
 		
 		
 		try (SqlSession sql = MybatisUtil.getSqlSession();){
 			
-			list = sql.selectList("adminInquiries.selectPostList");
+			list = sql.selectList("adminInquiries.selectPostList",map);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -144,7 +144,7 @@ public class AdminInquiriesDaoImpl implements IAdminInquiriesDAO {
 		
 		try {
 			sql= MybatisUtil.getSqlSession();
-			cnt =sql.insert("cs.insertCsComment",comVO);
+			cnt =sql.insert("adminInquiries.insertComment",comVO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -165,7 +165,7 @@ public class AdminInquiriesDaoImpl implements IAdminInquiriesDAO {
 		
 		try (SqlSession sql = MybatisUtil.getSqlSession();){
 			
-			list = sql.selectList("cs.selectComment", map);
+			list = sql.selectList("adminInquiries.selectComment", map);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -188,7 +188,7 @@ public class AdminInquiriesDaoImpl implements IAdminInquiriesDAO {
 		
 		try {
 			sql= MybatisUtil.getSqlSession();
-			cnt =sql.insert("cs.updateComment",comVO);
+			cnt =sql.insert("adminInquiries.updateComment",comVO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -210,7 +210,7 @@ public class AdminInquiriesDaoImpl implements IAdminInquiriesDAO {
 		
 		try {
 			sql= MybatisUtil.getSqlSession();
-			cnt =sql.insert("cs.deleteComment",comNo);
+			cnt =sql.insert("adminInquiries.deleteComment",comNo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -336,6 +336,38 @@ public class AdminInquiriesDaoImpl implements IAdminInquiriesDAO {
 		return null;
 	}
 	
+	@Override
+	public PostVO postView(int post_no) {
+		PostVO pvo = null;
+		SqlSession sql = null;
+		
+		try {
+			sql = MybatisUtil.getSqlSession();
+			pvo = sql.selectOne("adminInquiries.postView", post_no);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return pvo;
+	}
+
+	@Override
+	public List<CommentVO> commentView(int post_no) {
+		
+		List<CommentVO> cvo = null;
+		SqlSession sql = null;
+		
+		try {
+			sql = MybatisUtil.getSqlSession();
+			cvo = sql.selectList("adminInquiries.commentView",post_no);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return cvo;
+	}
 	
 
 }

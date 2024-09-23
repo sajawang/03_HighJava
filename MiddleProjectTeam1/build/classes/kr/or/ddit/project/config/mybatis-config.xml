@@ -75,6 +75,7 @@
 	   <mapper resource="kr/or/ddit/project/mappers/adminteacher-mapper.xml"/>
 	   <mapper resource="kr/or/ddit/project/mappers/adminnotice-mapper.xml"/>
 	   <mapper resource="kr/or/ddit/project/mappers/adminInquiries-mapper.xml"/>
+	   <mapper resource="kr/or/ddit/project/mappers/adminmymathboard-mapper.xml"/>
    </mappers> 
    
 </configuration>

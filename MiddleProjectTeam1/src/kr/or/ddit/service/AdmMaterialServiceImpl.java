@@ -51,9 +51,9 @@ public class AdmMaterialServiceImpl implements IAdmMaterialService {
 	}
 
 	@Override
-	public List<MaterialVO> getAllMaterial() {
+	public List<MaterialVO> selectAllMaterial() {
 		
-		return dao.getAllMaterial();
+		return dao.selectAllMaterial();
 	}
 
 	@Override
@@ -86,11 +86,35 @@ public class AdmMaterialServiceImpl implements IAdmMaterialService {
 		// TODO Auto-generated method stub
 		return dao.getMateQuestionList(mateNo);
 	}
+<<<<<<< .mine
 	@Override
 	public String adminSelectMateFileName(int fileNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+||||||| .r443686
+=======
+	@Override
+	public String adminSelectMateFileName(int fileNo) {
+		// TODO Auto-generated method stub
+		return dao.adminSelectMateFileName(fileNo);
+	}
+	@Override
+	public QuestionVO selectDetailQuestion(int queNo) {
+		// TODO Auto-generated method stub
+		return dao.selectDetailQuestion(queNo);
+	}
+	@Override
+	public int adminSelectMateQueNum(String queFileName) {
+		// TODO Auto-generated method stub
+		return dao.adminSelectMateQueNum(queFileName);
+	}
+	@Override
+	public String adminSelectMateQueName(int queFileNo) {
+		// TODO Auto-generated method stub
+		return dao.adminSelectMateQueName(queFileNo);
+	}
+>>>>>>> .r444302
 	
 
 }

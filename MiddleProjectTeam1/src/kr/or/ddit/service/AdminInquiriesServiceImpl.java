@@ -93,9 +93,9 @@ public class AdminInquiriesServiceImpl implements IAdminInquiriesService {
 		return dao.deletePost(vo);
 	}
 	@Override
-	public List<PostVO> selectPostList() {
+	public List<PostVO> selectPostList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return dao.selectPostList();
+		return dao.selectPostList(map);
 	}
 	@Override
 	public int insertComment(CommentVO comVO) {
@@ -137,11 +137,26 @@ public class AdminInquiriesServiceImpl implements IAdminInquiriesService {
 		// TODO Auto-generated method stub
 		return dao.fileinfo(saveFileName);
 	}
+<<<<<<< .mine
 	@Override
 	public List<PostVO> getAllBoardThree(String cusid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
+||||||| .r443686
+	
+=======
+	@Override
+	public PostVO postView(int post_no) {
+		// TODO Auto-generated method stub
+		return dao.postView(post_no);
+	}
+	@Override
+	public List<CommentVO> commentView(int post_no) {
+		// TODO Auto-generated method stub
+		return dao.commentView(post_no);
+	}
+>>>>>>> .r444302
 
 }

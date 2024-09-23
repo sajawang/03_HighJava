@@ -40,7 +40,7 @@ public class MyPageMaterial extends HttpServlet {
 		//service실행해서 list가져오기 - getMyMaterial
 		MaterialServiceImpl service = MaterialServiceImpl.getInstance();
 		List<ViewListVO> list = service.getMyMaterial(sw);
-		
+		System.out.println("list 마이페이지매테리알리스트"+list);
 		//저장하기
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/WEB-INF/view/memberMypage/mypageMyMaterial.jsp").forward(request, response);

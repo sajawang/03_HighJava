@@ -38,7 +38,9 @@ public class MathSettingDaoImpl implements IMathSettingDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			if(cnt>0) {
 			session.commit();
+			}
 			if(session!=null) session.close();
 		} 
 		return cnt;

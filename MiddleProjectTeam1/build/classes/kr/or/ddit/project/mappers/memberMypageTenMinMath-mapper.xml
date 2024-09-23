@@ -70,7 +70,7 @@ WHERE
 		SELECT m.*
 FROM material m
 WHERE m.MATERIAL_GRADE = #{material_grade}
-  AND m.MATERIAL_LEVEL = #{materiala_level}
+  AND m.MATERIAL_LEVEL = #{material_level}
   AND m.MATERIAL_NO NOT IN (
     SELECT v.MATERIAL_NO
     FROM view_list v
