@@ -10,7 +10,7 @@
 	
 	select A.* from 
 	     (select rownum as rnum , B.* from
-	        ( select * from post where board_no = 3 and post_delyn = 'n'
+	        ( select * from post where board_no = 3
 	               order by  post_no desc ) B 
 	    <![CDATA[
 	          where rownum <= #{end}) A

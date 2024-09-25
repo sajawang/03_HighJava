@@ -72,6 +72,9 @@ public class SessionLoginDb extends HttpServlet {
 			//결과값 가져오기 = service -> dao로 이동함.
 			System.out.println("결과 전");
 			CustomerVO vo = service.getLoginUser(cusVo);
+			if(vo==null) {
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
+			}
 			System.out.println("결과");
 			
 //			int lplp = service.getLoginMemberPoint(memVo);
@@ -83,36 +86,26 @@ public class SessionLoginDb extends HttpServlet {
 			
 			String del = vo.getCus_del();
 					
-			System.out.println(del +"del");
 			
 			
-			if(vo==null||"Y".equals(del)) {
-				session.setAttribute("id", id);
-				response.sendRedirect(request.getContextPath()+"/index.jsp");
+			if("Y".equals(del)||vo==null) {
+//				session.setAttribute("id", id);
+//				response.sendRedirect(request.getContextPath()+"/index.jsp");
+//				response.sendRedirect(request.getContextPath()+"/index.jsp");
+				
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
+				
 			}
 			String userId=vo.getCus_id();
 			String userPass=vo.getCus_pw();
 			String userGu=vo.getCus_gu();
 			
-			System.out.println(userId +" "+ userPass+" "+userGu + " " );
+//			String da = service.getSysdateLog(userId);
+//			
+//			//세션 작업하기
+//			int countMate = service.getCountMate();
+//			int countViewList = service.getCountViewList(userId);
 			
-			//아이디에 해당하는 모든 VO객체를 가져오고 세션에 저장한다.
-			
-//			FavoriteVO fVo = service.getFavoriteVO(userId);
-//			ViewListVO vVo = service.getViewListVO(userId);
-//			PostVO pVo = service.getPostVO(userId);
-//			MathSettingVO mVo =service.getMathSettingVO(userId);
-//			CommentVO cVo = service.getCommentVO(userId);
-//			AttemptVO aVo = service.getAttemptVO(userId);
-			
-			String da = service.getSysdateLog(userId);
-			
-			//세션 작업하기
-			int countMate = service.getCountMate();
-			int countViewList = service.getCountViewList(userId);
-			
-			System.out.println(countMate +" "+countViewList);
-			System.out.println(da);
 			//로그인 처리
 			if(id!=null&&pass!=null) {
 //				if((userId.equals(id)&&userPass.equals(pass))||(userId.equals(id)&&pass.equals(ren))) {
@@ -131,10 +124,10 @@ public class SessionLoginDb extends HttpServlet {
 //					session.setAttribute("aVo", aVo);
 					
 					//일일 그래프 출력용 데이터
-					session.setAttribute("sysdate", da);
-					//학습지 전체 그래프 출력용 데이터
-					session.setAttribute("countMate", countMate);
-					session.setAttribute("countViewList", countViewList);
+//					session.setAttribute("sysdate", da);
+//					//학습지 전체 그래프 출력용 데이터
+//					session.setAttribute("countMate", countMate);
+//					session.setAttribute("countViewList", countViewList);
 					System.out.println(session.getId());
 					response.sendRedirect(request.getContextPath()+"/index.jsp");
 					
@@ -147,7 +140,7 @@ public class SessionLoginDb extends HttpServlet {
 			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		} 
 	}
 

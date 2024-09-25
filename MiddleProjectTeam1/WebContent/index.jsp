@@ -6,25 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
    <script src="js/jquery-3.7.1.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
   <link rel="stylesheet" href="main/css/main.css">
- <script>
- 
-//login 서블릿 통해서 login.jsp로 가고 로그인정보 있는지 체크해서 없으면 리다이렉트
-//있으면 서블릿경로로 보내기.
-
- 
- </script>
- <script>
- 
-//login 서블릿 통해서 login.jsp로 가고 로그인정보 있는지 체크해서 없으면 리다이렉트
-//있으면 서블릿경로로 보내기.
- 
- 
- </script>
  <script type="text/javascript">
 
 function alretStudent(){
@@ -54,7 +40,6 @@ if(memVo!=null){
 	eq = memVo.getMem_point();
 }
 %>
-
 
 <jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>
 
@@ -105,6 +90,7 @@ if(memVo!=null){
       
      
 <%--     <jsp:include page="dummy.jsp"></jsp:include> --%>
+      <img src="images/초등.jpg" class="img-responsive" style="width:100%" alt="Image">
       <p>초3 덧셈과 뺄셈</p>
       
       

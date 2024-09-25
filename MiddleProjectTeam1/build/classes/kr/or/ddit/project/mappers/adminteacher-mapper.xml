@@ -56,6 +56,13 @@
  	 	 </update>
    
    
+   	<!-- 학생인 거 yn가져오기 위한 거임 -->
+	<select id="cusdelteacher" resultType="cusVo" >
+		 select a.cus_id, a.cus_del 
+    from customer a 
+    where a.cus_gu = 'teacher'
+	</select>
+   
   <!-- 	<select id="countStudent"  parameterType="String" resultType="int">
 		select count(*) from customer where cus_id= #{cus_id}
 	</select>

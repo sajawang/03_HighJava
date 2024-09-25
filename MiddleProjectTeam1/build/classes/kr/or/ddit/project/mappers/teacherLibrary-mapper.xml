@@ -19,6 +19,7 @@
          inner join files f on p.files_no = f.files_no 
          WHERE SUBSTR(p.POST_GU, 1, 2) = #{school}
            and SUBSTR(p.POST_GU, 3, 1) = #{grade}
+           and p.post_delyn = 'n'
 	</select>
 	
 	<!-- 글 리스트 가져오기 - 조건여부에 따라 -->
@@ -30,11 +31,16 @@
                 inner join files f on p.files_no = f.files_no 
                 WHERE SUBSTR(p.POST_GU, 1, 2) = #{school}
                   and SUBSTR(p.POST_GU, 3, 1) = #{grade}
+                  and p.post_delyn = 'n'
                 order by p.post_no desc ) B 
 	    <![CDATA[
 	             where rownum <= #{end}) A
 	     where A.rnum >= #{start} 
 	    ]]>
 	</select>
+	
+	<update id="updateHitTeacherLib" parameterType="int">
+		update post set post_cnt = (select post_cnt from post where post_no = #{postNo} )+1 where post_no = #{postNo}
+	</update>
 	
 </mapper>

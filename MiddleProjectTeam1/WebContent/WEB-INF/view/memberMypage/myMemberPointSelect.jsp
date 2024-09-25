@@ -9,6 +9,39 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-3.7.1.js"></script>
 <script type="text/javascript">
 </script>
+<style>
+    .point-info {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+
+    .point-card {
+        text-align: center;
+        margin: 15px;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+    }
+
+    .point-card:hover {
+        transform: scale(1.05);
+    }
+
+    .point-card img {
+        width: 150px;
+        height: auto;
+    }
+
+    .point-card p {
+        font-size: 1.2em;
+        margin-top: 10px;
+    }
+</style>
+
 </head>
 <%
 Integer mempoint = (Integer) request.getAttribute("mem_point");
@@ -35,9 +68,20 @@ String memname = (String)request.getAttribute("mem_name");
 	<br><br>
     <h2><p><%=memname %>님의 현재 포인트는 : <%=mempoint %></p></h2>
     <br><br>
-    <img src="<%=request.getContextPath() %>/mypageImages/브론즈.png" width="200" height="140" alt="브론즈">1000 포인트 미만<br>
-    <img src="<%=request.getContextPath() %>/mypageImages/실버.png" width="200" height="140" alt="실버">1000-5000 포인트<br>
-    <img src="<%=request.getContextPath() %>/mypageImages/골드.png" width="200" height="140" alt="골드">5000-10000 포인트<br>
+    <div class="point-info">
+       <div class="point-card">
+           <img src="${pageContext.request.contextPath}/images/bronze.png" alt="브론즈">
+           <p>1000 포인트 미만</p>
+       </div>
+       <div class="point-card">
+           <img src="${pageContext.request.contextPath}/images/silver.png" alt="실버">
+           <p>1000-5000 포인트</p>
+       </div>
+       <div class="point-card">
+           <img src="${pageContext.request.contextPath}/images/gold.png" alt="골드">
+           <p>5000-10000 포인트</p>
+       </div>
+   </div>
 </div>
 <br><br>
 <jsp:include page="../footer.jsp" />

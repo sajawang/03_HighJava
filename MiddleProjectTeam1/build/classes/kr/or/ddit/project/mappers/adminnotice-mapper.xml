@@ -49,7 +49,6 @@
 			post_content = #{post_content},
 			post_delyn = 'n'
 		where post_no = #{post_no}	
-	
 	</update>
 	<!-- 글  쓰기 저장 -->
 	<insert id="insertNotice" parameterType="postVo">

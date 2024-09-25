@@ -1,3 +1,4 @@
+<%@page import="kr.or.ddit.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,13 +6,30 @@
 <head>
 
 <meta charset="UTF-8">
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
-<%--    <script src="<%=request.getContextPath() %>/js/jquery-3.7.1.js"></script> --%>
-<!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
-<!--   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"> -->
-<%--   <link rel="stylesheet" href="<%=request.getContextPath() %>/main/css/main.css"> --%>
   
+   <% 
+// String sw = (String)session.getAttribute("id");
+String da= (String)session.getAttribute("userGu"); // 회원의 종류 - 학생 - 선생님 값 가져오기;
+String sw = null;
+int eq = 0;
+
+MemberVO memVo=(MemberVO)session.getAttribute("memVo");
+if(memVo!=null){
+	sw = memVo.getCus_id();
+	eq = memVo.getMem_point();
+}
+%>
+<script type="text/javascript">
+
+function alretStudent(){
+	alert("학생전용 서비스입니다.");
+}
+function alretTeacher(){
+	alert("선생님전용 서비스입니다.");
+}
+</script>  
 <title></title>
+
 </head>
 <body>
 
@@ -19,10 +37,31 @@
   <footer class="container-fluid text-center">
   	<div class="bottom-bar">
     	<nav class="bottom-links">
-      	<a href="#">[학습지 보기]</a>
+
+    	 <% if(sw==null){
+            %>
+      	<a href="<%=request.getContextPath()%>/goLogin.do">[학습지 보기]</a>
+      	<a href="<%=request.getContextPath()%>/goLogin.do">[이용 문의]</a>
+      	<a href="<%=request.getContextPath()%>/goLogin.do">[FAQ]</a>
+      	<a href="<%=request.getContextPath()%>/goLogin.do">[마이페이지]</a>
+      	
+      	<%	
+    	 }else if(sw!=null&&"student".equals(da)){          	%>
+      	<a href="<%=request.getContextPath()%>/material/goMaterial.do?school=element&grade=3">[학습지 보기]</a>
       	<a href="#">[이용 문의]</a>
       	<a href="#">[FAQ]</a>
-      	<a href="<%=request.getContextPath()%>/goTenMinMath.do">[마이페이지]</a>
+      	<a href="<%=request.getContextPath() %>/goTenMinMath.do">[마이페이지]</a>
+        
+     	<%
+    	 }else if(sw!=null&&"teacher".equals(da)){%>
+      	<a href="javascript:alretStudent();">[학습지 보기]</a>
+      	<a href="#">[이용 문의]</a>
+      	<a href="#">[FAQ]</a>
+      	<a href="<%=request.getContextPath() %>/goTenMinMath.do">[마이페이지]</a>
+        
+        <%
+     }
+     %>
     	</nav>
   	</div>
   	

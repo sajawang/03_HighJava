@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace속성 : 이 문서에 작성된 SQL문을 호출해서 사용할 때 같이 사용되는 이름 -->
+<mapper namespace="admintalk">
+
+<!-- 동적쿼리  -->
+	<sql id="dynamicCondition">
+   		<where>
+      		<if test="!(stype == '' or sword == '')">
+           	${stype} like  '%'||#{sword}||'%'
+       		</if>
+  		 </where>
+	</sql>	
+
+
+<!-- 전체 글 갯수 - 조건여부에 따라 -->
+	<select id ="countTeacherTalk" parameterType="map" resultType="int">
+		select count(*) from post where board_no = #{board_no}
+		<include refid="dynamicCondition"/> 
+	</select>
+	
+	<!-- 글 리스트 가져오기 - 조건여부에 따라서 -->
+	<select id="selectTeacherTalkList" parameterType="int" resultType="postVo">	
+     select * from post where board_no = #{board_no}
+    </select>		           
+
+	
+	<!-- 게시글 삭제지만 y를 n으로 바꾸는것임-->
+   <update id="deleteTeacherTalk" parameterType="postVo">
+    update post set post_delyn = 'y' where post_no =#{post_no}
+   </update>
+   
+   <!-- post_no에 해당하는 댓글 조회  -->
+   <select id="selectTeacherCommentList" parameterType="int" resultType="commentVo">
+	select comment_no, post_no, cus_id, comment_content, comment_date, comment_like, comment_delyn
+        from comments
+        where post_no = #{postno} and comment_delyn = 'n'
+        order by comment_date asc
+	</select>
+   
+   
+   <!-- 답글 삭제되면서 n -> y로 변환 -->
+   <update id="delectTeacherComment" parameterType="commentVo">
+		    update comments set comment_delyn = 'y' where comment_no=#{comment_no}
+	</update>
+   
+	<!--  -->
+
+	
+	
+</mapper>

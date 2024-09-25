@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="material">
+
+   <select id="selectDetailMaterial" parameterType="int" resultType="materialVo">
+      select * 
+        from material m
+       inner join files f on m.material_file = f.files_no
+       where material_no = #{material_no}
+   </select>
+   
+   <select id="getMaterQuestionFile" parameterType="int" resultType="materialVo">
+      select m.MATERIAL_NO, m.MATERIAL_TITLE, m.MATERIAL_DES, m.MATERIAL_GRADE, m.MATERIAL_LEVEL, q.QUESTION_NO, q.QUESTION_CONTENT, q.QUESTION_ANSWER, q.QUESTION_SOLVE, f.FILES_NO, f.FILES_NAME
+      from MATERIAL M
+          INNER JOIN QUESTION Q ON M.MATERIAL_NO = Q.MATERIAL_NO
+          INNER JOIN FILES F ON Q.FILES_NO = F.FILES_NO
+      where M.MATERIAL_NO = #{material_no}
+   </select>
+   
+   <insert id="adminInsertMate" parameterType="materialVo">
+      insert into material
+         (material_no,material_title,material_des,material_grade,material_level,material_file)
+         values ((select nvl(max(material_no),0)+1 from material)
+         ,#{material_title},#{material_des},#{material_grade},#{material_level},
+         #{files_no})
+
+   </insert>
+   
+   <insert id="adminInsertMateFile" parameterType="String">
+      insert into files (files_no,files_name,files_size,files_date,files_cnt)
+               values ((select nvl(max(files_no),0)+1 from files),
+                    #{files_name},1,sysdate,0)
+   </insert>
+   
+   <select id="adminSelectMateFileNum" parameterType="String" resultType="Integer">
+      select files_no from files where files_name=#{files_Name}
+   </select>
+   <select id="adminSelectMateFileName" parameterType="int" resultType="String">
+      select files_name from files where files_no=#{files_No}
+   </select>
+
+
+   <select id="selectDetailQuestion" parameterType="int" resultType="questionVo">
+      select * from question where question_no = #{question_no}
+   </select>
+
+   <select id="adminSelectMateQueNum" parameterType="String" resultType="int">
+      select files_no from question where files_name=#{files_Name}
+   </select>
+   <select id="adminSelectMateQueName" parameterType="int" resultType="String">
+      select f.files_name 
+    from question q  
+   	 inner join files f on q.files_no=f.files_no    
+    	where f.files_no=#{files_no}
+   </select>
+   
+   <update id="adminUpdateMate" parameterType="materialVo">
+  	 update material
+  	 	set material_title = #{material_title}  ,
+  	 		material_des =  #{material_des},
+  	 		material_grade =  #{material_grade},
+  	 		material_level =  #{material_level}
+  	  where material_no=#{material_no}
+   </update>
+
+ 
+   
+   <select id="getQuestionList" resultType="questionVo">
+      select * from question
+   </select>
+
+   <select id="getMateQuestionList" resultType="questionVo" parameterType="int">
+      select * from question where material_no=#{material_no}
+   </select>
+   
+   <insert id="insertViewList" parameterType="map">
+      insert into view_list values((select nvl(max(view_no), 0)+1 from view_list), #{cusId}, sysdate, #{mateNo}, #{viewGu}, #{score}, #{viewPoint})
+      <selectKey keyProperty="viewNo" resultType="int" order="BEFORE">
+           select max(view_no) from view_list
+         </selectKey>
+   </insert>
+   
+   <insert id="insertAttempt" parameterType="attemptVo">
+      insert into attempt values((select nvl(max(attempt_no), 0)+1 from attempt), #{view_no}, #{cus_id}, #{attempt_myanswer}, #{attempt_result})
+   </insert>
+
+   <insert id="adminInsertMaterial" parameterType="materialVo">
+   <!-- 쿼리문 수정하기 -->
+   insert into material (material_no,material_title,material_des,material_grade,material_level,material_file)
+         values ((select nvl(max(material_no),0)+1 from material)
+         ,#{title},#{des},#{grade},#{level},
+         1)
+     <selectKey keyProperty="mateNo" resultType="int" order="BEFORE">
+            select max(material_no) from material
+         </selectKey>
+   </insert>
+   
+   
+   
+   
+   <!-- 전체 글 갯수  - 조건여부에 따라 -->
+   <select id="countMaterial" resultType="int" parameterType="map">
+      select count(*)
+        from material m
+       inner join files f on m.MATERIAL_FILE = f.FILES_NO
+       WHERE SUBSTR(m.MATERIAL_GRADE, 1, 2) = #{school}
+         and SUBSTR(m.MATERIAL_GRADE, 4, 1) = #{grade}
+         and SUBSTR(m.MATERIAL_GRADE, 6, 1) = #{cate}
+         and m.material_level = #{level}
+   </select>
+   
+   <!-- 글 리스트 가져오기 - 조건여부에 따라 -->
+   <select id="selectMaterial" parameterType="map" resultType="materialVo">
+      select A.* 
+        from (select rownum as rnum , B.* 
+                from ( select * 
+                         from material m
+                        inner join files f on m.material_file = f.files_no
+                        WHERE SUBSTR(m.MATERIAL_GRADE, 1, 2) = #{school}
+                      and SUBSTR(m.MATERIAL_GRADE, 4, 1) = #{grade}
+                      and SUBSTR(m.MATERIAL_GRADE, 6, 1) = #{cate}
+                      and m.material_level = #{level}
+                          order by m.material_no ) B 
+       <![CDATA[
+                where rownum <= #{end}) A
+        where A.rnum >= #{start} 
+       ]]>
+   </select>
+   
+   <select id="firstMaterial" parameterType="map" resultType="materialVo">
+      select * 
+         from material m 
+        inner join files f on m.material_file = f.files_no 
+       WHERE SUBSTR(m.MATERIAL_GRADE, 1, 2) = #{school}
+          and SUBSTR(m.MATERIAL_GRADE, 4, 1) = #{grade}
+          and SUBSTR(m.MATERIAL_GRADE, 6, 1) = #{cate}
+          and m.material_level = #{level}
+       order by m.material_no desc
+   </select>
+   
+   <select id="selectAllMaterial" resultType="materialVo">
+  		select * from material  
+    </select>
+
+   <select id="selectAdminAllMaterialList" resultType="materialVo">
+  		 SELECT * 
+FROM material
+ORDER BY material_no asc
+    </select>
+
+   <select id="selectMaxMaterial" resultType="int">
+  		select  max(material_no) from material  
+    </select>
+
+   <delete id="deleteMaterial" parameterType="int">
+   			delete from material where material_no=#{material_no}
+   </delete>
+   <update id="updateMemberPoint" parameterType="memberVo">
+		update member set mem_point = #{mem_point} where cus_id=#{cus_id}
+	</update>
+   
+    <select id="getMathMinute" parameterType="String" resultType="mathSettingVo">
+    	select * from mathsetting where cus_id = #{cusId}
+    </select>
+    
+    <select id="getMyAnswer" parameterType="viewListVo" resultType="viewListVo">
+    	select *
+		  from ( select *
+		           from view_list v
+		          inner join attempt a on a.view_no = v.view_no
+		          where a.cus_id = #{cus_id}
+		            and v.view_gu = #{view_gu}
+		          order by a.view_no desc )
+		 
+		 <![CDATA[
+         where rownum <= 5
+		 order by attempt_no
+       ]]>
+    </select>
+</mapper>

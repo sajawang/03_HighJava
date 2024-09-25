@@ -7,7 +7,10 @@
 <mapper namespace="material">
 
    <select id="selectDetailMaterial" parameterType="int" resultType="materialVo">
-      select * from material where material_no = #{material_no}
+      select * 
+        from material m
+       inner join files f on m.material_file = f.files_no
+       where material_no = #{material_no}
    </select>
    
    <select id="getMaterQuestionFile" parameterType="int" resultType="materialVo">
@@ -34,7 +37,7 @@
    </insert>
    
    <select id="adminSelectMateFileNum" parameterType="String" resultType="Integer">
-      select count(files_no) from files where files_name=#{files_Name}
+      select files_no from files where files_name=#{files_Name}
    </select>
    <select id="adminSelectMateFileName" parameterType="int" resultType="String">
       select files_name from files where files_no=#{files_No}
@@ -76,14 +79,26 @@
    
    <insert id="insertViewList" parameterType="map">
       insert into view_list values((select nvl(max(view_no), 0)+1 from view_list), #{cusId}, sysdate, #{mateNo}, #{viewGu}, #{score}, #{viewPoint})
-      <selectKey keyProperty="viewNo" resultType="int" order="BEFORE">
+      <selectKey keyProperty="viewNo" resultType="int" order="AFTER">
            select max(view_no) from view_list
          </selectKey>
    </insert>
+   
    <insert id="insertAttempt" parameterType="attemptVo">
       insert into attempt values((select nvl(max(attempt_no), 0)+1 from attempt), #{view_no}, #{cus_id}, #{attempt_myanswer}, #{attempt_result})
    </insert>
 
+   <insert id="adminInsertMaterial" parameterType="map">
+   <!-- 쿼리문 수정하기 -->
+   insert into material (material_no,material_title,material_des,material_grade,material_level,material_file)
+         values ((select nvl(max(material_no),0)+1 from material),#{title},#{des},#{grade},#{level}, #{fileNum})
+     <selectKey keyProperty="mateNo" resultType="int" order="BEFORE">
+            select max(material_no) from material
+         </selectKey>
+   </insert>
+   
+   
+   
    
    <!-- 전체 글 갯수  - 조건여부에 따라 -->
    <select id="countMaterial" resultType="int" parameterType="map">
@@ -107,7 +122,7 @@
                       and SUBSTR(m.MATERIAL_GRADE, 4, 1) = #{grade}
                       and SUBSTR(m.MATERIAL_GRADE, 6, 1) = #{cate}
                       and m.material_level = #{level}
-                          order by m.material_no desc ) B 
+                          order by m.material_no ) B 
        <![CDATA[
                 where rownum <= #{end}) A
         where A.rnum >= #{start} 
@@ -129,9 +144,20 @@
   		select * from material  
     </select>
 
+   <select id="selectAdminAllMaterialList" resultType="materialVo">
+  		 SELECT * 
+FROM material
+ORDER BY material_no asc
+    </select>
+
+   <select id="selectMaxMaterial" resultType="int">
+  		select  max(material_no) from material  
+    </select>
+
    <delete id="deleteMaterial" parameterType="int">
    			delete from material where material_no=#{material_no}
    </delete>
+   
    <update id="updateMemberPoint" parameterType="memberVo">
 		update member set mem_point = #{mem_point} where cus_id=#{cus_id}
 	</update>

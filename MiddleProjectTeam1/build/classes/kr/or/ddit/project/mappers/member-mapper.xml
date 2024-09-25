@@ -77,7 +77,7 @@
     from member m 
     inner join view_list v
     on m.cus_id=v.cus_id
-    where v.view_gu='1' and v.cus_id =#{cus_id} and rownum=1
+    where v.view_gu='2' and v.cus_id =#{cus_id} and rownum=1
 
 	</select>
 	

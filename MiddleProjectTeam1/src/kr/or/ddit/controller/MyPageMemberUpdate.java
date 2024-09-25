@@ -135,7 +135,16 @@ public class MyPageMemberUpdate extends HttpServlet {
 		service.updateMember(memVo);
 		
 		//마이페이지 메인으로 가기
+<<<<<<< .mine
+		//request.getRequestDispatcher("/WEB-INF/view/memberMypage/mypageMain.jsp").forward(request, response);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
+||||||| .r444440
 		request.getRequestDispatcher("/WEB-INF/view/memberMypage/mypageMain.jsp").forward(request, response);
+=======
+//		request.getRequestDispatcher("/WEB-INF/view/memberMypage/mypageMain.jsp").forward(request, response);
+//		response.sendRedirect(request.getContextPath()+"/index.jsp");
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
+>>>>>>> .r445554
 	}
 
 	

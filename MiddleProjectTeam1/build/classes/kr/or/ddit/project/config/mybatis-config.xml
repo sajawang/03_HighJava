@@ -50,6 +50,8 @@
             <property name="url" value="${url}"/>
             <property name="username" value="${user}"/>
             <property name="password" value="${pass}"/>
+            <property name="poolMaximumActiveConnections" value="2"/><!-- 활성화된 최대 커넥션 수 -->
+            <property name="poolMaximumIdleConnections" value="2"/><!-- 유휴상태에서 최대 커넥션 수 -->
          </dataSource>
       </environment>
    </environments>
@@ -76,6 +78,13 @@
 	   <mapper resource="kr/or/ddit/project/mappers/adminnotice-mapper.xml"/>
 	   <mapper resource="kr/or/ddit/project/mappers/adminInquiries-mapper.xml"/>
 	   <mapper resource="kr/or/ddit/project/mappers/adminmymathboard-mapper.xml"/>
+	   <mapper resource="kr/or/ddit/project/mappers/adminnotice-mapper.xml"/>
+	   <mapper resource="kr/or/ddit/project/mappers/adminteacherlibrary-mapper.xml"/>
+	   <mapper resource="kr/or/ddit/project/mappers/admintalk-mapper.xml"/>
+	   <mapper resource="kr/or/ddit/project/mappers/admintenmath-mapper.xml"/>
+	   
+	  
+
    </mappers> 
    
 </configuration>

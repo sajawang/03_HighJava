@@ -5,15 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
-<%--    <script src="<%=request.getContextPath() %>/js/jquery-3.7.1.js"></script> --%>
-<!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
-<!--   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"> -->
-<%--   <link rel="stylesheet" href="<%=request.getContextPath() %>/main/css/main.css"> --%>
-<%--   <script src="<%=request.getContextPath() %>/js/customerService.js"></script> --%>
 
  <% 
-// String sw = (String)session.getAttribute("id");
 String da= (String)session.getAttribute("userGu"); // 회원의 종류 - 학생 - 선생님 값 가져오기
 System.out.println(da);
 String sw = null;
@@ -26,7 +19,6 @@ if(memVo!=null){
 }
 %>
 <title></title>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
 
@@ -36,6 +28,16 @@ function alretStudent(){
 function alretTeacher(){
 	alert("선생님전용 서비스입니다.");
 }
+
+function openPopup() {
+    window.open(
+        '<%=request.getContextPath() %>/mainToJsp.do?target=/WEB-INF/view/chat/webSocketMutiChatting.jsp', 
+        'popupWindow', 
+        'width=600, height=400, scrollbars=yes, resizable=yes'
+    );
+}
+
+
 </script>
 
 </head>
@@ -54,16 +56,16 @@ function alretTeacher(){
                 <a href="<%=request.getContextPath() %>/mainToJsp.do?target=/WEB-INF/view/customerService/customerService.jsp" >고객센터</a>
                 <a href="javascript:alretTeacher();">선생님공간</a>
                 <a href="<%=request.getContextPath()%>/goTenMinMath.do">매일 10분 수학</a>
-                <a href="#">공지사항</a>
+                <a href="<%=request.getContextPath() %>/mainToJsp.do?target=/WEB-INF/view/customerService/customerService.jsp">공지사항</a>
             	<%
-            }else if(sw!=null&&"teacher".equals(da)){%>
+            }else if(sw!=null&&"teacher".equals(da)){			%>
                 <a href="<%=request.getContextPath() %>/mainToJsp.do?target=/WEB-INF/view/customerService/customerService.jsp" >고객센터</a>
                 <a href="<%=request.getContextPath()%>/teacher/goTeacherLibraryList.do">선생님공간</a>
                 <a href="javascript:alretStudent();">매일 10분 수학</a>
-                <a href="#">공지사항</a>
+                <a href="<%=request.getContextPath() %>/mainToJsp.do?target=/WEB-INF/view/customerService/customerService.jsp">공지사항</a>
             	<%
             }
-            %>
+           %>
             </nav>
         <div class="user-options">
         <!-- 서블릿으로 view폴더 안의 jsp파일에 접근할 수 있도록 하이퍼링크에 서블릿 주소를 작성하고 서블릿에서 원하는 jsp파일로 바로 리다이렉트로 전송 -->
@@ -73,7 +75,8 @@ function alretTeacher(){
             <%	
             }else{
             	%>
-                <a href="goTenMinMath.do">마이페이지</a>
+            	<a href="#" onclick="openPopup(); return false;">실시간토의실</a>
+                <a href="<%=request.getContextPath() %>/goTenMinMath.do">마이페이지</a>
                 <a href="<%=request.getContextPath() %>/goInsertMember.do">회원가입</a>                
             	<%
             } 
@@ -95,7 +98,7 @@ function alretTeacher(){
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="<%=request.getContextPath() %>/mainToJsp.do?target=/index.jsp"><img src="images/로고.png" alt="로고" id="logo" ></a></li>
+        <li><a href="<%=request.getContextPath() %>/mainToJsp.do?target=/index.jsp"><img src="<%=request.getContextPath() %>/images/로고.png" alt="로고" id="logo" ></a></li>
         <li id="active"><a href="<%=request.getContextPath() %>/mainToJsp.do?target=/index.jsp">Home</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">초등수학 <span class="caret"></span></a>
@@ -198,26 +201,31 @@ function alretTeacher(){
    		//memVo에 정보가 담기고 Gu값이 teacher라면 황금칭호를 출력한다.
    		if(da.equals("teacher")){
 		%>
-   		<li> <img height="50" width="50" alt="king.png" src="images/king.png">&emsp;&emsp; </li>
+   		<li> <img height="50" width="50" alt="king.png" src="${pageContext.request.contextPath}/images/king.png">&emsp;&emsp; </li>
+
 		<%   			
    		}else{
    			%>
    			<%
    		if(eq<1000){
         %>
-   		<li> <img height="50" width="50" alt="bronze.png" src="images/bronze.png">&emsp;&emsp; </li>
+   		<li> <img height="50" width="50" alt="bronze.png" src="${pageContext.request.contextPath}/images/bronze.png">&emsp;&emsp; </li>
+
    		<%
    		}else if(eq>1000&&eq<4999){
    		%>
-   		<li> <img height="50" width="50" alt="silver.png" src="images/silver.png">&emsp;&emsp; </li>   		
+   		<li> <img height="50" width="50" alt="silver.png" src="${pageContext.request.contextPath}/images/silver.png">&emsp;&emsp; </li>   		
+
    		<%	
    		}else if(eq>5000&&eq<9999){
    	   	%>
-   	   	<li> <img height="50" width="50" alt="gold.png" src="images/gold.png">&emsp;&emsp; </li>   		
+   	   	<li> <img height="50" width="50" alt="gold.png" src="${pageContext.request.contextPath}/images/gold.png">&emsp;&emsp; </li>   		
+
    	   	<%	
    	   	}else if(eq>9999){
    	   	%>
-   	   	<li> <img height="50" width="50" alt="diamond.png" src="images/diamond.png">&emsp;&emsp; </li>   		
+   	   	<li> <img height="50" width="50" alt="diamond.png" src="${pageContext.request.contextPath}/images/diamond.png">&emsp;&emsp; </li>   		
+
    	   	<%	
    	   	}
    	   	%>

@@ -36,11 +36,10 @@ $(function(){
 		mno = $(this).parent().parent().find('#mno').val();
 		location.href= "<%=request.getContextPath()%>/material/playMaterial.do?mno="+mno+"&vgu=2&resOn=Y";
 	})
-	$('#todayMaterial').on('click',function(){
-		//mno = $(this).parent().parent().find('#mno').val();
-		var mno = $(this).siblings('#mno').val();
-		location.href= "<%=request.getContextPath()%>/material/playMaterial.do?mno="+mno+"&vgu=2&resOn=Y";
-	})
+	$('#todayMaterial').on('click', function() {
+	       var mno = $(this).closest('.math-content2').find('#mno').val(); // .math-content2 요소 내에서 #mno 찾기
+	       location.href = "<%=request.getContextPath()%>/material/playMaterial.do?mno=" + mno + "&vgu=2&resOn=N";
+	});
 })
 </script>
 

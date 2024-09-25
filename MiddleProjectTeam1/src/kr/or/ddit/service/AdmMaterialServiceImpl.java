@@ -86,14 +86,6 @@ public class AdmMaterialServiceImpl implements IAdmMaterialService {
 		// TODO Auto-generated method stub
 		return dao.getMateQuestionList(mateNo);
 	}
-<<<<<<< .mine
-	@Override
-	public String adminSelectMateFileName(int fileNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-||||||| .r443686
-=======
 	@Override
 	public String adminSelectMateFileName(int fileNo) {
 		// TODO Auto-generated method stub
@@ -114,7 +106,21 @@ public class AdmMaterialServiceImpl implements IAdmMaterialService {
 		// TODO Auto-generated method stub
 		return dao.adminSelectMateQueName(queFileNo);
 	}
->>>>>>> .r444302
+	@Override
+	public int adminInsertMaterial(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.adminInsertMaterial(map);
+	}
+	@Override
+	public int selectMaxMaterial() {
+		// TODO Auto-generated method stub
+		return dao.selectMaxMaterial();
+	}
+	@Override
+	public List<MaterialVO> selectAdminAllMaterialList() {
+		// TODO Auto-generated method stub
+		return dao.selectAdminAllMaterialList();
+	}
 	
 
 }

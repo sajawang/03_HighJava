@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 이 문서는 MyBatis에서 처리할 SQL문을 작성하는 문서입니다. -->
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace속성 : 이 문서에 작성된 SQL문을 호출해서 사용할 때 같이 사용되는 이름 -->
+<mapper namespace="student">
+
+<!--customer 학생 분류로 조회 -->
+	<select id="getAllStudent" parameterType="String" resultType="memberVo">
+		select * from customer a join member b on a.cus_id = b.cus_id where a.cus_gu = #{student} 
+	</select>
+	
+<!-- 두 컬럼 조인해서 memberVo로 조회 -->	
+	<select id="getAllMemVo" parameterType="String" resultType="memberVo">
+		select * from customer a join member b on a.cus_id = b.cus_id where a.cus_id = #{cus_id}
+	</select>
+	
+	<!-- 학생인 거 yn가져오기 위한 거임 -->
+	<select id="cusdelstudent" resultType="cusVo" >
+		 select a.cus_id, a.cus_del 
+    from customer a 
+    where a.cus_gu = 'student'
+	</select>
+	
+ 	<!-- 두 컬럼 조인해서 customerVo로 조회 -->	
+	<select id="getAllCusVo" parameterType="String" resultType="cusVo">
+		select * from customer a join member b on a.cus_id = b.cus_id where a.cus_id = #{cus_id}
+	</select>
+	
+	<select id="memAuth" resultType="memberVo">
+	select * from member where mem_auth is not null
+	</select>
+	
+	<!-- customer로 cusid 조회 -->
+		<select id="countStudent"  parameterType="String" resultType="int">
+		select count(*) from customer where cus_id= #{cus_id}
+	</select>
+   
+	
+		<insert id="insertCusStudent" parameterType="cusVo">
+		insert into customer(cus_id, cus_pw, cus_gu, cus_del, cus_date)
+		values (#{cus_id}, #{cus_pw}, 'student', 'N', sysdate)
+		</insert> 
+	
+		<insert id="insertMemStudent" parameterType="memberVo">
+		insert into member (cus_id, mem_name, mem_tel, mem_bir, mem_zip, mem_add1 , mem_add2, 
+		mem_mail, mem_point, mem_auth) 
+		values( #{cus_id}, #{mem_name}, #{mem_tel}, #{mem_bir}, #{mem_zip}, #{mem_add1},
+		#{mem_add2}, #{mem_mail}, 0, null)
+		</insert>   
+   
+   
+   		<update id="updateMemStudent" parameterType="memberVo">
+   		update member set 
+   		mem_name= #{mem_name}, mem_tel= #{mem_tel}, mem_bir =#{mem_bir}, mem_zip =#{mem_zip}, 
+   		mem_add1 =#{mem_add1}, mem_add2 =#{mem_add2},
+   		mem_mail =#{mem_mail} where cus_id =#{cus_id}
+		</update>
+	
+		<update id="updateCusStudent" parameterType="cusVo">
+	   update customer set 
+	   cus_pw = #{cus_pw} where cus_id = #{cus_id}
+ 	 	 </update>
+   
+   	<update id= "updateUpgrade" parameterType ="cusVo">
+   	update customer set
+   	cus_gu = 'teacher'
+   	where cus_id = #{cus_id} and cus_gu = 'student'
+   	</update>
+   
+	<!-- customer 테이블에서 member 삭제 -->	
+	 <update id="deleteCusUser" parameterType="String">
+        update customer set cus_del ='Y' where cus_id =#{cusId} 
+        and cus_del ='N'
+    </update>
+    
+	<!-- member 테이블에서 member 삭제 
+    <update id="deleteMemUser" parameterType="String">
+        update from member where cus_id = #{cus_id}
+    </update> -->
+	
+   
+</mapper>

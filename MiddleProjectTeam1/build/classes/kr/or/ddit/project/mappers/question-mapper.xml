@@ -12,7 +12,7 @@
 	<insert id="adminInsertQuestion" parameterType="questionVo">
 		insert into question (question_no,material_no,question_content,question_answer,question_solve,files_no)
 		values ((select nvl(max(question_no),0)+1 from question),
-					#{material_no},#{question_content},#{question_answer},#{question_solve},#{files_no})
+	#{material_no},#{question_content},#{question_answer},#{question_solve},#{files_no})
 	</insert>
 	
 	<select id="adminSelectAllQuestion" resultType="questionVo">

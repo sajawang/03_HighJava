@@ -17,7 +17,7 @@
 
 	<select id="countPost" parameterType="map" resultType="int">
 				<!--  -->
-				select count(*) from post where board_no = #{board_no}
+				select count(*) from post where board_no = #{board_no} and post_delyn = 'n'
 			<include refid="dynamicCondition"/> 
 
 	</select>
@@ -106,7 +106,7 @@
 		
 	</insert>
 	
-	<update id="updateHitAdminInquiries" parameterType="PostVo">
+	<update id="updateHitAdminInquiries" parameterType="postVo">
 		update post
 		set post_cnt = post_cnt+1
 		where post_no = #{post_no} and board_no = #{board_no}

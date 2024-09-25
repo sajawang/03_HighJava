@@ -88,18 +88,6 @@ public interface IAdminInquiriesDAO {
 	 * @param int comNo
 	 * @return	성공  : 1 / 실패 : 0
 	 */
-<<<<<<< .mine
-		public int deleteComment(int comNo);
-	
-		
-		
-	
-		
-}
-||||||| .r438769
-		public int deleteComment(int comNo);
-}
-=======
 	public int deleteComment(int comNo);
 	
 	/**
@@ -136,4 +124,4 @@ public interface IAdminInquiriesDAO {
 	 */
 	public List<CommentVO> commentView(int post_no);
 		
-}>>>>>>> .r444301
+}

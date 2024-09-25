@@ -161,7 +161,7 @@ function graph(id,g1,g2,g3){
   </div>
 </div>
 <div class="graph-wrap" id="graph3">
-  <a class="tit">올해 푼 문제집!</a>
+  <a class="tit">올해 푼 문제집</a>
   <div class="graph" >
     <div class="data data1"></div>
     <div class="data data2"><%=countViewList %> 개 풀었습니다.

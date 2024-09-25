@@ -37,26 +37,26 @@ public class PlayMaterial extends HttpServlet {
 		IMaterialService service = MaterialServiceImpl.getInstance();
 		System.out.println(cusId);
 		MathSettingVO mSVo = service.getMathMinute(cusId);
-		String mSMinute = mSVo.getMathsetting_minute();
+		String mSMinute = null;
 		int iMSMinute = 0;
-		if(mSMinute.equals("10분")) {
+		if(mSVo != null) {
+			mSMinute = mSVo.getMathsetting_minute(); //1번째 오류
+		}
+		
+		if(mSMinute != null && mSMinute.equals("10분")) { //2번째 오류
 			iMSMinute = 600000;
-		} else if (mSMinute.equals("20분")) {
+		} else if (mSMinute != null && mSMinute.equals("20분")) {
 			iMSMinute = 1200000;
-		} else if (mSMinute.equals("30분")) {
+		} else if (mSMinute != null && mSMinute.equals("30분")) {
 			iMSMinute = 1800000;
 		}
 		
 		int mno = Integer.parseInt(request.getParameter("mno"));
 		int vgu = Integer.parseInt(request.getParameter("vgu"));
 		
-		System.out.println(mno +"mno");
-		System.out.println(vgu +"adawdmno");
-		
-		
 		String resOn = request.getParameter("resOn");
 		List<ViewListVO> answerList = null;
-		if(request.getParameter("resOn") != "Y" || request.getParameter("resOn").equals("Y")) {
+		if(request.getParameter("resOn") != "N" || request.getParameter("resOn").equals("Y")) {
 			ViewListVO viewVo = new ViewListVO();
 			viewVo.setCus_id(cusId);
 			viewVo.setView_gu(String.valueOf(vgu));

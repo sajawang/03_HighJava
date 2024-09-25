@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="teacherLib">
+	<select id="detailTeacherLib" parameterType="int" resultType="postVo">
+		select * 
+		  from post p
+		 inner join files f on p.files_no = f.files_no 
+		 where post_no = #{pno}
+	</select>
+	
+	<!-- 전체 글 갯수  - 조건여부에 따라 -->
+	<select id="countTeacherLib" resultType="int" parameterType="map">
+		select count(*) 
+          from post p
+         inner join files f on p.files_no = f.files_no 
+         WHERE SUBSTR(p.POST_GU, 1, 2) = #{school}
+           and SUBSTR(p.POST_GU, 3, 1) = #{grade}
+	</select>
+	
+	<!-- 글 리스트 가져오기 - 조건여부에 따라 -->
+	<select id="getAllTeacherLib" parameterType="map" resultType="postVo">
+		select A.* 
+		  from (select rownum as rnum , B.*
+		          from ( select * 
+                 from post p
+                inner join files f on p.files_no = f.files_no 
+                WHERE SUBSTR(p.POST_GU, 1, 2) = #{school}
+                  and SUBSTR(p.POST_GU, 3, 1) = #{grade}
+                order by p.post_no desc ) B 
+	    <![CDATA[
+	             where rownum <= #{end}) A
+	     where A.rnum >= #{start} 
+	    ]]>
+	</select>
+	
+	<update id="updateHitTeacherLib" parameterType="int">
+		update post set post_cnt = (select post_cnt from post where post_no = #{postNo} )+1 where post_no = #{postNo}
+	</update>
+	
+</mapper>
